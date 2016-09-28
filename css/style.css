@@ -1,0 +1,5 @@
+/* This part is originated from the http://jmcglone.com/ */
+
+/* Custom container */
+.container > hr { margin: 30px 0; }
+.container > hr.footer {margin-bottom: 15px; }
