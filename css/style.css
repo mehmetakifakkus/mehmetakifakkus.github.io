@@ -108,7 +108,7 @@ a:hover img{
 github_link {
   width:270px;
   float:left;
-  position:fixed;
+  /*position:fixed;*/
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
