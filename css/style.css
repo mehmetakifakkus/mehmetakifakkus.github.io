@@ -52,12 +52,6 @@ ul.swatch li:first-child { webkit-border-top-left-radius: 9px; -webkit-border-bo
 .swatch-log p { font-size: 14px; clear: left; margin-top: 10px; font-family: 'Montserrat', Helvetica, sans-serif; text-transform: uppercase; }
 .clear { clear: both; height: 20px; }
 
-/* CV */
-.cv {line-height: 23px; width: 90%; margin: 0 auto;}
-.cv li { line-height: 23px; }
-.cv h2 { font-size: 26.5px; }
-.cv h1 { font-size: 32.5px; }
-
 .notes, .contact, .about, .cv, .error, .swatches { margin-bottom: 30px; }
 
 /* Contact */
@@ -92,6 +86,8 @@ pre.prettyprint { padding: 10px !important; margin: 40px; font-size: 12px;}
 	margin: 5px 15px 0px 0px;
 	font-family: 'Montserrat', Helvetica, sans-serif; }
 
+/* This part is used on project page  */
+
 a img {
     display: inline-block;
     border: 2px solid #444;
@@ -106,3 +102,56 @@ a:hover img{
     border-radius: 30px;
     border: 3px solid #aaa;
 }
+
+/* This part is from http://orderedlist.com/minimal/stylesheets/styles.css*/
+
+github_link {
+  width:270px;
+  float:left;
+  position:fixed;
+  -webkit-font-smoothing:subpixel-antialiased;
+}
+
+github_link ul {
+  list-style:none;
+  height:40px;
+  padding:0;
+  background: #f4f4f4;
+  border-radius:5px;
+  border:1px solid #e0e0e0;
+  width:270px;
+}
+
+github_link li {
+  width:89px;
+  float:left;
+  border-right:1px solid #e0e0e0;
+  height:40px;
+}
+
+github_link li:first-child a {
+  border-radius:5px 0 0 5px;
+}
+
+github_link li:last-child a {
+  border-radius:0 5px 5px 0;
+}
+
+github_link ul a {
+  line-height:1;
+  font-size:11px;
+  color:#999;
+  display:block;
+  text-align:center;
+  padding-top:6px;
+  height:34px;
+}
+
+github_link ul a:hover {
+  color:#999;
+}
+
+github_link ul a:active {
+  background-color:#f0f0f0;
+}
+
