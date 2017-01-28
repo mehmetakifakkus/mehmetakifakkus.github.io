@@ -8,8 +8,8 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 
 Daha fazla markdown örnekleri için şu [sayfaya](https://jbt.github.io/markdown-editor) göz atabilirsiniz. Gördüğünüz gibi html yazmaktan çok daha daha kolay. 
 
-Jekyll belirli bir dizin yapısında verdiğiniz dosyaları gayet güzel bir blog sayfası olarak gösterebiliyor. Şimdi sizi çok detaya boğmak istemiyorum. Çalışan bir blog safyası kod dizini şu şekilde oluyor. Çalışan ön izlemesi de böyle. Blog sayfasındaki her bir ana sekme burada bir dizin içerisinde tutulmuş. Blog yazıları blog dizininde bulunuyor. Kendim yeni bir Github Blog’una https://mehmetakifakkus.github.io adresinde başladım. Projelerimi açıklamak ve yaptıklarımla alakalı insanları bilgilendirmek için kullanıyorum şimdilik. 
+Jekyll belirli bir dizin yapısında verdiğiniz dosyaları gayet güzel bir blog sayfası olarak gösterebiliyor. Şimdi sizi çok detaya boğmak istemiyorum. Çalışan bir blog safyası kod dizini [şu şekilde](https://github.com/mehmetakifakkus/blogTemplate) oluyor. Çalışan ön izlemesi de [böyle](https://mehmetakifakkus.github.io/blogTemplate/ ). Blog sayfasındaki her bir ana sekme burada bir dizin içerisinde tutulmuş. Blog yazıları blog dizininde bulunuyor. Kendim yeni bir Github Blog’una [https://mehmetakifakkus.github.io](https://mehmetakifakkus.github.io) adresinde başladım. Projelerimi açıklamak ve yaptıklarımla alakalı insanları bilgilendirmek için kullanıyorum şimdilik. 
 
-Eğer hızlıca başlamak ve yukarıdaki şablonu kullanmak isterseniz hemen bu link’teki dosyaları indirebilir ve kendi isteğinize göre değiştirip git kaynağı (ing. repository) haline getirip Github’a yükleyebilirsiniz. İlgili yönergeler yukarıdaki önizlemede blunuyor. 
+Eğer hızlıca başlamak ve yukarıdaki şablonu kullanmak isterseniz hemen [bu link’teki](https://mehmetakifakkus.github.io/blogTemplate/) dosyaları indirebilir ve kendi isteğinize göre değiştirip git kaynağı (ing. repository) haline getirip Github’a yükleyebilirsiniz. İlgili yönergeler yukarıdaki önizlemede blunuyor. 
 
 Blog sayfanız hayırlı olsun. İyi yazmalar!
