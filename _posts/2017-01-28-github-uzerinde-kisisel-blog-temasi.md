@@ -6,6 +6,13 @@ Github varsayılanda çevrimiçi dosyalarınızı halka açık (ing. public) ola
 
 Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar barındırmanıza izin veriyor. Hatta bunun için Jekyll adı verilen durağan sayfa üreticisi uygulamayı kendisine entegre etmiş. Jekyll markdown adı verilen yazma stilini kullanıyor. Yani siz belirli kurallar dahilinde yazdığınız markdown formatındaki dosyanıza karşılık gelen html kodu otomatik olarak Jekyll tarafından üretiliyor. Şöyle bir örnek verelim:
 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+{:.mbtablestyle}
+
 Daha fazla markdown örnekleri için şu [sayfaya](https://jbt.github.io/markdown-editor) göz atabilirsiniz. Gördüğünüz gibi html yazmaktan çok daha daha kolay. 
 
 Jekyll belirli bir dizin yapısında verdiğiniz dosyaları gayet güzel bir blog sayfası olarak gösterebiliyor. Şimdi sizi çok detaya boğmak istemiyorum. Çalışan bir blog safyası kod dizini [şu şekilde](https://github.com/mehmetakifakkus/blogTemplate) oluyor. Çalışan ön izlemesi de [böyle](https://mehmetakifakkus.github.io/blogTemplate/ ). Blog sayfasındaki her bir ana sekme burada bir dizin içerisinde tutulmuş. Blog yazıları blog dizininde bulunuyor. Kendim yeni bir Github Blog’una [https://mehmetakifakkus.github.io](https://mehmetakifakkus.github.io) adresinde başladım. Projelerimi açıklamak ve yaptıklarımla alakalı insanları bilgilendirmek için kullanıyorum şimdilik. 
