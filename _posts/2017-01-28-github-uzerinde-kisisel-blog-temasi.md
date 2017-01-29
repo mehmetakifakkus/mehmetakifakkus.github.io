@@ -8,10 +8,8 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 
 | Markdown formatı | Html karşılığı | Nasıl gözükür |
 | -------------              |:-------------:| -----:|
-| * Drag and drop            |  <pre><code> <ul></code></pre>           |      |
-|                            |  <li>Drag and drop</li>|   |
-| * File contents are saved  |  <li>File contents are saved</li> |   |
-|                            |   </ul>          | $1600 |
+| * Drag and drop            |  <code> <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul> </code>  |      <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul>|
+| * File contents are saved  |   |   |
 |  | centered                |   $12              |        |
 | zebra stripes              | are neat          |    $1 |
 
