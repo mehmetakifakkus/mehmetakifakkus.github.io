@@ -9,7 +9,7 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 <code> <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul> </code>
 
 | Markdown formatı                | Html karşılığı              | Nasıl gözükür    |
-| -------------                   |:---------------------       |: ----------------|
+|---------------------------------|:----------------------------|: ----------------------------|
 | * Drag and drop                 |  <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul>  |     sdsdsad|
 | * File contents are saved       |                             |                  |
 | zebra stripes                   | are neat                    |      $1          |
@@ -22,8 +22,3 @@ Eğer hızlıca başlamak ve yukarıdaki şablonu kullanmak isterseniz hemen [bu
 
 Blog sayfanız hayırlı olsun. İyi yazmalar!
 
-| xczcxc xzcxzzx xzczxc xzczx c |             sddsadasd  sda sad sad ad |   |   |   |
-|-------------------------------|--------------------------------------:|---|---|---|
-|                               | Drag and drop File contents are saved |   |   |   |
-|                               | Drag and drop File contents are saved |   |   |   |
-|                               |                                       |   |   |   |
