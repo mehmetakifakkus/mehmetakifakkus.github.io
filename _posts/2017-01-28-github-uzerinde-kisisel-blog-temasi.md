@@ -8,7 +8,7 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 
 | Markdown formatı | Html karşılığı | Nasıl gözükür |
 | -------------              |:-------------:| -----:|
-| * Drag and drop            |  <ul>          |      |
+| * Drag and drop            |  <pre><code> <ul></code></pre>           |      |
 |                            |  <li>Drag and drop</li>|   |
 | * File contents are saved  |  <li>File contents are saved</li> |   |
 |                            |   </ul>          | $1600 |
