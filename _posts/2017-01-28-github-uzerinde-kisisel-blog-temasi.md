@@ -10,7 +10,6 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 | -------------              |:---------------------|: ----------------|
 | * Drag and drop            |  <code> <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul> </code>  |      <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul>|
 | * File contents are saved  |   |   |
-|  | centered                |   $12              |        |
 | zebra stripes              | are neat          |    $1 |
 
 Daha fazla markdown örnekleri için şu [sayfaya](https://jbt.github.io/markdown-editor) göz atabilirsiniz. Gördüğünüz gibi html yazmaktan çok daha daha kolay. 
