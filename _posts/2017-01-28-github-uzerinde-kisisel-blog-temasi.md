@@ -10,9 +10,8 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 
 | Markdown formatı               | Html karşılığı              | Nasıl gözükür    |
 | -------------------------------|: ---------------------------|: --------------------------|
-| * Drag and drop                 |  <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul>  |     sdsdsad|
-| * File contents are saved       |                             |                  |
-| zebra stripes                   | are neat                    |      $1          |
+| * File contents are saved       |                            |                  |
+| *italik* ve **kalın** yazı      | *italik* ve **kalın** yazı | <code>*italik* ve **kalın** yazı</code>          |
 
 Daha fazla markdown örnekleri için şu [sayfaya](https://jbt.github.io/markdown-editor) göz atabilirsiniz. Gördüğünüz gibi html yazmaktan çok daha daha kolay. 
 
