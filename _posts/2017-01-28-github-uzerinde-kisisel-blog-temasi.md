@@ -22,17 +22,8 @@ Eğer hızlıca başlamak ve yukarıdaki şablonu kullanmak isterseniz hemen [bu
 
 Blog sayfanız hayırlı olsun. İyi yazmalar!
 
-
-+---------+---------------------------------------+--+--+--+
-| xczcxc  |                            sddsadasd  |  |  |  |
-| xzcxzzx |                                   sda |  |  |  |
-| xzczxc  |                                   sad |  |  |  |
-| xzczx   |                                   sad |  |  |  |
-| c       |                                    ad |  |  |  |
-+---------+---------------------------------------+--+--+--+
-|         | Drag and drop File contents are saved |  |  |  |
-+---------+---------------------------------------+--+--+--+
-|         | Drag and drop File contents are saved |  |  |  |
-+---------+---------------------------------------+--+--+--+
-|         |                                       |  |  |  |
-+---------+---------------------------------------+--+--+--+
+| xczcxc xzcxzzx xzczxc xzczx c |             sddsadasd  sda sad sad ad |   |   |   |
+|-------------------------------|--------------------------------------:|---|---|---|
+|                               | Drag and drop File contents are saved |   |   |   |
+|                               | Drag and drop File contents are saved |   |   |   |
+|                               |                                       |   |   |   |
