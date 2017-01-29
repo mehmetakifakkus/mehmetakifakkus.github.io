@@ -21,3 +21,18 @@ Jekyll belirli bir dizin yapısında verdiğiniz dosyaları gayet güzel bir blo
 Eğer hızlıca başlamak ve yukarıdaki şablonu kullanmak isterseniz hemen [bu link’teki](https://mehmetakifakkus.github.io/blogTemplate/) dosyaları indirebilir ve kendi isteğinize göre değiştirip git kaynağı (ing. repository) haline getirip Github’a yükleyebilirsiniz. İlgili yönergeler yukarıdaki önizlemede blunuyor. 
 
 Blog sayfanız hayırlı olsun. İyi yazmalar!
+
+
++---------+---------------------------------------+--+--+--+
+| xczcxc  |                            sddsadasd  |  |  |  |
+| xzcxzzx |                                   sda |  |  |  |
+| xzczxc  |                                   sad |  |  |  |
+| xzczx   |                                   sad |  |  |  |
+| c       |                                    ad |  |  |  |
++---------+---------------------------------------+--+--+--+
+|         | Drag and drop File contents are saved |  |  |  |
++---------+---------------------------------------+--+--+--+
+|         | Drag and drop File contents are saved |  |  |  |
++---------+---------------------------------------+--+--+--+
+|         |                                       |  |  |  |
++---------+---------------------------------------+--+--+--+
