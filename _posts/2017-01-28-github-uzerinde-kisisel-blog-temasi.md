@@ -6,12 +6,10 @@ Github varsayılanda çevrimiçi dosyalarınızı halka açık (ing. public) ola
 
 Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar barındırmanıza izin veriyor. Hatta bunun için Jekyll adı verilen durağan sayfa üreticisi uygulamayı kendisine entegre etmiş. Jekyll markdown adı verilen yazma stilini kullanıyor. Yani siz belirli kurallar dahilinde yazdığınız markdown formatındaki dosyanıza karşılık gelen html kodu otomatik olarak Jekyll tarafından üretiliyor. Şöyle bir örnek verelim:
 
-<code> <ul> <li>Drag and drop</li> <li>File contents are saved</li> </ul> </code>
 
 | Markdown formatı               | Html karşılığı              | Nasıl gözükür    |
 | -------------------------------|: ---------------------------|: --------------------------|
-| * File contents are saved       |                            |                  |
-| *italik* ve **kalın** yazı      | *italik* ve **kalın** yazı | <code>*italik* ve **kalın** yazı</code>          |
+| *italik* ve **kalın** yazı      | <em>italik</em> ve <strong>kalın</strong> yazı | <code>*italik* ve **kalın** yazı</code>          |
 
 Daha fazla markdown örnekleri için şu [sayfaya](https://jbt.github.io/markdown-editor) göz atabilirsiniz. Gördüğünüz gibi html yazmaktan çok daha daha kolay. 
 
