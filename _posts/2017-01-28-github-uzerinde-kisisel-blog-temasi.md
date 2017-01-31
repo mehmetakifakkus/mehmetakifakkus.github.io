@@ -9,7 +9,7 @@ Github pages adını verdiği bir hizmet ile durağan (ing. static) sayfalar bar
 
 | Markdown formatı               | Html karşılığı              | Nasıl gözükür    |
 | -------------------------------|: ---------------------------|: --------------------------|
-| <code>*italik* ve **kalın** yazı</code> | <code><em>italik</em> ve <strong>kalın</strong> yazı </code> | *italik* ve **kalın** yazı          |
+| <code>*italik* ve **kalın** yazı</code> | <pre><em>italik</em> ve <strong>kalın</strong> yazı </pre> | *italik* ve **kalın** yazı          |
 
 Daha fazla markdown örnekleri için şu [sayfaya](https://jbt.github.io/markdown-editor) göz atabilirsiniz. Gördüğünüz gibi html yazmaktan çok daha daha kolay. 
 
