@@ -4,11 +4,15 @@ title: "Bilişim Bilirkişiliği için Başvuru Niteliğinde Web Sayfaları"
 date: 2015-07-29
 ---
 
-Burada bilirkişiliğe başladığımdan bu yana faydalı görüp bir kenara not aldığım web sayfalarına ulaşabilirsiniz. Özellikle yeni başlayanlar için gayet faydalı bulduğum bir çok sayfa var.
-Adli Bilişim (Bilişim Bilirkişiliği) – [Dijital deliller ve adli bilişimle ilgili bir sitedir. Dr. Yunus BALI](http://www.dijitaldeliller.com)
-Bilişim suçları alanında bilirkişi olacak kişiler için güzel bir başvuru sitesi. Sahip olunması gereken temel teknik bilgilerden tutunda nasıl rapor yazılması gerektiğine dair güzel bilgilerle dopdolu bir site.
-Bilişim bilirkişisi! Biraz daha profesyonellik !!! – Adli Bilişim (Bilişim Bilirkişiliği) – Adli Bilişim (Bilişim Bilirkişiliği)
-Gayet düşük seviyeli, resmiyetten ve düzenden uzak rapor yazmanın oluşturduğu problemlerle alakalı güzel bir yazı
+Burada bilirkişiliğe başladığımdan bu yana faydalı görüp bir kenara not aldığım web sayfalarına ulaşabilirsiniz. 
+
+Özellikle yeni başlayanlar için gayet faydalı bulduğum bir çok sayfa var.
+- Adli Bilişim (Bilişim Bilirkişiliği) – [Dijital deliller ve adli bilişimle ilgili bir sitedir. Dr. Yunus BALI](http://www.dijitaldeliller.com)
+
+- Bilişim suçları alanında bilirkişi olacak kişiler için güzel bir başvuru sitesi. Sahip olunması gereken temel teknik bilgilerden tutunda nasıl rapor yazılması gerektiğine dair güzel bilgilerle dopdolu bir site.
+* Bilişim bilirkişisi! [Biraz daha profesyonellik !!! – Adli Bilişim (Bilişim Bilirkişiliği) – Adli Bilişim (Bilişim Bilirkişiliği)](http://www.dijitaldeliller.com/bilisim-bilirkisi-raporu/)
+
+- Gayet düşük seviyeli, resmiyetten ve düzenden uzak rapor yazmanın oluşturduğu problemlerle alakalı güzel bir yazı
 İnternet bankacılığı yoluyla dolandırıcılık suçu ve delillendirme süreci – Adli Bilişim (Bilişim Bilirkişiliği) – Adli Bilişim (Bilişim Bilirkişiliği)
 İnternet bankacılığı ile alakalı işlenmiş suçlarda göz ardı edilmemesi gerekli bir yazı
 Adliyelerde dijital deliller geçen yüzyılı yaşıyor… – Adli Bilişim (Bilişim Bilirkişiliği) – Adli Bilişim (Bilişim Bilirkişiliği)
