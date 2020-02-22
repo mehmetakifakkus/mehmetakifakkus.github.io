@@ -4,10 +4,8 @@ title: "An Image Processing Project: Historical Monument Restoration"
 date: 2016-09-29
 ---
 
-When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+**Nontextured image inpainting** term is basically restoring the destroyed or corrupted pixels of an image using the neighborhod pixels. There are several areas that this method is applied.
 
-Nontextured image inpainting term is basically restoring the destroyed or corrupted pixels of an image using the neighborhod pixels. There are several areas that this method is applied.
 First one is restoring damaged parts of the old pictures due to the folding. Secondly, the other area is extracting the unwanted objects on an image. For example, in order to avoid children from envy at cigarette, blurring the cigarette parts of an image is not sufficient. However. if we take the cigarette pixels as inpainting domain, we can easily remove it from image only by diffusing the surrounding pixels to the inpainting domain pixels.
 
 ### Scope Definition
@@ -18,15 +16,15 @@ As we have mentioned at the introduction part, the image inpainting is such an i
 
 The most important thing while interpolating is the selecting the most important data domain pixels which affects the inpainting domain pixels more than the other surrounding pixels. At the paper that we have encountered, there are several approaches to this problem. However, there are some papers whose main goal is to reduce the complexity of the code in order to reduce the execution time. Therefore, the quality of the output image is insufficient for these methods. As you can easily see, there is an inverse proportion between the quality of an image and the execution time of the code. The question in our main paper that we have utilized (implemented) is how can we obtained (restored in a plausible way) relatively high quality image, while reducing the execution time.
 
-The Methods Used
+### The Methods We Used
 First of all, we want to give the brief information about the methods. The first method is visiting the inpainting domain pixels in ordered manner, and calculate the intensity of the pixel. The robust property of this method is its speed, because, we visit the pixels only once, this means that if there are n pixels in inpaiting domain, the method calculates the same method for n times. The other method is that iterating each pixel of the inpainting domain until the energy converges to its stable state, namely global minimal. The robust feature of this procedure is the high qualitative result of output images. Nevertheless, the weak side is speed, since, including the previous assumption if each inpainting domain pixels are iterated average m times, then the total calculation is m x n.
 
-teleasmethodIf we come to our main paper written by Bornemann, the method uses the high speed features of the first method and the high quality feature of the second method. In order to give a detailed information of these approaches, we would like to give the notations of the terms that we have used along this report.
+teleasmethod If we come to our main paper written by Bornemann, the method uses the high speed features of the first method and the high quality feature of the second method. In order to give a detailed information of these approaches, we would like to give the notations of the terms that we have used along this report.
 
-\Omega is the image domain
-D is the inpainting domain
-\Omega \backslash D is the data domain
-\partial \Omega is the inpainting boundary which is the closest pixels to the data domain
+$\Omega$ is the image domain
+$D$ is the inpainting domain
+$\Omega \backslash D$ is the data domain
+$\partial \Omega$ is the inpainting boundary which is the closest pixels to the data domain
 B_{\epsilon, h}(x_k) = \{y \in \Omega_h : |y - x| \leq \epsilon\} is the neighbourhood pixels inside the radius \epsilon
 B^ <_{\epsilon, h}(x_k) = B_{\epsilon, h}(x_k) is the neighbourhood pixels inside the radius \epsilon which are in data domain
 First of all, we think the surrounding pixels in data domain as neurons which excite the neuron which is the current inpainting pixel.
