@@ -28,7 +28,7 @@ Burada bilirkişiliğe başladığımdan bu yana faydalı görüp bir kenara not
 - Bilirkişi raporunun içeriği, ispat ve delil niteliği [Türkiye’nin en iyi adli bilişim portalı](bilirkisi-raporunun-icerigi-ispat-ve-delil-niteligi)
 
 - İnternet bankacılıklarında güvenlik
-* [İnternet Bankacılığı Güvenliği](https://www.yapikredi.com.tr/sinirsiz-bankacilik/internet-subesi/guvenlik/guvenlik-icin-10-altin-ipucu)
-* Güvenlik : [İnternet Bankacılığı Uygulamalarında SMS Şifre Tehlikesi](http://www.cozumpark.com/nternet-bankac-l-uygulamalar-nda-sms-ifre-tehlikesi/)
+  - [İnternet Bankacılığı Güvenliği](https://www.yapikredi.com.tr/sinirsiz-bankacilik/internet-subesi/guvenlik/guvenlik-icin-10-altin-ipucu)
+  - Güvenlik : [İnternet Bankacılığı Uygulamalarında SMS Şifre Tehlikesi](http://www.cozumpark.com/nternet-bankac-l-uygulamalar-nda-sms-ifre-tehlikesi/)
 
 Bu liste gün geçtikçe güncellenecektir.
