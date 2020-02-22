@@ -12,6 +12,9 @@ Apps Script Kullanışlı Linkler:
 - Çok hoş örnekler var, Öncelikle buna bakılmalı
   - Merhaba <<isim>>, gibi başlayan şablon doldurma içeren örnekler: [Create text from template – Google Apps Script Examples](https://sites.google.com/site/scriptsexamples/custom-methods/create-text-from-template)
 - Çok hoş örnekler var: [New Visions CloudLab](https://sites.google.com/a/newvisions.org/scripts_resources)
-    - Yukarıdaki template örneğine benzer daha gelişmiş bir add-on: [autoCrat – New Visions CloudLab](https://sites.google.com/a/newvisions.org/scripts_resources/add-ons/autocrat)
-- Çok kaliteli örnekler yok ama, yeni başlayan birisi için de fena değil: [Looping – Scripting Google Docs & Sites](https://sites.google.com/a/unifiedlearning.co.uk/scripting/starting-out/looping)
-- Apps Script’te fonksiyonlar nasıl yazılır bir örnek: [Custom Functions in Google Sheets](https://developers.google.com/apps-script/guides/sheets/functions)
+    - Yukarıdaki template örneğine benzer daha gelişmiş bir add-on: 
+  [autoCrat – New Visions CloudLab](https://sites.google.com/a/newvisions.org/scripts_resources/add-ons/autocrat)
+- Çok kaliteli örnekler yok ama, yeni başlayan birisi için de fena değil: 
+  [Looping – Scripting Google Docs & Sites](https://sites.google.com/a/unifiedlearning.co.uk/scripting/starting-out/looping)
+- Apps Script’te fonksiyonlar nasıl yazılır bir örnek: 
+  [Custom Functions in Google Sheets](https://developers.google.com/apps-script/guides/sheets/functions)
