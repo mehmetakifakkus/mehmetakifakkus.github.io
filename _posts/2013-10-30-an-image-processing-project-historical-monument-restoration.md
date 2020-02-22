@@ -4,7 +4,8 @@ title: "An Image Processing Project: Historical Monument Restoration"
 date: 2016-09-29
 ---
 
-*E*~0~=*mc*^2^
+When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 Nontextured image inpainting term is basically restoring the destroyed or corrupted pixels of an image using the neighborhod pixels. There are several areas that this method is applied.
 First one is restoring damaged parts of the old pictures due to the folding. Secondly, the other area is extracting the unwanted objects on an image. For example, in order to avoid children from envy at cigarette, blurring the cigarette parts of an image is not sufficient. However. if we take the cigarette pixels as inpainting domain, we can easily remove it from image only by diffusing the surrounding pixels to the inpainting domain pixels.
