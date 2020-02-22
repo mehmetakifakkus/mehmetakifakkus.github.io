@@ -9,7 +9,7 @@ Herkese selamlar,
 **Bilirkişilik** en kısa ifadesiyle yetkin olduğunuz alanda bilgi verme işidir. Yetkin olduğunuz bu alan genellikle sahip olduğunuz mesleğinizle alakalıdır ve alanında uzman olmayan kişi veya kurum bu konuda sizin bilginize ihtiyaç duyar.
 En bilinen bilirkişilik işi uzman kişilerin mahkemelere davaların çözümlenmesinde, hakimin uzmanlık alanı olmayan bir konuda bilgiyi sesli veya yazılı olarak sunma işidir.
 
-Bilirkişilik yaklaşık bir senedir deneyimleme imkanı bulduğum, ama henüz tam yetkinleşemediğim bir alan. Muhtemelen hayat boyu bu tam yetkinleşme olayı olmayacak çünkü yeni suç yöntemleri, yeni tanı yöntemleri ve araçlarında beraberinde getirecek. Özellikle yaptığım bilirkişilik bilişim suçları olunca her şey teknolojinin gelişimine paralel olarak gerçekleşiyor.
+Bilirkişilik yaklaşık bir senedir deneyimleme imkanı bulduğum, ama henüz tam yetkinleşemediğim bir alan. Muhtemelen hayat boyu bu tam yetkinleşme olayı olmayacak çünkü yeni suç yöntemleri, yeni tanı yöntemleri ve araçlarını da beraberinde getirecek. Özellikle yaptığım bilirkişilik bilişim suçları olunca her şey teknolojinin gelişimine paralel olarak gerçekleşiyor.
 
 Bilgisayar mühendisi olan arkadaşlarımın bu işe girmelerini şiddetle tavsiye ediyorum, çünkü bu alanda çok ihtiyaç var. Bir kaç örnek:
 
