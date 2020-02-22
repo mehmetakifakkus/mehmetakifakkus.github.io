@@ -17,7 +17,7 @@ As we have mentioned at the introduction part, the image inpainting is such an i
 The most important thing while interpolating is the selecting the most important data domain pixels which affects the inpainting domain pixels more than the other surrounding pixels. At the paper that we have encountered, there are several approaches to this problem. However, there are some papers whose main goal is to reduce the complexity of the code in order to reduce the execution time. Therefore, the quality of the output image is insufficient for these methods. As you can easily see, there is an inverse proportion between the quality of an image and the execution time of the code. The question in our main paper that we have utilized (implemented) is how can we obtained (restored in a plausible way) relatively high quality image, while reducing the execution time.
 
 ### The Methods We Used
-First of all, we want to give the brief information about the methods. The first method is visiting the inpainting domain pixels in ordered manner, and calculate the intensity of the pixel. The robust property of this method is its speed, because, we visit the pixels only once, this means that if there are n pixels in inpaiting domain, the method calculates the same method for n times. The other method is that iterating each pixel of the inpainting domain until the energy converges to its stable state, namely global minimal. The robust feature of this procedure is the high qualitative result of output images. Nevertheless, the weak side is speed, since, including the previous assumption if each inpainting domain pixels are iterated average m times, then the total calculation is m x n.
+First of all, we want to give the brief information about the methods. The first method is visiting the inpainting domain pixels in ordered manner, and calculate the intensity of the pixel. The robust property of this method is its speed, because, we visit the pixels only once, this means that if there are n pixels in inpaiting domain, the method calculates the same method for n times. The other method is that iterating each pixel of the inpainting domain until the energy converges to its stable state, namely global minimal. The robust feature of this procedure is the high qualitative result of output images. Nevertheless, the weak side is speed, since, including the previous assumption if each inpainting domain pixels are iterated average $m$ times, then the total calculation is $m x n$.
 
 teleasmethod If we come to our main paper written by Bornemann, the method uses the high speed features of the first method and the high quality feature of the second method. In order to give a detailed information of these approaches, we would like to give the notations of the terms that we have used along this report.
 
@@ -25,13 +25,15 @@ $\Omega$ is the image domain
 $D$ is the inpainting domain
 $\Omega \backslash D$ is the data domain
 $\partial \Omega$ is the inpainting boundary which is the closest pixels to the data domain
-B_{\epsilon, h}(x_k) = \{y \in \Omega_h : |y - x| \leq \epsilon\} is the neighbourhood pixels inside the radius \epsilon
-B^ <_{\epsilon, h}(x_k) = B_{\epsilon, h}(x_k) is the neighbourhood pixels inside the radius \epsilon which are in data domain
+$B_{\epsilon, h}(x_k) = \{y \in \Omega_h : |y - x| \leq \epsilon\}$ is the neighbourhood pixels inside the radius 
+$\epsilon B^ <_{\epsilon, h}(x_k) = B_{\epsilon, h}(x_k)$ is the neighbourhood pixels inside the radius \epsilon which are in data domain.
+
 First of all, we think the surrounding pixels in data domain as neurons which excite the neuron which is the current inpainting pixel.
 
-Before calculation, we order the inpainting domain pixels according to the distances from the closest data domain pixel. After calculation of this we start to visit these pixels in ordered manner. it means that we visiting an painting the pixels like peeling. In other words, we start from the outermost part of the inpainting domain to the innermost skeleton part. While doing this operation, we calculate the \mu(x) and \vec{c}(x) functions which are unknown elements of equation 5. In order to reduce the computational complexity, we only calculate once for each lattice or boundary of inpainting domain.
+Before calculation, we order the inpainting domain pixels according to the distances from the closest data domain pixel. After calculation of this we start to visit these pixels in ordered manner. it means that we visiting an painting the pixels like peeling. In other words, we start from the outermost part of the inpainting domain to the innermost skeleton part. While doing this operation, we calculate the $\mu(x)$ and $\vec{c}(x)$ functions which are unknown elements of equation 5. In order to reduce the computational complexity, we only calculate once for each lattice or boundary of inpainting domain.
 
-Show Press Release (44 More Words)
+### Algorithm
+
 First of all we apply Gaussian filter to the image with the \sigma value. See Equation 1
 (1)   \begin{equation*}  u_\sigma = K_\sigma \star u \end{equation*}
 
