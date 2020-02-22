@@ -23,7 +23,7 @@ Burada bilirkişiliğe başladığımdan bu yana faydalı görüp bir kenara not
 [Paylaşım programlarında fail | SRC Hukuk – Avukat Sertel Şıracı – Bilişim Marka Patent Tasarım E-Ticaret Telif](http://www.sertels.av.tr/avukat/hukuk/bilisim-hukuku/paylaprogramlar-fail.html)
 - Hasan Uzun | [LinkedIn](https://www.linkedin.com/in/hasan-uzun-551a5574/)
 
-- Alan ile alakalı Hasan uzun tarafından yazılmış faydalı bir kitap ]-[BirKitap.Net](https://www.birkitap.net/)
+- Adli bilişim alanında Hasan uzun tarafından yazılmış faydalı bir kitap-[BirKitap.Net](https://www.birkitap.net/)
 
 - Bilirkişi raporunun içeriği, ispat ve delil niteliği [Türkiye’nin en iyi adli bilişim portalı](bilirkisi-raporunun-icerigi-ispat-ve-delil-niteligi)
 
