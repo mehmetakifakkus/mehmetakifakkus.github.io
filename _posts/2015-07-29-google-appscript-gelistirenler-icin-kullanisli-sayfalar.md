@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Google Appscript Geliştirenler için Kulanışlı Sayfalar"
+title: "Google Appscript Geliştirenler için Kullanışlı Sayfalar"
 date: 2015-07-29
 ---
 
@@ -14,4 +14,4 @@ Apps Script Kullanışlı Linkler:
 - Çok hoş örnekler var: [New Visions CloudLab](https://sites.google.com/a/newvisions.org/scripts_resources)
     - Yukarıdaki template örneğine benzer daha gelişmiş bir add-on: [autoCrat – New Visions CloudLab](https://sites.google.com/a/newvisions.org/scripts_resources/add-ons/autocrat)
 - Çok kaliteli örnekler yok ama, yeni başlayan birisi için de fena değil: [Looping – Scripting Google Docs & Sites](https://sites.google.com/a/unifiedlearning.co.uk/scripting/starting-out/looping)
-- Apps Script’te fonksiyonlar nasıl yazılır bir örnek: [Custom Functions in Google Sheets | Apps Scrip | Google Developers](https://developers.google.com/apps-script/guides/sheets/functions)
+- Apps Script’te fonksiyonlar nasıl yazılır bir örnek: [Custom Functions in Google Sheets](https://developers.google.com/apps-script/guides/sheets/functions)
