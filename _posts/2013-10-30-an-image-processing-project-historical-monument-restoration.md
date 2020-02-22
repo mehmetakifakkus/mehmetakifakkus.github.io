@@ -4,13 +4,15 @@ title: "An Image Processing Project: Historical Monument Restoration"
 date: 2016-09-29
 ---
 
+*E*~0~=*mc*^2^
+
 Nontextured image inpainting term is basically restoring the destroyed or corrupted pixels of an image using the neighborhod pixels. There are several areas that this method is applied.
 First one is restoring damaged parts of the old pictures due to the folding. Secondly, the other area is extracting the unwanted objects on an image. For example, in order to avoid children from envy at cigarette, blurring the cigarette parts of an image is not sufficient. However. if we take the cigarette pixels as inpainting domain, we can easily remove it from image only by diffusing the surrounding pixels to the inpainting domain pixels.
 
-Scope Definition
+### Scope Definition
 The scope of this article is giving the methods of the inpainting which is taken from three inpainting papers, and giving the implementation details of the paper of Bornemann and Ma ̈rz. The materials that we have used to apply this method are an original image with m x n pixels and the scratch image including the inpainting domain defined by 0-valued pixels and the data domain defined by the 1-valued pixels, and this scratch has also the same pixel size with the original image.
 
-The Problem Definition
+### The Problem Definition
 As we have mentioned at the introduction part, the image inpainting is such an interpolating problem that it is achieved by diffusing the information of the data pixels to the inpainting domain pixels.
 
 The most important thing while interpolating is the selecting the most important data domain pixels which affects the inpainting domain pixels more than the other surrounding pixels. At the paper that we have encountered, there are several approaches to this problem. However, there are some papers whose main goal is to reduce the complexity of the code in order to reduce the execution time. Therefore, the quality of the output image is insufficient for these methods. As you can easily see, there is an inverse proportion between the quality of an image and the execution time of the code. The question in our main paper that we have utilized (implemented) is how can we obtained (restored in a plausible way) relatively high quality image, while reducing the execution time.
@@ -52,7 +54,7 @@ We calculate the weight function for each inpainting outermost domain pixels by 
 We inpaint the pixel with respect to Equation 6. 
 (6)   \begin{equation*} u(x_k) = \frac{\sum_{B^<_{\epsilon, h}(x_k)} w(x_k, y) . u(y)}{\sum_{B^<_{\epsilon, h}(x_k)} w(x_k, y)} \end{equation*}
 
-Results and Discussion
+### Results and Discussion
 In this programming project Bornemann et. al.’s study named “Fast Image Inpainting Based on Coherence Transport” was implemented. This study consists modified type of two other inpainting technique. One of them is Telea et.al’s [5] and the other one is Bertalmio et. al.’s study [1].
 
 In the following part, the difference Telea’s method and Bornemann’s method will be compared in terms of output quality and complexity. Then Bornemann’s result will be examined with several different parameters. Since we did not implement Bertalmio’s algorithm and could not find it on the internet we could not address it in comparisons. Nevertheless, we expect that Bornemann’s method faster than Bertalmio’s method and can produce results as plausible as Bertalmio does.
