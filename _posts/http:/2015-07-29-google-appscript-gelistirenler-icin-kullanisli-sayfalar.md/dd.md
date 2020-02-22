@@ -8,9 +8,9 @@ Apps Script Kullanışlı Linkler:
 
 - Google Apps Developer Blog: [Apps Script](https://gsuite-developers.googleblog.com/search/label/Apps%20Script)
 - Gayet üst deviye örneklerin olduğu kaliteli bir sayfa:
- - [Google Apps Script Examples](https://sites.google.com/site/scriptsexamples/)
+  - [Google Apps Script Examples](https://sites.google.com/site/scriptsexamples/)
 - Çok hoş örnekler var, Öncelikle buna bakılmalı
- - Merhaba <<isim>>, gibi başlayan şablon doldurma içeren örnekler: [Create text from template – Google Apps Script Examples](https://sites.google.com/site/scriptsexamples/custom-methods/create-text-from-template)
+  - Merhaba <<isim>>, gibi başlayan şablon doldurma içeren örnekler: [Create text from template – Google Apps Script Examples](https://sites.google.com/site/scriptsexamples/custom-methods/create-text-from-template)
 Merhaba <<isim>>, gibi başlayan şablon doldurma içeren örnekler
 New Visions CloudLab
 Çok hoş örnekler var
