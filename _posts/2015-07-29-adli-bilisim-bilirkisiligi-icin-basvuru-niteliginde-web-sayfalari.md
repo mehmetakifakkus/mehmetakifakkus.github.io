@@ -15,7 +15,7 @@ Burada bilirkişiliğe başladığımdan bu yana faydalı görüp bir kenara not
 - Gayet düşük seviyeli, resmiyetten ve düzenden uzak rapor yazmanın oluşturduğu problemlerle alakalı güzel bir yazı
 [İnternet bankacılığı yoluyla dolandırıcılık suçu ve delillendirme süreci – Adli Bilişim (Bilişim Bilirkişiliği) – Adli Bilişim (Bilişim Bilirkişiliği)](http://www.dijitaldeliller.com/internet-bankaciligi-yoluyla-dolandiricilik-sucu-ve-delillendirme-sureci/)
 - İnternet bankacılığı ile alakalı işlenmiş suçlarda göz ardı edilmemesi gerekli bir yazı
-[Adliyelerde dijital deliller geçen yüzyılı yaşıyor… – Adli Bilişim – Bilişimin girmediği alan adliyeler!] (http://www.dijitaldeliller.com/bilisim-suclarinin-sorusturulmasini-zorlastiran-bazi-nedenler/)
+Adliyelerde dijital deliller geçen yüzyılı yaşıyor… – Adli Bilişim – [Bilişimin girmediği alan adliyeler!] (http://www.dijitaldeliller.com/bilisim-suclarinin-sorusturulmasini-zorlastiran-bazi-nedenler/)
 
 - [Bilişim Hukuku | SRC Hukuk – Avukat Sertel Şıracı – Bilişim Marka Patent Tasarım E-Ticaret Telif](http://www.sertels.av.tr/bilisim-hukuku)
 
