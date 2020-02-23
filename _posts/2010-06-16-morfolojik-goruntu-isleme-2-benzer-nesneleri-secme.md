@@ -24,7 +24,8 @@ figure, imshow(r1)
 ```
 Resimde aşırı beyaz alanlar olduğundan parlaklık değeri 180 den fazla olanlaı siyaha çevirdim. Daha sonra resmi ikili(binary) resim formatına çeviriyoruz. İkili resim demek bizim belirlediğimiz sınır(treshold) değerinden büyük koyuluk deerine sahip olanlara ‘1’ değerini yani beyaz, bu değerin altında olanlara da ‘0’ değerini verir buda siyah demektir. Ve resmimizi ekrana basıp ne aşamada olduğumuzu bir görelim.1-1
 
-![2-BinaryImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/2-eliminate.jpg?raw=true)  Şekil2 - İkili (Binary Resme Çevirme)
+![1-BinaryImage]
+(https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/1-binary.jpg?raw=true)  Şekil1 - İkili (Binary Resme Çevirme)
 
 ```
 se = strel('disk',5);
@@ -34,7 +35,7 @@ figure, imshow(r1)
 
 Resmi oluşan karmaşıklı gidermek için erezyona uğratıyoruz. Erezyona uğratmak için bir şekil oluşturmamız gerekiyor. Ben bu aşamada çapı 5 birim hücre olan bir diski seçtim. Erezyon işleminden sonra resmimizin durumu şekil3 e görünüyor.1
 
-![3-DenoisedImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/3-denoise.jpg?raw=true)  Şekil3 - Resmin dışındaki gereksiz gürültüleri giderme
+![2-DenoisedImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/2-eliminate.jpg?raw=true)  Şekil2 - Resmin dışındaki gereksiz gürültüleri giderme
 
 ```
 r1 = bwareaopen(r1, 255);
@@ -43,7 +44,7 @@ figure, imshow(r1)
 
 Resimde işimize yaramayan küçük parçacıklar oluştuğunu görüyoruz. Bunlardan kurulmak için bwareaopen() fonksiyonu kullanışlı görünüyor. Fonksiyonun aldığı değerden küçük hücre sayısından oluşmuş olanlar eleniyor ve şekil4 ‘teki görüntümüz oluşuyor.
 
- ![4-FilledImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/4-fill-in.jpg?raw=true)  Şekil4 - Boşlukların İçini doldurma
+ ![3-FilledImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/3-denoise.jpg?raw=true)  Şekil3 - Boşlukların İçini doldurma
 
 ```
 se = strel('disk',5);
@@ -51,7 +52,9 @@ r1 = imdilate(r1,se);
 figure, imshow(r1)
 ```
 
-Küçük parçacıkları yok ettik. Gayet güzel gidiyoruz. Şimdi sıra organların içerisinde erozyonun oluşturduğu delikleri kapatmada. Burada yine aynı 5 birimlik diskimizle resmimizi tarıyoruz ve resme imdilate() fonksiyonu ile genişletme uyguluyoruz ve Şekil5’teki resmimizi elde ediyoruz.3Şekil5
+Küçük parçacıkları yok ettik. Gayet güzel gidiyoruz. Şimdi sıra organların içerisinde erozyonun oluşturduğu delikleri kapatmada. Burada yine aynı 5 birimlik diskimizle resmimizi tarıyoruz ve resme imdilate() fonksiyonu ile genişletme uyguluyoruz ve Şekil5’teki resmimizi elde ediyoruz.
+
+ ![4-FilteredImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/4-fill-in.jpg?raw=true)  Şekil4 - Boşlukların İçini doldurma
 
 ```
 r1=imfill(r1,'holes');
@@ -65,9 +68,9 @@ f(~r1)=0;
 imshow(f);
 ```
 
-~r1 ile resmimizin tersini alıyoruz. Bu şu demek beyaz olan kısımları siyah, siyah olan kısımları ise beyaz yapıyoruz. Böylece siyah kısımları seçili hale getiriyoruz gibi dşünebiliriz. Bu kısımları orijinal resmimizde 0 yani siyah değeri vererek sadee organların oldupu yerleri ortaya çıkarmış oluyoruz. İstersek organları boyayadabiliriz. Ama renkli görünmesi için rgb formatında remi üretmemiz gerekiyor. Yani resim red, gree ve blue olmak üzere 3 katmanlı yapıp organların olduğu koordinatlara istediğimiz renk değerlerine göre renklendirebilirdik. Neyse resmimizin son halini Şekil6 da görüyoruz.son
+~r1 ile resmimizin tersini alıyoruz. Bu şu demek beyaz olan kısımları siyah, siyah olan kısımları ise beyaz yapıyoruz. Böylece siyah kısımları seçili hale getiriyoruz gibi düşünebiliriz. Bu kısımları orijinal resmimizde 0 yani siyah değeri vererek sadee organların oldupu yerleri ortaya çıkarmış oluyoruz. İstersek organları boyayadabiliriz. Ama renkli görünmesi için rgb formatında remi üretmemiz gerekiyor. Yani resim red, gree ve blue olmak üzere 3 katmanlı yapıp organların olduğu koordinatlara istediğimiz renk değerlerine göre renklendirebilirdik. Neyse resmimizin son halini Şekil6 da görüyoruz.son
 
-Şekil6
+![5-FilteredImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/5-finish-as-filtering-in-original.jpg?raw=true)   Şekil5 - Orjinal resim Şekil4'teki binary resme göre filtre edilir.
 
 
 Eğer sizde denemek veya üzerinde çalışmak isterseniz buyrun resmin orijinal halini indirin:
