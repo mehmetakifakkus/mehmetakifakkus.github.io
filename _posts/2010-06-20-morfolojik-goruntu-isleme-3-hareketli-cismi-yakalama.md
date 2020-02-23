@@ -4,12 +4,11 @@ title: "Morfolojik Görüntü İşleme 3 - Hareketli Cismi Yakalama"
 date: 2010-06-20
 ---
 
- frame1Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü işleme ile örneklerimize devam ediyoruz. Bu deneyimizde sabit bir görüntü üzerinde hareket eden cisimleri, daha doğrusu resme sonradan gelmiş hareketlileri tespit edeceğiz. Bir otopark sahası içinde otoparka yeni gelen arabaların yerini bulacağız ve bunu orijinal resim içerisinde boyayarak tespit edeceğiz.
+Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü işleme ile örneklerimize devam ediyoruz. Bu deneyimizde sabit bir görüntü üzerinde hareket eden cisimleri, daha doğrusu resme sonradan gelmiş hareketlileri tespit edeceğiz. Bir otopark sahası içinde otoparka yeni gelen arabaların yerini bulacağız ve bunu orijinal resim içerisinde boyayarak tespit edeceğiz.
 
 Bir araba park alanı düşünelim ve gün içerisinde çeşitli büyüklükte ve renkte arabaların gelip park ettiğini ve ayrıldığını düşünelim. Amacımız yeni gelen arabayı tespit edip üzerini boyamak.
 
-frame1
-Şekil1 (Otopark’ın henüz araba gelmemiş hali)
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true)   Şekil1 - (Otopark’ın henüz araba gelmemiş hali)
  
 
 Bu resim (Şekil1) otoparkımızın ilk durumdaki hali yani henüz yeni araba gelmemişken- fotoğrafını görüyoruz. Yeni gelen arabaları sonraki resimlerden yola çıkarak tespit edeceğiz. Dikkat ederseniz ilk resmimizin diğer resimlerden farkı henüz arabanın bu kısma gelmiş olmamasıdır. Dolayısı ile bu resmi arka plan resmi olarak kullanabilmekteyiz.
