@@ -12,11 +12,16 @@ bozukkare Şekil1
 Şekil1’de üzerinde saçma sapan lekeler ve şekiller bulunan bir dikdörtgen görüyorsunuz. Bu gereksiz lekelerden şeklimizi arındırmak ve tertemiz bir dikdötgen ortaya çıkarmak istiyoruz. Bunu Matlab da koda nasıl dökeriz mantığıyla beraber birlikte anlamaya çalışalım…
 
 Öncelikle
-
+```
 f = imread('bozukkare.png');
+```
+
 Komutu ile resmimizi okuyup f adlı değişken içerisine aktarıyoruz. Ardından,
 
+```
 t = strel('square',50);
+```
+
 50×50 boyutunda bir yapısal element oluşturuyoruz.(dikkat edin dörtgen!). Bu yapısal element resmi dolaşıp bozuklukları gidermeye çalışacak(ileride anlatacağım).
 
 f = imopen(f,t);
