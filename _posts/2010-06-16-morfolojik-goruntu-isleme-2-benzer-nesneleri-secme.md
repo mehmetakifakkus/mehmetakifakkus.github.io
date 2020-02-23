@@ -22,10 +22,9 @@ f(f&gt;180) = 0;
 r1 = im2bw(f,0.50037);
 figure, imshow(r1)
 ```
-Resimde aşırı beyaz alanlar olduğundan parlaklık değeri 180 den fazla olanlaı siyaha çevirdim. Daha sonra resmi ikili(binary) resim formatına çeviriyoruz. İkili resim demek bizim belirlediğimiz sınır(treshold) değerinden büyük koyuluk deerine sahip olanlara ‘1’ değerini yani beyaz, bu değerin altında olanlara da ‘0’ değerini verir buda siyah demektir. Ve resmimizi ekrana basıp ne aşamada olduğumuzu bir görelim.1-1
+Resimde aşırı beyaz alanlar olduğundan parlaklık değeri 180 den fazla olanlaı siyaha çevirdim. Daha sonra resmi ikili(binary) resim formatına çeviriyoruz. İkili resim demek bizim belirlediğimiz sınır(treshold) değerinden büyük koyuluk deerine sahip olanlara ‘1’ değerini yani beyaz, bu değerin altında olanlara da ‘0’ değerini verir buda siyah demektir. Ve resmimizi ekrana basıp ne aşamada olduğumuzu bir görelim.
 
-![1-BinaryImage]
-(https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/1-binary.jpg?raw=true)  Şekil1 - İkili (Binary Resme Çevirme)
+![1-BinaryImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/1-binary.jpg?raw=true)  Şekil1 - İkili (Binary Resme Çevirme)
 
 ```
 se = strel('disk',5);
