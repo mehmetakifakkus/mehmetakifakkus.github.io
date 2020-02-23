@@ -39,7 +39,7 @@ Bu arada karenin içinde kalan noktalarda aynen kaldı. Eee onları yok etmiyorm
 f = imclose(f,t);
 figure, imshow(f)
 ```
-imclose() komutu resmimizi ‘t’ yapısal elementi ile dolaştı ve 50×50 lik bir kare matrisle resmin beyaz kısmını merkezi olacak şekilde genişletti-dilation-(böylece iç kısımdaki boşluklar yok oldu). Fonksiyon ardından büyüttüğü oranda tekrar küçülttü-erosion-.(resim eski haline döndü). Resmin son haline bakalım.(Şekil3)
+imclose() komutu resmimizi ‘t’ yapısal elementi ile dolaştı ve 50×50 lik bir kare matrisle resmin beyaz kısmını merkezi olacak şekilde genişletti-dilation-(böylece iç kısımdaki boşluklar yok oldu). Fonksiyon ardından büyüttüğü oranda tekrar küçülttü-erosion-.(resim eski haline döndü). Resmin son haline bakalım.(Şekil3).
 
 ![gürültüsüz_resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/result_of_closing.png?raw=true)
 Şekil3-Tamemen düzelmis kare
