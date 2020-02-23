@@ -26,11 +26,9 @@ Resimdeki hareketli cismi bulma adına farkı anlamamızda bize yardımcı olaca
 
 Resimleri birbirinden çıkarınca elimize arabanın bulunduğu yer çok belirgin olmasa da oluşuyor. Çünkü diğer kısımlar birbirinden çıkarılınca nötr oluyor. Böylece arabayı tespit etmiş oluyoruz. Aşağıdaki resimlerde arabanın tespit edilmiş halini görebilirsiniz.
 
-Ekran Resmi 2014-10-30 5.17.43 AM
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/bw3.jpg?raw=true) Şekil4 - Fark resmi (İkili resim olarak)
 
 Aşağıdaki resimlerde de seçilmiş arabayı kırmızı renkte gerek resim üzerinde boyuyoruz:
-
-Ekran Resmi 2014-10-30 5.17.51 AM
 
 Matlab kodumuzla gidecek olursak:
 
@@ -56,6 +54,7 @@ H =
 ```
 
 şeklinde bir filtre üretti.. Bu filtre ile resimlerimizi dolaşıyoruz ve resimlerde buğululuk oluşturuyoruz..
+
 ```
 r21 = im2bw(bck - r2, 0.3);
 r22 = im2bw(r2 - bck, 0.4);
@@ -70,4 +69,4 @@ r42 = im2bw(r4 - bck,0.4);
 c3 = (r41 | r42);
 ```
 
-Problemler ve çözüm önerileri: Bu çalışmayı yaparken bazı problemlerle karşılaştık. Çıplak gözle belli olmasa da arka plan olarak seçtiğimiz resim ile diğer resimler arasında arabadan başka farklılıklar da vardı. Bunlardan birisi ağacın dallarının her bir resimde rüzgârın hareket etmesinden dolayı hafif de olsa kaymış olmasıydı. Bu sorunu şu şekilde giderdik: Farklılıkların sadece belli bir büyüklükten daha büyük olanları alıp küçükleri elediğimizde arabaların yerini tespit etmiş olduk.
+**Problemler ve çözüm önerileri:** Bu çalışmayı yaparken bazı problemlerle karşılaştık. Çıplak gözle belli olmasa da arka plan olarak seçtiğimiz resim ile diğer resimler arasında arabadan başka farklılıklar da vardı. Bunlardan birisi ağacın dallarının her bir resimde rüzgârın hareket etmesinden dolayı hafif de olsa kaymış olmasıydı. Bu sorunu şu şekilde giderdik: Farklılıkların sadece belli bir büyüklükten daha büyük olanları alıp küçükleri elediğimizde arabaların yerini tespit etmiş olduk.
