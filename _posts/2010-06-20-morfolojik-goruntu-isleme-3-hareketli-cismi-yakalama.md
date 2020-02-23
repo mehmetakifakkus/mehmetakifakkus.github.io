@@ -8,7 +8,7 @@ Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü iş
 
 Bir araba park alanı düşünelim ve gün içerisinde çeşitli büyüklükte ve renkte arabaların gelip park ettiğini ve ayrıldığını düşünelim. Amacımız yeni gelen arabayı tespit edip üzerini boyamak.
 
-![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true =480x)   Şekil1 - Otopark’ın henüz araba gelmemiş hali
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true){ width=50% }   Şekil1 - Otopark’ın henüz araba gelmemiş hali
  
 
 Bu resim (Şekil1) otoparkımızın ilk durumdaki hali yani henüz yeni araba gelmemişken- fotoğrafını görüyoruz. Yeni gelen arabaları sonraki resimlerden yola çıkarak tespit edeceğiz. Dikkat ederseniz ilk resmimizin diğer resimlerden farkı henüz arabanın bu kısma gelmiş olmamasıdır. Dolayısı ile bu resmi arka plan resmi olarak kullanabilmekteyiz.
