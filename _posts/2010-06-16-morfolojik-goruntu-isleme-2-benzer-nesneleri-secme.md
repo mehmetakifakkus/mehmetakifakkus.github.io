@@ -4,7 +4,7 @@ title: "Morfolojik Görüntü İşleme 2 - Benzer Nesneleri Seçme"
 date: 2010-06-16
 ---
 
-![kidneyCTImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/kidnetCTImage.jpg?raw=true)Kidney CT Resmi
+![kidneyCTImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/kidnetCTImage.jpg?raw=true)   Şekil1 - Kidney CT Resmi
 
 Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü işleme ile örneklerimize devam ediyoruz. Şekil1’de Bir insan vücudunun enine kesitini görüyoruz (Bazılarımızın hoşuna gitmemiş olsa da görüntü işleme tıp dünyasınının vazgeçilmezlerinden).
 Bu resimde belirgin olan organları morfolojik görüntü işleme ile ortaya çıkarmaya çalışacağız. Şekil1 de solda karaciğer, omurganın iki tarafında böbrekler, orta tarafta mide ve sağda dalak bulunuyor. Eee bunları sen nereden biliyorsun diye soracak olursanız dönem 2 tıpta okuyan(Onur Gözmen Hacettepe tıp) arkadaşım söylemişti.
@@ -24,7 +24,8 @@ figure, imshow(r1)
 ```
 Resimde aşırı beyaz alanlar olduğundan parlaklık değeri 180 den fazla olanlaı siyaha çevirdim. Daha sonra resmi ikili(binary) resim formatına çeviriyoruz. İkili resim demek bizim belirlediğimiz sınır(treshold) değerinden büyük koyuluk deerine sahip olanlara ‘1’ değerini yani beyaz, bu değerin altında olanlara da ‘0’ değerini verir buda siyah demektir. Ve resmimizi ekrana basıp ne aşamada olduğumuzu bir görelim.1-1
 
-Şekil2
+![2-BinaryImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/1-binary.jpg?raw=true)
+Şekil2 - İkili (Binary Resme Çevirme)
 
 ```
 se = strel('disk',5);
