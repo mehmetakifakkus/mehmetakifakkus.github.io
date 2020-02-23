@@ -15,7 +15,9 @@ Bu resim (Şekil1) otoparkımızın ilk durumdaki hali yani henüz yeni araba g
 
 Resimdeki hareketli cismi bulma adına farkı anlamamızda bize yardımcı olacak bir arka plan resmi kullanıyoruz ki iki resmi karşılaştırınca aradaki farkı kestirebilelim. Bunun için şekil1’i arka plan resmi olarak kullandık.
 
+
 ![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame2.jpg?raw=true =480x)  Şekil2 - Araba henüz otoparkın girişinde
+
 
 ![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame3.jpg?raw=true =480x)  Şekil3 - Araba park etmek üzere
 
@@ -45,6 +47,7 @@ r4 = imfilter(r4,H,'replicate');
 ```
 
 Öncelikle resimlerimizi okuduk ve resimler üzerinde hafif flulaştırma kattık. Bunun sebebi resimler arasında çekim zamanı farkından dolayı bazı ufak değişimler. Örneğin resimlerde ağaç yapraklarının hafif değiştiğini görebilirsiniz. Resimler arasındaki bu farkı azaltma uğruna bu flulaştırmayı yaptık. fspecial() adlı fonksiyonumuz bize
+
 ```
 H =
 0.0751    0.1238    0.0751
