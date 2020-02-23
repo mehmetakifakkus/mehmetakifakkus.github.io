@@ -8,30 +8,19 @@ Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü iş
 
 Bir araba park alanı düşünelim ve gün içerisinde çeşitli büyüklükte ve renkte arabaların gelip park ettiğini ve ayrıldığını düşünelim. Amacımız yeni gelen arabayı tespit edip üzerini boyamak.
 
-![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true)   Şekil1 - (Otopark’ın henüz araba gelmemiş hali)
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true =480x)   Şekil1 - Otopark’ın henüz araba gelmemiş hali
  
 
 Bu resim (Şekil1) otoparkımızın ilk durumdaki hali yani henüz yeni araba gelmemişken- fotoğrafını görüyoruz. Yeni gelen arabaları sonraki resimlerden yola çıkarak tespit edeceğiz. Dikkat ederseniz ilk resmimizin diğer resimlerden farkı henüz arabanın bu kısma gelmiş olmamasıdır. Dolayısı ile bu resmi arka plan resmi olarak kullanabilmekteyiz.
 
 Resimdeki hareketli cismi bulma adına farkı anlamamızda bize yardımcı olacak bir arka plan resmi kullanıyoruz ki iki resmi karşılaştırınca aradaki farkı kestirebilelim. Bunun için şekil1’i arka plan resmi olarak kullandık.
 
-frame2
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame2.jpg?raw=true =480x)  Şekil2 - Araba henüz otoparkın girişinde
 
-Şekil2 (Araba henüz otoparkın girişinde)
-
- 
-
-frame3
-
-Şekil3 (Araba park etmek üzere)
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true =480x)  Şekil3 - Araba park etmek üzere
 
  
-
- 
-
-frame4
-
-Şekil4 (Arabanın park etmiş hali)
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame3.jpg?raw=true =480x)  Şekil4 - Arabanın park etmiş hali
 
 Resimleri birbirinden çıkarınca elimize arabanın bulunduğu yer çok belirgin olmasa da oluşuyor. Çünkü diğer kısımlar birbirinden çıkarılınca nötr oluyor. Böylece arabayı tespit etmiş oluyoruz. Aşağıdaki resimlerde arabanın tespit edilmiş halini görebilirsiniz.
 
@@ -65,15 +54,15 @@ H =
 
 şeklinde bir filtre üretti.. Bu filtre ile resimlerimizi dolaşıyoruz ve resimlerde buğululuk oluşturuyoruz..
 ```
-r21 = im2bw(bck-r2, 0.3);
+r21 = im2bw(bck - r2, 0.3);
 r22 = im2bw(r2 - bck, 0.4);
 c1 = (r21 | r22);
  
-r31 = im2bw(bck-r3,0.4);
+r31 = im2bw(bck - r3,0.4);
 r32 = im2bw(r3 - bck,0.4);
 c2 = (r31 | r32);
  
-r41 = im2bw(bck-r4,0.3);
+r41 = im2bw(bck - r4,0.3);
 r42 = im2bw(r4 - bck,0.4);
 c3 = (r41 | r42);
 ```
