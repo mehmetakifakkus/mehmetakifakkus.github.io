@@ -4,7 +4,7 @@ title: "Morfolojik Görüntü İşleme 2 - Benzer Nesneleri Seçme"
 date: 2010-06-16
 ---
 
-kidneyresmi
+![kidneyCTImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/kidnetCTImage.jpg?raw=true)Kidney CT Resmi
 
 Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü işleme ile örneklerimize devam ediyoruz. Şekil1’de Bir insan vücudunun enine kesitini görüyoruz (Bazılarımızın hoşuna gitmemiş olsa da görüntü işleme tıp dünyasınının vazgeçilmezlerinden).
 Bu resimde belirgin olan organları morfolojik görüntü işleme ile ortaya çıkarmaya çalışacağız. Şekil1 de solda karaciğer, omurganın iki tarafında böbrekler, orta tarafta mide ve sağda dalak bulunuyor. Eee bunları sen nereden biliyorsun diye soracak olursanız dönem 2 tıpta okuyan(Onur Gözmen Hacettepe tıp) arkadaşım söylemişti.
