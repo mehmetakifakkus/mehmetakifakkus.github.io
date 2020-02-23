@@ -6,6 +6,8 @@ date: 2010-06-10
 
 Görüntü işlemenin zevkli konularından birisi olan morfolojik işleme ile örneklerimize başlayalım isterseniz. Morfolojik görüntü işleme resimlerin genellikle şekilsel bazda ele alınıp işlenmesidir diyebiliriz. Matlab ta yaptığımız örneğimize geçelim isterseniz:
 
+![gürültülü resim](../img/noisy_image.png)
+
 bozukkare Şekil1
 
 
