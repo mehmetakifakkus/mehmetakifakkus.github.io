@@ -23,17 +23,19 @@ t = strel('square',50);
 ```
 
 50×50 boyutunda bir yapısal element oluşturuyoruz.(dikkat edin dörtgen!). Bu yapısal element resmi dolaşıp bozuklukları gidermeye çalışacak(ileride anlatacağım).
-
+```
 f = imopen(f,t);
 figure, imshow(f)
+```
 imopen fonksiyonu resmimizi ‘t’ yapısal elementi ile dolaşır boyu 50×50 den küçük olan yani 50×50 lik kare matrisin içerisine girebilecek herşeyi yutar. ayrıca büyük resimleri de bu oranda kırpar. Dolayısıyla dikdörtgen de kenarlarında biraz küçülmüş olacak.(Şekil2)
-
+```
 afterimopen Şekil2
-
+```
 Bu arada karenin içinde kalan noktalarda aynen kaldı. Eee onları yok etmiyormuyuz..
-
+```
 f = imclose(f,t);
 figure, imshow(f)
+```
 imclose() komutu resmimizi ‘t’ yapısal elementi ile dolaştı ve 50×50 lik bir kare matrisle resmin beyaz kısmını merkezi olacak şekilde genişletti-dilation-(böylece iç kısımdaki boşluklar yok oldu). Fonksiyon ardından büyüttüğü oranda tekrar küçülttü-erosion-.(resim eski haline döndü). Resmin son haline bakalım.(Şekil3)
 
 duzelmiskare  Şekil3
