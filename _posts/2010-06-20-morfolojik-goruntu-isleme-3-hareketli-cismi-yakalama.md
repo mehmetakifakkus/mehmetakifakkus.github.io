@@ -43,15 +43,7 @@ Ekran Resmi 2014-10-30 5.17.51 AM
 
 Matlab kodumuzla gidecek olursak:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
+```
 bck = imread('parkinglot1\frame4.bmp');
 r2 = imread('parkinglot1\frame2.bmp');
 r3 = imread('parkinglot1\frame3.bmp');
@@ -60,27 +52,19 @@ r4 = imread('parkinglot1\frame1.bmp');
 H = fspecial('gaussian',3,1);  
 r2 = imfilter(r2,H,'replicate');
 r3 = imfilter(r3,H,'replicate');
-r4 = imfilter(r4,H,'replicate');
- 
+r4 = imfilter(r4,H,'replicate'); 
+```
 
 Öncelikle resimlerimizi okuduk ve resimler üzerinde hafif flulaştırma kattık. Bunun sebebi resimler arasında çekim zamanı farkından dolayı bazı ufak değişimler. Örneğin resimlerde ağaç yapraklarının hafif değiştiğini görebilirsiniz. Resimler arasındaki bu farkı azaltma uğruna bu flulaştırmayı yaptık. fspecial() adlı fonksiyonumuz bize
+```
 H =
-
 0.0751    0.1238    0.0751
 0.1238    0.2042    0.1238
 0.0751    0.1238    0.0751
+```
+
 şeklinde bir filtre üretti.. Bu filtre ile resimlerimizi dolaşıyoruz ve resimlerde buğululuk oluşturuyoruz..
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
+```
 r21 = im2bw(bck-r2, 0.3);
 r22 = im2bw(r2 - bck, 0.4);
 c1 = (r21 | r22);
@@ -92,4 +76,6 @@ c2 = (r31 | r32);
 r41 = im2bw(bck-r4,0.3);
 r42 = im2bw(r4 - bck,0.4);
 c3 = (r41 | r42);
+```
+
 Problemler ve çözüm önerileri: Bu çalışmayı yaparken bazı problemlerle karşılaştık. Çıplak gözle belli olmasa da arka plan olarak seçtiğimiz resim ile diğer resimler arasında arabadan başka farklılıklar da vardı. Bunlardan birisi ağacın dallarının her bir resimde rüzgârın hareket etmesinden dolayı hafif de olsa kaymış olmasıydı. Bu sorunu şu şekilde giderdik: Farklılıkların sadece belli bir büyüklükten daha büyük olanları alıp küçükleri elediğimizde arabaların yerini tespit etmiş olduk.
