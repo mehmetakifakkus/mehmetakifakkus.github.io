@@ -30,8 +30,7 @@ figure, imshow(f)
 ```
 imopen fonksiyonu resmimizi ‘t’ yapısal elementi ile dolaşır boyu 50×50 den küçük olan yani 50×50 lik kare matrisin içerisine girebilecek herşeyi yutar. ayrıca büyük resimleri de bu oranda kırpar. Dolayısıyla dikdörtgen de kenarlarında biraz küçülmüş olacak.(Şekil2).
 
-![kısmen_gürültülü_resim]
-(https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/result_of_opening.png?raw=true)
+![kismen_gürültülü_resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/result_of_opening.png?raw=true)
 Şekil2-Kısmen gürültüsü giderilmiş resim
 
 Bu arada karenin içinde kalan noktalarda aynen kaldı. Eee onları yok etmiyormuyuz..
