@@ -17,10 +17,10 @@ Resimdeki hareketli cismi bulma adına farkı anlamamızda bize yardımcı olaca
 
 ![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame2.jpg?raw=true =480x)  Şekil2 - Araba henüz otoparkın girişinde
 
-![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame1.jpg?raw=true =480x)  Şekil3 - Araba park etmek üzere
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame3.jpg?raw=true =480x)  Şekil3 - Araba park etmek üzere
 
  
-![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame3.jpg?raw=true =480x)  Şekil4 - Arabanın park etmiş hali
+![otopark](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology3/frame4.jpg?raw=true =480x)  Şekil4 - Arabanın park etmiş hali
 
 Resimleri birbirinden çıkarınca elimize arabanın bulunduğu yer çok belirgin olmasa da oluşuyor. Çünkü diğer kısımlar birbirinden çıkarılınca nötr oluyor. Böylece arabayı tespit etmiş oluyoruz. Aşağıdaki resimlerde arabanın tespit edilmiş halini görebilirsiniz.
 
