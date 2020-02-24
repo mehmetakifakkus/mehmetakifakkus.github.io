@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Yeni Başlayanlar için Görüntü İşleme"
-date: 2010-06-05
+date: 2010-06-01
 ---
 
 Uzun zaman aradan sonra yeniden, kaldığım yerden devam ediyorum. Bu yaz görüntü işleme üzerine çalışacağım ve tecrübelerimi blogumda yazacağım. İlgi duyan arkadaşların takip etmesini tavsiye ederim.
