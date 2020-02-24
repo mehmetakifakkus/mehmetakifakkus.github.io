@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bir Görüntü İşleme Projesi: Damar Kalınlığı Tespit"
+title: "Bir Görüntü İşleme Projesi: Anjio Operasyonu için Damar Kalınlığı Tespit"
 date: 2010-11-23
 ---
  
