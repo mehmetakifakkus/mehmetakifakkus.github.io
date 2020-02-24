@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Görüntü İşlemeye Giriş: Bir Resmin Negatif Halini Elde Etmek"
-date: 2010-06-10
+date: 2010-06-05
 ---
  
 Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifini hesaplamak. Görüntünün negatifi bir kaç nedenden alınabilir. Örneğin, 1) negatifi alınmış görüntü bize daha fazla bilgi verecekse, 2) görüntü daha anlaşılır kılınacaksa. Bunun dışında görüntü çok da anlaşılır olmayan bir yapıya bürünecektir zaten.
