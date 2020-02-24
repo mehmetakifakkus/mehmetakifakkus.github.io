@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Görüntü İşlemeye Giriş: Bir Resmin Negatif Halini Elde Etmek"
+title: "Görüntü İşlemeye Giriş: 1-Bir Resmin Negatif Halini Elde Etmek"
 date: 2010-06-05
 ---
  
