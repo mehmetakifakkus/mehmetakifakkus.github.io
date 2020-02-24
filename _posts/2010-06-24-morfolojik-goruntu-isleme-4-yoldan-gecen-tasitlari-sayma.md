@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Morfolojik Görüntü İşleme 4 - Yoldan Geçen Taşıtları Sayma"
-date: 2010-07-24
+date: 2010-06-24
 ---
 
 Ekran Resmi 2014-10-30 5.35.09 AMBu çalışmamızda ise amacımınız yoldan geçen arabaları daha önce çekilmiş bir video üzerinden saymaktı. Video olarak beytepe köprüsü üzerinden bir fotoğraf makinası ile çektiğimiz bir videoyu kullandık. Videoyu değişik açılardan çektik. Yani arabaları üstten ve ön kısımlarından görülecek şekilde bir 6 farklı video aldık. İşlemek için en elverişli metodun aşağıdaki resimde olan şekilde yani tam tepeden çektiğimiz zamanki olduğunu çeşitli testlerle gördük.
