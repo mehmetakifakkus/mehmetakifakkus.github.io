@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "My first post"
+title: "My First Jekyll Post"
 date: 2016-09-28
 ---
 
