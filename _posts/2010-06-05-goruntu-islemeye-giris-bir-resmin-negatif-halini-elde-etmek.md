@@ -10,6 +10,9 @@ Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifi
 
 ### Örnek Resimler
 
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1.png)
+
+![negative image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1_result.png)
 
 
 > Bir görüntünün negatifini hesaplayan ve çıktı olarak üreten bir MATLAB programı yazalım.
@@ -17,7 +20,7 @@ Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifi
 ```
 function[] = hw1_1(I, Ineg)
 [F, props] = myimread(I);
-f_negative = 255 - F;% Bu kısımda negatifini buluyoruz. 
+f_negative = 255 - F;  % Bu kısımda negatifini buluyoruz. 
 myimwrite(Ineg, props, f_negative);
 end
 ```
