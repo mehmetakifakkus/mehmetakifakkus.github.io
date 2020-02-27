@@ -3,10 +3,16 @@ layout: post
 title: "Görüntü İşlemeye Giriş: 1-Bir Resmin Negatif Halini Elde Etmek"
 date: 2010-06-05
 ---
- 
+
+### Neden Resmin Negatifini Alırız?
+
 Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifini hesaplamak. Görüntünün negatifi bir kaç nedenden alınabilir. Örneğin, 1) negatifi alınmış görüntü bize daha fazla bilgi verecekse, 2) görüntü daha anlaşılır kılınacaksa. Bunun dışında görüntü çok da anlaşılır olmayan bir yapıya bürünecektir zaten.
 
-Bir görüntünün negatifini hesaplayan ve çıktı olarak üreten bir MATLAB programı yazalım.
+### Örnek Resimler
+
+
+
+> Bir görüntünün negatifini hesaplayan ve çıktı olarak üreten bir MATLAB programı yazalım.
 
 ```
 function[] = hw1_1(I, Ineg)
