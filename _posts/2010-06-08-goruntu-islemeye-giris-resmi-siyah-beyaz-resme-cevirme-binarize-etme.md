@@ -6,7 +6,7 @@ date: 2010-06-08
 
 Aslında başlığı yazarken çok kararsız kaldım diyebilirim. Çünkü pek türkçe söylenmeyen bir isim. Binary formatına çevirme demek resmin sadece iki ana renk olan siyah ve beyazdan resmi oluşturmak diyebiliriz. Peki neden bu işlemi yapıyoruz diye düşünebiliriz.
 
-![image binarization](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/binarize/image%20binarisation.png?raw=true)
+<img src="https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/binarize/image%20binarisation.png?raw=true" alt="image binarization" style="zoom:50%;" />
 
 ### Gerçekten kim siyah beyaz ister ki?
 
