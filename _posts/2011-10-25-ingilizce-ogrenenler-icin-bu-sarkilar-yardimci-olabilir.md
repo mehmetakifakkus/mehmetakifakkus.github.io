@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "İngilizce Öğrenenler için Bu Şarkılar Yardımcı Olabilir"
-date: 2011-10-23
+date: 2011-10-25
 ---
 
 İngilizce öğrenirken bir değişik metot da ingilizce şarkılar dinlemek olabilir. Eğer ingilizce şarkı dinlemekten hoşlanıyorsanız aşağıdaki linki bulunanları deneyebilirsiniz. Linkler youtube’dan şarkı sözleriyle beraberdir.
