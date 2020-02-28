@@ -14,9 +14,9 @@ Dolayısıyla histogram eşitleme resmin renk çeşitliliğini artırır ve göz
 
 #### Kötü Histogramlı Bazı Örnek Resimler
 
+![sample image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/histogram_equalisation/a.png?raw=true)
 
-
-
+![sample image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/histogram_equalisation/b.png?raw=true)
 
 // Buraya resmin histogram grafikleri konulacak…
 
@@ -24,14 +24,12 @@ Dolayısıyla histogram eşitleme resmin renk çeşitliliğini artırır ve göz
 
 Aşağıda  histogram eşitlemesi  yapılan bazı resimleri görebilirsiniz.
 
-Ekran Resmi 2014-10-29 8.02.52 AM Ekran Resmi 2014-10-29 8.03.00 AM
+![sample image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/histogram_equalisation/a_result.png?raw=true)
 
-Kaynak kod:
-akif_hist_eq_matlab_code
+![sample image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/histogram_equalisation/b_result.png?raw=true)
 
-results
+Kaynak kod: [indirin](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/histogram_equalisation/akif_hist_eq_matlab_code.zip)
 
- 
 
 ```
 % Written by Mehmet Akif AKKUS
