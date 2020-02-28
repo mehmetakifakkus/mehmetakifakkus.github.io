@@ -43,4 +43,5 @@ Resmin negatifi resmin piksel değerlerinin 255-maksimum koyuluk değeri ile far
 
 ![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/4_result.png?raw=true)
 
- Tüm resimleri ve kodu .zip formatında indirebilirsiniz. [Dosyaları indir]()
+ Tüm resimleri ve kodu .zip formatında indirebilirsiniz. [Dosyaları indir](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1-dosyalar.zip)
+
