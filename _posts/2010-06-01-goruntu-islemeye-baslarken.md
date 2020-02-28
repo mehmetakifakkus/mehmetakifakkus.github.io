@@ -4,6 +4,8 @@ title: "Yeni Başlayanlar için Görüntü İşleme"
 date: 2010-06-01
 ---
 
+![image processing tools](https://miro.medium.com/max/683/1*m6jBUgbZz2yaVgu4xjzNuw.jpeg)
+
 Uzun zaman aradan sonra yeniden, kaldığım yerden devam ediyorum. Bu yaz görüntü işleme üzerine çalışacağım ve tecrübelerimi blogumda yazacağım. İlgi duyan arkadaşların takip etmesini tavsiye ederim.
 
 Neyse, biraz dijital görüntü işleme ne işe yarıyor hayatın hangi sahalarında kullanılıyor, bunlara bir göz atalım isterseniz.
@@ -14,6 +16,6 @@ Görüntü işleme bilgisayarda iki farklı şekilde ele alınabilir. Yani bu i�
 
 ### Yazılım Gereksinimi Nedir?
 
-Bu yazının sonrasında grelecek olan yazılarda Matlab 2010 sürümünün Image Processing Toolbox aracı kullanılmıştır. Sanırım süz bu yazıyı bir 10 sene sonra da okusanız geriye doğru uyuymluluk ilkesi gereği bu kodları Matlab 2020 de bile çalıştırabiliyor olacaksınız. 
+Bu yazının sonrasında gelecek olan yazılarda Matlab 2010 sürümünün Image Processing Toolbox aracı kullanılmıştır. Sanırım siz bu yazıyı bir 10 sene sonra da okusanız geriye doğru uyumluluk ilkesi gereği bu kodları Matlab 2020 de bile çalıştırabiliyor olacaksınız diye hüsnü-zan ediyorum. 
 
-İyi görüntü işlemeler diyelim ve sizi bol bol okumaya ve uygulamaya yönlendireli...
+İyi görüntü işlemeler diyelim ve sizi bol bol okumaya ve uygulamaya yönlendirelim...
