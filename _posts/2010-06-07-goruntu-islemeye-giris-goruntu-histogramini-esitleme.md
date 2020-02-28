@@ -4,13 +4,23 @@ title: "Görüntü İşlemeye Giriş: 2-Görüntü Histogramını Eşitlemek"
 date: 2010-06-05
 ---
 
-Ekran Resmi 2014-10-29 7.53.41 AMÇektiğimiz fotoğrafların çoğu zaman bazı etkenlerden dolayı kaliteli olmadığını görürsünüz. Hatırlarsanız yetersiz ışık seviyesinde çekilen fotoğraflarda bulanık veya flu diye tabir edebileceğimiz renlerin veya tonların keskin şekilde belli olmaması gibi bir durumla karşılaşabiliriz.
+### Neden Resmin Histogramını Eşitlemeye İhtiyaç Duyarız
+
+Çektiğimiz fotoğrafların çoğu zaman bazı etkenlerden dolayı kaliteli olmadığını görürsünüz. Hatırlarsanız yetersiz ışık seviyesinde çekilen fotoğraflarda bulanık veya flu diye tabir edebileceğimiz renlerin veya tonların keskin şekilde belli olmaması gibi bir durumla karşılaşabiliriz.
 
 Bu durumda resim pek keyif vermeyen bir görünümde olacaktır. İşte bu gibi durumlarda resmin histogram eşitlemesini yapabiliriz. Histogram eşitlemesi demek: resmin histogram eğrisi grafiğinden görüldüğü üzere grafiğin bir kısmında oluşan yoğunlaşmayı grafiğe homojen şekilde dağıtmaya çalışmak ve görüntü üzerinde bir nevi düzeltme çalışması yapmaktır. Dolayısı ile yandaki resim biraz bulanık görünmektedir.
 
 Dolayısıyla histogram eşitleme resmin renk çeşitliliğini artırır ve göze daha rahat ve algılanabilir hale getirir. Önceden resim koyu ağırlıklı veya açık ağırlıklı renklerden oluşuyorsa histogram eşitleme yapıldıktan sonra resim koyu ve açık renklerin ikisini de içerir hale gelir ve daha net görünür. Aşağıda histogram grafiği verilmiş bir resmin orjinal fotoğrafta orta tarafa yoğunlaşmış şekilde biriktiğini görüyoruz. İşte eşitleme işleme bunu resimde tüm koyuluklar içerilecek şekilde tüm resim geneline yayılmaktadır.
 
+#### Kötü Histogramlı Bazı Örnek Resimler
+
+
+
+
+
 // Buraya resmin histogram grafikleri konulacak…
+
+#### Histogramı Eşitleyince Nasıl Oluyor?
 
 Aşağıda  histogram eşitlemesi  yapılan bazı resimleri görebilirsiniz.
 
