@@ -1,4 +1,5 @@
 ---
+
 layout: post
 title: "Görüntü İşlemeye Giriş: 1-Bir Resmin Negatif Halini Elde Etmek"
 date: 2010-06-05
@@ -15,12 +16,6 @@ Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifi
 
 ![negative image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1_result.png?raw=true)
 
--
-
-![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/2.png?raw=true)
-
-![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/2_result.png?raw=true)
-
 
 > Bir görüntünün negatifini hesaplayan ve çıktı olarak üreten bir MATLAB programı yazalım.
 
@@ -34,8 +29,18 @@ end
 
 Resmin negatifi resmin piksel değerlerinin 255-maksimum koyuluk değeri ile farkının alınmasıdır. Aşağıda örnek resimleri görebilirsiniz. Negatifi alınmış resimler bazı resimlerde insan algısı için çok net ifadeler oluşturmasa da işe yarar şekilde kullanılabiliyor. Örneğin, bazı resimlerde algılanması güç olan ayrıntılar negatif alma işleminden sonra daha kolay algılanabilir hale geliyor veya bazı kısımları daha anlaşılır olmasını sağlıyor. Aşağıda negatifi alınmış bazı örnek resimleri görebilirsiniz.
 
-Ekran Resmi 2014-10-29 2.57.24 AM
 
-Ekran Resmi 2014-10-29 2.56.52 AM
 
- 
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/2.png?raw=true)
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/2_result.png?raw=true)
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/3.png?raw=true)
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/3_result.png?raw=true)
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/4.png?raw=true)
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/4_result.png?raw=true)
+
+ Tüm resimleri ve kodu .zip formatında indirebilirsiniz. [Dosyaları indir]()
