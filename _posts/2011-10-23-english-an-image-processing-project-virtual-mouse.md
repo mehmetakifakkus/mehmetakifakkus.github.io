@@ -1,18 +1,14 @@
 ---
 layout: post
-title: "Bir Görüntü İşleme Projesi: Sanal Fare!"
+title: "[English] An Image Processing Project: Virtual Mouse!"
 date: 2011-10-30
 ---
 
 This summer, with my friends we have decided to work on a project related to Computer Vision. Then we wanted that project provides opportunity to human-computer interaction.
 
-Türkçe
-English
-Yazın bir kaç arkadaş görüntü işleme üzerine çalışmaya karar verdik. Görüntü işleme üzerine ilerlerken elle tutulur bir proje yapmayı düşündük ve bilgisayarla etkileşimli çalışan bir şeyler yapalım dedik.
+This brainstorming session ended up with the idea of Virtual Mouse. Name of the project comes from a mouse that is used for controlling a computer with a cursor and virtual comes from the concept of that our project mimics the function of the ordinary mouse. Therefore, we thought that we can control the computer using its onboard camera. It was not a tricky job for a computer to detect and determine our hand gestures.
 
-Buradan sanal fare fikri doğdu. Yani neden bilgisayarı webcam gibi bir kamera ile yönetemeyelim diye düşündük. Yani fare ile yapabileceğimiz şeyleri kameraya bazı direktifler vererek belki kolay yönetilebilir, belki de  eğlenceli bir forma sokabilirdik ve bunun üzerinde çalışmalar başladık.
-
-İleriki zamanlarda çok detaylı olmasa da projeden, nasıl çalıştığından bahsedecek ve gelişim evrelerini de ele alacak şekilde anlatacağım.
+In the following paragraphs, i will be talking about what the project is in more detail and how we implemented it.
 
 ### Gereksinimler
 
@@ -86,12 +82,8 @@ Ayrıca programın son kullanıcı tarafında daha kullanılabilir yapmayı dü
 
 ### 3. SONUÇ
 
-Genel olarak projeden amaç  görüntü işleme konusu üzerinde temel oluşturmak ve bu bilgilerle basit te olsa bir proje yapmaya yönelikti. Öncelikle kodlarımıza Matlab ile başladık. Matlab dilinin ve geliştirme ortamının görüntü işleme için özelleşmiş kütüphaneleri (image processing toolbox) bulunmaktaydı. Matlab ayrıca kullanım yönünden güzel bir kullanıcı deneyimi sunan bir ara yüzü vardı. Örneğin devamlı açık şekilde çalışan bir konsolunu küçük kodlar ve konutlar için kullanabilmek ve diğer bir çalışma alanında da programın kullandığı bellek elemanlarının içeriğini görebilmek bir geliştirme aracı için güzel şeylerdi.
+Genel olarak projeden amaç  görüntü işleme konusu üzerinde temel oluşturmak ve bu bilgilerle basit de olsa bir proje yapmaya yönelikti. Öncelikle kodlarımıza Matlab ile başladık. Matlab dilinin ve geliştirme ortamının görüntü işleme için özelleşmiş kütüphaneleri (image processing toolbox) bulunmaktaydı. Matlab ayrıca kullanım yönünden güzel bir kullanıcı deneyimi sunan bir ara yüzü vardı. Örneğin devamlı açık şekilde çalışan bir konsolunu küçük kodlar ve konutlar için kullanabilmek ve diğer bir çalışma alanında da programın kullandığı bellek elemanlarının içeriğini görebilmek bir geliştirme aracı için güzel şeylerdi.
 
 Daha sonraları projemizde performans arayışlarıyla OpenCv kütüphanesine geçtik ve Matlab ta yazdığımız kodların hepsini bu kütüphane için yazdık. Kodları yazarken eğlendik ve bütün çalışma grubumdaki arkadaşlar adına verimli ve güzel bir proje olduğunu söyleyebilirim.
 
 Buradan staj için bize bu fikri veren, çalışmalarımız süresince maddi ve manevi desteklerini esirgemeyen değerli hocamız Dr. Ahmet Burak Can’a ve Asistan hocalarım Ali Seydi Keçeli’ye, Aydın Kaya’ya ve Yalın Yalıç’a teşekkürlerimi sunuyorum.
-
-This brainstorming session ended up with the idea of Virtual Mouse. Name of the project comes from a mouse that is used for controlling a computer with a cursor and virtual comes from the concept of that our project mimics the function of the ordinary mouse. Therefore, we thought that we can control the computer using its onboard camera. It was not a tricky job for a computer to detect and determine our hand gestures.
-
-In the following paragraphs, i will be talking about what the project is in more detail and how we implemented it.

@@ -24,6 +24,4 @@ Güçlü şifre oluşturmanın önemi :
 3. Rakamları kullanmış olsak harf başına yaklaşık 70 ihtimal  5 karakter = 1.252.332.576
 4. Diğer noktalama vs şeylerle toplam 95 karakter ve 5 karakter = 7.737.809.375
 
-Bu ihtimallerin kullandığımız harf başına bir kat daha arttığını düşünürsek biraz karışık şifreler oluşturmamız elzem bir hal alıyor.Başka bir yazı da bazı şifre oluşturma yöntemleri anlatacağim
-
- 
+Bu ihtimallerin kullandığımız harf başına bir kat daha arttığını düşünürsek biraz karışık şifreler oluşturmamız elzem bir hal alıyor.Başka bir yazı da bazı şifre oluşturma yöntemleri anlatacağım.
