@@ -15,6 +15,12 @@ Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifi
 
 ![negative image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1_result.png?raw=true)
 
+-
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/2.png?raw=true)
+
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/2_result.png?raw=true)
+
 
 > Bir görüntünün negatifini hesaplayan ve çıktı olarak üreten bir MATLAB programı yazalım.
 
