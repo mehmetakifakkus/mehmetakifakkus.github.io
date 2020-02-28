@@ -10,17 +10,10 @@ Görüntü işlemede en temel işlemlerden birisidir bir görüntünün negatifi
 
 ### Örnek Resimler
 
-  Good               Not Good
-.---------------------+--------------------.
-| int foo (void)      | int foo (void) {   |
-| {                   |    int i;          |
-|    int i;           | }                  |
-| }                   |                    |
-'---------------------+--------------------'
 
-![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1.png)
+![original image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1.png?raw=true)
 
-![negative image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1_result.png)
+![negative image](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/negative_images/1_result.png?raw=true)
 
 
 > Bir görüntünün negatifini hesaplayan ve çıktı olarak üreten bir MATLAB programı yazalım.
