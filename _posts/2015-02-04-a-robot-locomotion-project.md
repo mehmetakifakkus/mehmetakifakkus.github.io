@@ -18,7 +18,11 @@ Anlatmak istediğimiz basitçe örneklemek istersem Figure 1 deki **yaylı-kütl
 
 Yaylı kütlemizin hareket denklemi şu şekildedir:
 
-![\sum f = ma](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-7e2780f83234ebefe0834b18cf6cd7cd_l3.svg)
+$$\sum_f = ma $$
+
+$$\sum_f = \vec{F}_yay +\vec{F}_damper = ma$$
+
+
 
 ![\sum f =  \vec{F}_{yay} + \vec{F}_{damper} = ma](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-9c4b7642e5a309297c5d7e0b3675924c_l3.svg)
 
