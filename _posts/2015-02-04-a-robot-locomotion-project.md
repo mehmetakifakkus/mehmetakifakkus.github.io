@@ -14,7 +14,7 @@ Figure 1 – Yaylı Damperli Kütle Sistemi
 
 
 
-Anlatmak istediğimiz basitçe örneklemek istersem Figure 1 deki **yaylı-kütle** örneğini verebilirim. Burada ![x](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-44716c693b7d6b89650f878c44f40087_l3.svg) kütlenin hareketsiz halinde ikenki göreceli konumu, ![m](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-d91dfb9f55f5227bcc85aace47e79e28_l3.svg) cismin kütlesini, ![k](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-d0ecd570b742ddfd7ad2c638c809d42d_l3.svg) yay sabitini, ![B](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-e7475427419c987fda3a58840cde486b_l3.svg) ise sönümleyici damperi simgeliyor. 
+Anlatmak istediğimiz basitçe örneklemek istersem Figure 1 deki **yaylı-kütle** örneğini verebilirim. Burada $x$ kütlenin hareketsiz halinde ikenki göreceli konumu, $m$ cismin kütlesini, $k$ yay sabitini, $B$ ise sönümleyici damperi simgeliyor. 
 
 Yaylı kütlemizin hareket denklemi şu şekildedir:
 
