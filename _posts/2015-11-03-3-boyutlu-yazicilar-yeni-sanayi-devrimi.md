@@ -4,7 +4,7 @@ title: "Üç Boyutlu Yazıcılar - Yeni Sanayi Devrimi"
 date: 2015-11-03
 ---
 
-Not: Bu yazının bir benzeri https://e-bergi.com/y/3dprinters sayfasında yayınlanmıştır.
+Not: Bu yazının bir benzeri [https://e-bergi.com/y/3dprinters](https://e-bergi.com/y/3dprinters) sayfasında yayınlanmıştır.
 
 Üç boyutlu yazıcılar (özetle 3B yazıcılar), biigisayarda hazırlanan 3B modellerin fiziksel gerçek dünya nesnelerine dönüşmesini sağlayan cihazlardır. Bu yazımda sizlere 3B yazıcılardan ve biz bilgisayar mühendislerine veya adaylarına ne derece hitap ettiğinden bahsedeceğim.
 
