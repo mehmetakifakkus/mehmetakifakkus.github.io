@@ -36,9 +36,7 @@ Figür 2 – Yaylı damperli kütle sisteminin matlab simulasyonu
 
 Eğer sistemde damper olmasaydı şöyle olacaktı: 
 
-[Show Press Release (30 More Words)](#)
-
-
+> Bu durumda F_{damper} ‘den söz etmemiz mümkün değil tabiki. Bunu kaldırınca sistem periyodik hareket ediyor (Sürtünme yok kabul ediyoruz).
 
 Sistemin bir de faz grafiğini göstermek isteyebiliriz. Faz diyagramları sistemin zaman içindeki eğilimini anlamak için kullanılabilir. Tahmin ettiğimiz üzere damper olduğu zaman sistem sönümlenme eğiliminde, diğer durumda ise periyodik bir davranış sergilemektedir.
 

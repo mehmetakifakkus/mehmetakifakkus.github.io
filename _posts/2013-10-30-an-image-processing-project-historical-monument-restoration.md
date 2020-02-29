@@ -34,6 +34,8 @@ Before calculation, we order the inpainting domain pixels according to the dista
 
 ### Algorithm
 
+![\vec{c}(x)](https://web.archive.org/web/20151102184944im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-c02bc85547e2f1d0342b29f672ee4d8b_l3.svg) vector calculation is a bit complex when compared with the calculation of ![\mu(x)](https://web.archive.org/web/20151102184944im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-97868c75c91c0389a484140b16d6f5e3_l3.svg). For this process, we apply the Weickert’s structure tensor method [2]. In order to clarify better, we would like to show the procedure steps one by one:
+
 First of all we apply Gaussian filter to the image with the \sigma value. See Equation 1
 (1)   \begin{equation*}  u_\sigma = K_\sigma \star u \end{equation*}
 
