@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Comments on Garmin Forerunner 220 Koşu Saati Değerlendirmesi"
+title: "Garmin Forerunner 220 Koşu Saati Değerlendirmesi"
 date: 2014-11-23
 ---
 
