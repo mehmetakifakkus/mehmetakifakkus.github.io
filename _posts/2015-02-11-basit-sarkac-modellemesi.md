@@ -27,7 +27,7 @@ Bu yazımda basit sarkaç modelinin Matlab kullanılarak modellemesini anlatmaya
 
  
 
-$l$ uzunluğundaki $m$ kütlesinin eylemsizlik momenti  $I=ml^2$. Sisteme etkiyen $\tau$ (tork) ise kuvvet x uzaklık yanı $F_d x l = mgsin(\theta)l$
+$l$ uzunluğundaki $m$ kütlesinin eylemsizlik momenti  $I=ml^2$. Sisteme etkiyen $\tau$ (tork) ise kuvvet x uzaklık yani $$F_d x l = mgsin(\theta)l$$
 $\tau = I \alpha$ formülünden $\alpha$ ‘yı  yalnız bırakınca:
 
 (1)  $$\begin{equation*} \alpha = \frac{\tau}{I} = \frac{-mgsin(\theta)l}{ml^2} = \frac{-gsin(\theta)}{l} \end{equation*}$$
@@ -56,7 +56,7 @@ value tF = 20; % 20 saniye botunca simulasyonu çalıştır. Yaklaşık 10 periy
 [t, x] = ode45(@pendulum2, [0,tF], [pi/4, 0]);  %Dikey düzlem ile 45 derece açı ile başla, başlangıç hızı 0 olsun.
 ```
 
-**ode45** fonksiyonu çalıştığında Denklem 1’deki denklemi çalıştıran **pendulum2** adlı fonksiyonu çağırır. Bu fonksiyon Y değişkenini alarak Ydot isminde onun zamana göre türevini döndürür. Y aslında tek bir değişken yerine $Y = [\theta, \dot{\theta}]$ dan oluşan bir vektördür. Dolayısıyla onun türevi ise $\dot{Y} = [\dot{\theta}, \ddot{\theta}]$ olur.  Aşağıdaki matlab kod kesitinde pendulum2 fonksiyonun içeriğini görebilirsiniz.
+**ode45** fonksiyonu çalıştığında Denklem 1’deki denklemi çalıştıran **pendulum2** adlı fonksiyonu çağırır. Bu fonksiyon Y değişkenini alarak Ydot isminde onun zamana göre türevini döndürür. Y aslında tek bir değişken yerine $$Y = [\theta, \dot{\theta}]$$ dan oluşan bir vektördür. Dolayısıyla onun türevi ise $$\dot{Y} = [\dot{\theta}, \ddot{\theta}]$$ olur.  Aşağıdaki matlab kod kesitinde pendulum2 fonksiyonun içeriğini görebilirsiniz.
 
 ```matlab
 function xdot = pendulum2(t, Y) global params % global parametrelere erişebilmek için g = params.g; L = params.L; Ydot = [Y(2); -(g/L)*sin(x(1))];
