@@ -18,10 +18,10 @@ Bu yazımda basit sarkaç modelinin Matlab kullanılarak modellemesini anlatmaya
 
 Öncelikle dönen bir cismin düz bir zeminde hareket eden bir cisme göre farklıdır.  Hız ve ivme kavramları açısal hız ve açısal ivme olarak adlandırılır. Bu ikisi arasındaki ilişki hareket formüllerinde görülebilir.
 
-|                                                        | Öteleme hareketi             | Dönme hareketi                   |
-| ------------------------------------------------------ | ---------------------------- | -------------------------------- |
-| Öteleme kinetik enerjisi **ve** dönme kinetik enerjisi | $$E_{kin}=\frac{1}{2}mv^2]$$ | $$E_{kin}=\frac{1}{2}m\omega^2$$ |
-| Kuvvet **ve** tork                                     | $$F=ma$$                     | $$\tau = I \alpha$$              |
+|                                                        | Öteleme hareketi            | Dönme hareketi                   |
+| ------------------------------------------------------ | --------------------------- | -------------------------------- |
+| Öteleme kinetik enerjisi **ve** dönme kinetik enerjisi | $$E_{kin}=\frac{1}{2}mv^2$$ | $$E_{kin}=\frac{1}{2}m\omega^2$$ |
+| Kuvvet **ve** tork                                     | $$F=ma$$                    | $$\tau = I \alpha$$              |
 
 - ![v](http://upload.wikimedia.org/math/9/e/3/9e3669d19b675bd57058fd4664205d2a.png): [hız](http://tr.wikipedia.org/wiki/Hız),  ![\omega](http://upload.wikimedia.org/math/4/d/1/4d1b7b74aba3cfabd624e898d86b4602.png): [açısal hız](http://tr.wikipedia.org/wiki/Açısal_hız), ![m](http://upload.wikimedia.org/math/6/f/8/6f8f57715090da2632453988d9a1501b.png): [kütle](http://tr.wikipedia.org/wiki/Kütle),  ![a](http://upload.wikimedia.org/math/0/c/c/0cc175b9c0f1b6a831c399e269772661.png): [ivme](http://tr.wikipedia.org/wiki/İvme),  ![\alpha](http://upload.wikimedia.org/math/b/c/c/bccfc7022dfb945174d9bcebad2297bb.png): [açısal ivme](http://tr.wikipedia.org/wiki/Açısal_ivme)
 
@@ -40,11 +40,7 @@ Eveeet, böylece sistemin hareket denklemini çıkarmış bulunuyoruz. Gördüğ
 
 ### **Sistemin Matlab’da Modellenmesi**
 
-Denklem[1](#id1982189542) bildiğimiz gibi bir diferansiyel denklem. Bunun çözümünü Matlab ‘da **ode45** adı verilen bir fonksiyon yardımı ile yapıyoruz.
-
-```
-
-```
+Denklem[1](#id1982189542) bildiğimiz gibi bir diferansiyel denklem. Bunun çözümünü Matlab‘da **ode45** adı verilen bir fonksiyon yardımı ile yapıyoruz.
 
 ```matlab
 % System parameters global params params.m = 1;        
@@ -64,16 +60,16 @@ function xdot = pendulum2(t, Y) global params % global parametrelere erişebilme
 
 
 
-### ### Animasyonlar
+### Animasyonlar
 
 Aşağıda Şekil 2’deki animasyon 45° açı ile 0 hız ile bırakılmış 1 kg kütleli 1 metre ip uzunluğuna sahip sarkacın 20 sn’lik görüntüsünü gösteriyor. Denklem 1’e göre sarkacın davranışı kütleden bağımsız ama yine de belirtmek istedim. Gerekirse kütleyi değiştirip onun da animasyonunu kıyaslama olması için koyabiliriz ama denklemin zaten $m$‘e bağlı olmadığını biliyoruz. Ama $l$ değişince sistemin farklı çalışacağınız biliyoruz. Şekil 3′ te bunu bir önceki sarkaç ile kıyaslamalı olarak görebilirsiniz.
 
-[![pendulum](http://sekilver.net/akifsblog.com//wp-content/uploads/2015/02/pendulum.gif)](http://sekilver.net/akifsblog.com//wp-content/uploads/2015/02/pendula.gif)
+![pendulum](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/ceng787-robot-locomotion/pendulum/pendulum.gif?raw=true)
 
 Şekil 2 – Kütlesi 1 ve ip uzunluğu 1 metre olan sarkaç
 
 Yukarıdaki sarkaç ile aynı konfigurasyonlarda ip uzunluğu 1.5 metre olan sarkaç nasıl davranırdı? Sonucu Matlab modellememizde parametreleri değiştirerek hemen görebiliriz. Gördüğünüz gibi $l$ ‘nin artışı **periyodu** artırmıştır. Diğer bir ifadeyle; ip uzadıkça **frekans** azalmaktadır
 
-[![pendula](http://sekilver.net/akifsblog.com//wp-content/uploads/2015/02/pendula.gif)](http://sekilver.net/akifsblog.com//wp-content/uploads/2015/02/pendula.gif)
+![pendula](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/ceng787-robot-locomotion/pendulum/pendula.gif?raw=true)
 
 Şekil 3 – Kütlesi 1 ve ip uzunluğu 1.5 metre olan sarkaç
