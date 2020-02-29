@@ -8,7 +8,7 @@ Merhabalar,
 
 Bu yazımda son aldığım derslerden birisi olan **Robot Locomotion** dersinde yaptıklarımızdan bahsedeceğim. **Robot** zaten bildiğimiz bir kelime ama **Locomotion** kelimesi ne manaya geliyor diye soracak olursanız loco (konum) + motion (zaman) kelimelerinin birleşiminden geliyor. Başka bir deyişle,  hareketli robot sistemlerinin zaman içerisinde konumlarının nasıl değiştiğini analiz ve simule ediyoruz. Böylece sistemi gerçeklemeden önce görüp üzerinde bolca deneme yanılma yapmak için imkanımız oluyor.
 
-[![Mass-Spring-Damper](http://sekilver.net/akifsblog.com//wp-content/uploads/2015/02/Mass-Spring-Damper-300x176.png)](http://sekilver.net/akifsblog.com//wp-content/uploads/2015/02/Mass-Spring-Damper.png)
+![Mass-Spring-Damper](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/ceng787-robot-locomotion/spring-mass/spr%C4%B1ngmass-withDamper.gif?raw=true)
 
 Figure 1 – Yaylı Damperli Kütle Sistemi
 
