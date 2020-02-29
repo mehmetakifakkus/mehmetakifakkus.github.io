@@ -27,17 +27,12 @@ Bu yazımda basit sarkaç modelinin Matlab kullanılarak modellemesini anlatmaya
 
  
 
-![l](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-cdd0d477d9a1f3659b9e81f11de4574a_l3.svg) uzunluğundaki ![m](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-d91dfb9f55f5227bcc85aace47e79e28_l3.svg) kütlesinin eylemsizlik momenti  ![I=ml^2](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-572b2383e4bfc32c5eb50290be3908bc_l3.svg)
-Sisteme etkiyen ![\tau](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-7f0d431c7cbf5dba11d18e7041c027c3_l3.svg) (tork) ise kuvvet x uzaklık yanı ![F_d x l = mgsin(\theta)l](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-6b4b0a7e5172e55f48812fbd1cc59f67_l3.svg)
-![\tau = I \alpha](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-85c847e8c332f7f252399498488839b8_l3.svg) formülünden ![\alpha](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-1c1f2b5551258c452eb3a457c1b31cae_l3.svg)‘yı  yalnız bırakınca:
+$l$ uzunluğundaki $m$ kütlesinin eylemsizlik momenti  $I=ml^2$. Sisteme etkiyen $\tau$ (tork) ise kuvvet x uzaklık yanı $F_d x l = mgsin(\theta)l$
+$\tau = I \alpha$ formülünden $\alpha$ ‘yı  yalnız bırakınca:
 
+(1)  $$\begin{equation*} \alpha = \frac{\tau}{I} = \frac{-mgsin(\theta)l}{ml^2} = \frac{-gsin(\theta)}{l} \end{equation*}$$
 
-
-(1)  ![\begin{equation*} \alpha = \frac{\tau}{I} = \frac{-mgsin(\theta)l}{ml^2} = \frac{-gsin(\theta)}{l} \end{equation*}](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-254b7f3e7e86c7dabde912a90b40196e_l3.svg)
-
-Denklem [1](#id1982189542) ‘de dikkat çekmek istediğimi bir nokta ![F_d](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-b953f9206c3435ea2632189af8d6e45f_l3.svg) ‘nin eksi değer almasıdır çünkü harekete yavaşlatıcı, ters etkide bulunur. Diğer türlü sarkaç yavaşlamak yerine hızlanarak yukarı çıkar. Sistemi doğru modelleyebilmek için kuvvetlerin yönüne oldukça dikkat etmemiz gerekli. Diğer dikkat çekmek istediğim nokta ise ![\alpha](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-1c1f2b5551258c452eb3a457c1b31cae_l3.svg) dediğimiz şey tabiri diğerle açısal ivmedir ve ![\theta](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-71dd845520d1ae7d2fdd0a1d2e849408_l3.svg) açısının zamana göre ikinci türevdir. Denklemi düzenleyip yeniden yazarsak aslında;
-
-
+Denklem [1](#id1982189542) ‘de dikkat çekmek istediğimi bir nokta $F_d$ ‘nin eksi değer almasıdır çünkü harekete yavaşlatıcı, ters etkide bulunur. Diğer türlü sarkaç yavaşlamak yerine hızlanarak yukarı çıkar. Sistemi doğru modelleyebilmek için kuvvetlerin yönüne oldukça dikkat etmemiz gerekli. Diğer dikkat çekmek istediğim nokta ise $\alpha$ dediğimiz şey tabiri diğerle açısal ivmedir ve $\theta$ açısının zamana göre ikinci türevdir. Denklemi düzenleyip yeniden yazarsak aslında;
 
 (2)  ![\begin{equation*} \ddot{\theta} = \frac{-gsin(\theta)}{l} \end{equation*}](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-dac33c8f7e500017afe7ecae66c1a888_l3.svg)
 
