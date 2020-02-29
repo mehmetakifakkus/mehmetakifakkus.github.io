@@ -43,19 +43,25 @@ Eveeet, böylece sistemin hareket denklemini çıkarmış bulunuyoruz. Gördüğ
 Denklem[1](#id1982189542) bildiğimiz gibi bir diferansiyel denklem. Bunun çözümünü Matlab‘da **ode45** adı verilen bir fonksiyon yardımı ile yapıyoruz.
 
 ```matlab
-% System parameters global params params.m = 1;        
-% masses: kg params.L = 1;        
-% pendulum lengths: m params.g = 9.81;     
-% gravity: m/s^2  %% The pendulum angle as a function of time for two different g and L 
+%% System parameters 
+global params 
+params.m = 1;        % masses: kg 
+params.L = 1;        % pendulum lengths: m 
+params.g = 9.81;     % gravity: m/s^2  
 
-value tF = 20; % 20 saniye botunca simulasyonu çalıştır. Yaklaşık 10 periyod. 
+%% The pendulum angle as a function of time for two different g and L value 
+tF = 20; % 20 saniye botunca simulasyonu çalıştır. Yaklaşık 10 periyod. 
 [t, x] = ode45(@pendulum2, [0,tF], [pi/4, 0]);  %Dikey düzlem ile 45 derece açı ile başla, başlangıç hızı 0 olsun.
 ```
 
 **ode45** fonksiyonu çalıştığında Denklem 1’deki denklemi çalıştıran **pendulum2** adlı fonksiyonu çağırır. Bu fonksiyon Y değişkenini alarak Ydot isminde onun zamana göre türevini döndürür. Y aslında tek bir değişken yerine $$Y = [\theta, \dot{\theta}]$$ dan oluşan bir vektördür. Dolayısıyla onun türevi ise $$\dot{Y} = [\dot{\theta}, \ddot{\theta}]$$ olur.  Aşağıdaki matlab kod kesitinde pendulum2 fonksiyonun içeriğini görebilirsiniz.
 
 ```matlab
-function xdot = pendulum2(t, Y) global params % global parametrelere erişebilmek için g = params.g; L = params.L; Ydot = [Y(2); -(g/L)*sin(x(1))];
+function xdot = pendulum2(t, Y) 
+global params % global parametrelere erişebilmek için 
+g = params.g; 
+L = params.L; 
+Ydot = [Y(2); -(g/L)*sin(x(1))];
 ```
 
 
