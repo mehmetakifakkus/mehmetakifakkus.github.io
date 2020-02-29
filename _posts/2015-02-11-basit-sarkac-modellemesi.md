@@ -6,22 +6,22 @@ date: 2015-02-11
 
 Merhaba arkadaşlar,
 
-Bu yazımda basit sarkaç modelinin Matlab kullanılarak modellemesini anlatmaya çalışacağım. Basit sarkaç ![m](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-d91dfb9f55f5227bcc85aace47e79e28_l3.svg) ağırlıklı kütlenin, diğer bir ucu bir noktaya sabitlenmiş ipe bağlı olduğu düzeneğe denir. Sürtünmenin yok varsayıldığı sistemlerde basit sarkaç sönümlenmez ve basit harmonik hareket yapar.
+Bu yazımda basit sarkaç modelinin Matlab kullanılarak modellemesini anlatmaya çalışacağım. Basit sarkaç $m$ ağırlıklı kütlenin, diğer bir ucu bir noktaya sabitlenmiş ipe bağlı olduğu düzeneğe denir. Sürtünmenin yok varsayıldığı sistemlerde basit sarkaç sönümlenmez ve basit harmonik hareket yapar.
 
 ### **Sisteme etki eden kuvvetler**
 
-Öncelikle sisteme sadece yerçekiminin etki ettiğini varsayalım. Bu durumda ![F_y](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-b5a26ac685250edf120df79ff8b364ab_l3.svg) yönündeki yerçekimi kuvveti sisteme etki edecektir. ![F_y = mg](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-b0aafcfe1f3d176d34edd34529f968ea_l3.svg)
+Öncelikle sisteme sadece yerçekiminin etki ettiğini varsayalım. Bu durumda $F_y$ yönündeki yerçekimi kuvveti sisteme etki edecektir. $F_y = mg$
 
-**O** noktasına sabitlenmiş ip, ![F_d](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-b953f9206c3435ea2632189af8d6e45f_l3.svg) kuvvetinin etkisiyle  ![F_d = F_y*sin(\theta)](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-9366ba88b4890ded8752c7631d5d4543_l3.svg) dönmektedir.
+**O** noktasına sabitlenmiş ip, $F_d$ kuvvetinin etkisiyle  $F_d = F_y*sin(\theta)$ dönmektedir.
 
 ### **Sistemin hareket denklemi**
 
 Öncelikle dönen bir cismin düz bir zeminde hareket eden bir cisme göre farklıdır.  Hız ve ivme kavramları açısal hız ve açısal ivme olarak adlandırılır. Bu ikisi arasındaki ilişki hareket formüllerinde görülebilir.
 
-|                                                        | Öteleme hareketi                                             | Dönme hareketi                                               |
-| ------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Öteleme kinetik enerjisi **ve** dönme kinetik enerjisi | ![E_{kin}=\frac{1}{2}mv^2](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-a256e34b06ceed4e3e598f637ff6eb0c_l3.svg) | ![E_{kin}=\frac{1}{2}m\omega^2](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-3911fd8d516d8d6729d63795404aef69_l3.svg) |
-| Kuvvet **ve** tork                                     | ![F=ma](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-84367b1d14f6bab5822436e2c880bcb2_l3.svg) | ![\tau = I \alpha](http://akifsblog.com/wp-content/ql-cache/quicklatex.com-85c847e8c332f7f252399498488839b8_l3.svg) |
+|                                                        | Öteleme hareketi             | Dönme hareketi                   |
+| ------------------------------------------------------ | ---------------------------- | -------------------------------- |
+| Öteleme kinetik enerjisi **ve** dönme kinetik enerjisi | $$E_{kin}=\frac{1}{2}mv^2]$$ | $$E_{kin}=\frac{1}{2}m\omega^2$$ |
+| Kuvvet **ve** tork                                     | $$F=ma$$                     | $$\tau = I \alpha$$              |
 
 - ![v](http://upload.wikimedia.org/math/9/e/3/9e3669d19b675bd57058fd4664205d2a.png): [hız](http://tr.wikipedia.org/wiki/Hız),  ![\omega](http://upload.wikimedia.org/math/4/d/1/4d1b7b74aba3cfabd624e898d86b4602.png): [açısal hız](http://tr.wikipedia.org/wiki/Açısal_hız), ![m](http://upload.wikimedia.org/math/6/f/8/6f8f57715090da2632453988d9a1501b.png): [kütle](http://tr.wikipedia.org/wiki/Kütle),  ![a](http://upload.wikimedia.org/math/0/c/c/0cc175b9c0f1b6a831c399e269772661.png): [ivme](http://tr.wikipedia.org/wiki/İvme),  ![\alpha](http://upload.wikimedia.org/math/b/c/c/bccfc7022dfb945174d9bcebad2297bb.png): [açısal ivme](http://tr.wikipedia.org/wiki/Açısal_ivme)
 
