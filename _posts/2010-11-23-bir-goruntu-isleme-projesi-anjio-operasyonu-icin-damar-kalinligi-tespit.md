@@ -32,7 +32,7 @@ Anjio cihazından çekilen resim hastadan hastaya (hastanın kalp atışından d
 
 Üzerinde çalışılacak olan damar resimden daha koyu koyuluk değerine sahip olduğundan fark edilebilmektedir. Belki çıplak gözle bu algılama rahat olsa da bilgisayar bu tip bozuk resimlerde rahatlıkla yanlış çalışabilmektedir. Resim üzerinde işlem yapmadan önce resim üzerinde bu gibi negatif etkileri kaldırabilmek amaçlı **düzeltme çalışması** yapmamız gerekmektedir.
 
-![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/bozuk.png?raw=true)
+<img src="https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/bozuk%20resimler.png?raw=true" alt="ham resim" style="zoom:67%;" />
 
 En soldaki resim içinde koyuluk değerleri olarak bir tutarlılık sergilememektedir. Sol üst köşedeki aşırı beyazlık resimde bazı değerlerin yanlış hesaplanmasına sebep olabilmektedir. Ama damarın yinede belirgin şekilde algılanabilmesi resmi geçerli kılabilmektedir. Ama resmin genellinde bir tutarlılık istediğimiz bir özelliktir. Ortadaki resimde ise resmin genelinde aşırı bir koyuluk göze çarpmaktadır. En sağdaki resim ise beklediğimiz resme en yakın olanıdır. 
 
