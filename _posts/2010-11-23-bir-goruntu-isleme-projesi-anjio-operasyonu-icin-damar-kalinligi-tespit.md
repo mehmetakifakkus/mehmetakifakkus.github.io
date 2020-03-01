@@ -6,6 +6,10 @@ date: 2010-11-23
 
 ![CT kalp resmi](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/CT_kalp.PNG?raw=true) Şekil1- CT Kalp Tomografisi Resmi
 
+
+
+### Projenin Amacı Nedir?
+
 Projenin amacı doktorların anjio kalp ameliyatı sırasında, doktora bazı damar kalınlıklarını bulmasında yardımcı olmaktır. Bunu bir tomografi resmi üzerinde fare tıklamaları ile veya bazı yardımlarla tamamen bilgisayara yaptırmak.
 
 Üstte bir **CT(computerized tomography)** resmi görünüyor. Kalp üzerinde alınmış bu tomografi görüntüsünde kalbi besleyen damarları görünmektedir. Bu damarın herhangi bir yerinde olan **damar daralması(stenoz)** kalbin yeterli beslenememesine ve hastanın kalp krizi gibi bazı önemli rahatsızlıklarla karşılaşmasına sebep olmaktadır. Bunu önlemek için daralmanın olduğu yer bazı müdahaleler ile daralmayı açmak mümkün olmaktadır.
@@ -14,26 +18,47 @@ Projenin amacı doktorların anjio kalp ameliyatı sırasında, doktora bazı da
 
 ![katater resmi](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/katater.PNG?raw=true) Şekil2- Katater Resmi
 
+
+
+### Resimden Uzunluk Tespiti için Ölçüt Nedir?
+
 Daralmanın olduğu yeri bilinen bir **uzunluk ölçü birimi** ile belirlemek için bir şeyin ölçüt olarak alınması gerekiyor.  Bu ölçüt resimden resme değişmeyen tutarlılık gösteren bir şey olması gerekiyordu. Bunun için katater (bkz. üstteki resim) adı verilen kalbin içine sokulan cismin kalınlığı bilindiğinden bu ölçüt olarak alınabilirdi. Uzunluk birimi(mm)  cinsinden bilinen bu cisim ile daralmanın olduğu yer orantı hesabı ile yine mm cinsinden bulunabilmektedir.
 
 Anjio cihazından çekilen resim hastadan hastaya (hastanın kalp atışından dolayı hareket oluşmaktadır) ve bazı dış etmenlerden dolayı değişkenlik göstermektedir. Bu değişiklikler resmin genelinde koyuluk değerinin farklı olması veya resmin bir yerinin diğer kısımlarına göre daha açık veya daha koyu olması şeklinde olabilmektedir.
 
-Üzerinde çalışılacak olan damar resimden daha koyu koyuluk değerine sahip olduğundan fark edilebilmektedir. Belki çıplak gözle bu algılama rahat olsa da bilgisayar bu tip bozuk resimlerde rahatlıkla yanlış çalışabilmektedir. Resim üzerinde işlem yapmadan önce resim üzerinde bu gibi negatif etkileri kaldırabilmek amaçlı düzeltme çalışması yapmamız gerekmektedir.
 
-1-![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/1.png?raw=true)
 
-2-![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/2.png?raw=true)
+### Resim Üzerinde Bazı Ön İşlemler (Preprocessing Phase)
 
-3-![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/3.png?raw=true)
+Üzerinde çalışılacak olan damar resimden daha koyu koyuluk değerine sahip olduğundan fark edilebilmektedir. Belki çıplak gözle bu algılama rahat olsa da bilgisayar bu tip bozuk resimlerde rahatlıkla yanlış çalışabilmektedir. Resim üzerinde işlem yapmadan önce resim üzerinde bu gibi negatif etkileri kaldırabilmek amaçlı **düzeltme çalışması** yapmamız gerekmektedir.
 
-4-![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/4.PNG?raw=true)
 
-En soldaki resim (image 1) içinde koyuluk değerleri olarak bir tutarlılık sergilememektedir. Sol üst köşedeki aşırı beyazlık resimde bazı değerlerin yanlış hesaplanmasına sebep olabilmektedir. Ama damarın yinede belirgin şekilde algılanabilmesi resmi geçerli kılabilmektedir. Ama resmin genellinde bir tutarlılık istediğimiz bir özelliktir. Ortadaki resimde (image 2) ise resmin genelinde aşırı bir koyuluk göze çarpmaktadır. En sağdaki resim (image 3) ise beklediğimiz resme en yakın olanıdır.
 
-Resimde birkaç sebepten dolayı düzleştirme yapmaktayız.
+1- ![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/1.png?raw=true) Şekil3- Videodan elde edilmiş ham resim
 
-Resimde gürültü olarak adlandırdığımız kenar dışı görüntülerin kenarmış gibi algılanmasını engellemek
-Kenarları daha belirgin hale getirerek kenarların daha rahat ve doğru algılanmasını sağlamak.
+
+
+2- ![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/2.png?raw=true) Şekil4- Resim üzerinde histogram eşitlemesi
+
+
+
+3- ![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/3.png?raw=true) Şekil5- Resmin daha aydınlık olması için resim pikselleri biraz daha yüksek değerlere kaydırılmaktadır.
+
+
+
+4- ![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/4.PNG?raw=true) Şekil6- Resim ikili (binary) resim haline dönüştürülür.
+
+
+
+
+
+En soldaki resim (bkz. şekil3) içinde koyuluk değerleri olarak bir tutarlılık sergilememektedir. Sol üst köşedeki aşırı beyazlık resimde bazı değerlerin yanlış hesaplanmasına sebep olabilmektedir. Ama damarın yinede belirgin şekilde algılanabilmesi resmi geçerli kılabilmektedir. Ama resmin genellinde bir tutarlılık istediğimiz bir özelliktir. Bir alttaki resimde (bkz. şekil4) ise resmin genelinde aşırı bir koyuluk göze çarpmaktadır. Sonraki resim olan şekil5 ise ise beklediğimiz resme en yakın olanıdır.
+
+Resimde **birkaç sebepten** dolayı düzleştirme yapmaktayız.
+
+Resimde gürültü olarak adlandırdığımız kenar dışı görüntülerin kenarmış gibi algılanmasını engellemek,
+kenarları daha belirgin hale getirerek kenarların daha rahat ve doğru algılanmasını sağlamak.
+
 Projeden bir resim düzleştirme örneği:
 
 Yandaki resme bakılacak olursa damar ile arka plan resmi arasında birbirine yakın gri renkler göze çarpmaktadır. Bu koyuluk değerlerindeki benzerlik ise damarın algılanabilmesini zorlaştırmaktadır. Bu yüzden damar ile arka plan resmi arasında bir miktar zıtlık oluşturulması gerekmektedir.
