@@ -32,6 +32,10 @@ Anjio cihazından çekilen resim hastadan hastaya (hastanın kalp atışından d
 
 Üzerinde çalışılacak olan damar resimden daha koyu koyuluk değerine sahip olduğundan fark edilebilmektedir. Belki çıplak gözle bu algılama rahat olsa da bilgisayar bu tip bozuk resimlerde rahatlıkla yanlış çalışabilmektedir. Resim üzerinde işlem yapmadan önce resim üzerinde bu gibi negatif etkileri kaldırabilmek amaçlı **düzeltme çalışması** yapmamız gerekmektedir.
 
+![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/bozuk.png?raw=true)
+
+En soldaki resim içinde koyuluk değerleri olarak bir tutarlılık sergilememektedir. Sol üst köşedeki aşırı beyazlık resimde bazı değerlerin yanlış hesaplanmasına sebep olabilmektedir. Ama damarın yinede belirgin şekilde algılanabilmesi resmi geçerli kılabilmektedir. Ama resmin genellinde bir tutarlılık istediğimiz bir özelliktir. Ortadaki resimde ise resmin genelinde aşırı bir koyuluk göze çarpmaktadır. En sağdaki resim ise beklediğimiz resme en yakın olanıdır. 
+
 
 
 1- ![ham resim](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/1.png?raw=true) Şekil3- Videodan elde edilmiş ham resim
@@ -52,14 +56,17 @@ Anjio cihazından çekilen resim hastadan hastaya (hastanın kalp atışından d
 
 
 
-En soldaki resim (bkz. şekil3) içinde koyuluk değerleri olarak bir tutarlılık sergilememektedir. Sol üst köşedeki aşırı beyazlık resimde bazı değerlerin yanlış hesaplanmasına sebep olabilmektedir. Ama damarın yinede belirgin şekilde algılanabilmesi resmi geçerli kılabilmektedir. Ama resmin genellinde bir tutarlılık istediğimiz bir özelliktir. Bir alttaki resimde (bkz. şekil4) ise resmin genelinde aşırı bir koyuluk göze çarpmaktadır. Sonraki resim olan şekil5 ise ise beklediğimiz resme en yakın olanıdır.
+
 
 Resimde **birkaç sebepten** dolayı düzleştirme yapmaktayız.
 
-Resimde gürültü olarak adlandırdığımız kenar dışı görüntülerin kenarmış gibi algılanmasını engellemek,
-kenarları daha belirgin hale getirerek kenarların daha rahat ve doğru algılanmasını sağlamak.
+- Resimde gürültü olarak adlandırdığımız kenar dışı görüntülerin kenarmış gibi algılanmasını engellemek
 
-Projeden bir resim düzleştirme örneği:
+- Kenarları daha belirgin hale getirerek kenarların daha rahat ve doğru algılanmasını sağlamak.
+
+  
+
+**Projeden bir resim düzleştirme örneği:**
 
 Yandaki resme bakılacak olursa damar ile arka plan resmi arasında birbirine yakın gri renkler göze çarpmaktadır. Bu koyuluk değerlerindeki benzerlik ise damarın algılanabilmesini zorlaştırmaktadır. Bu yüzden damar ile arka plan resmi arasında bir miktar zıtlık oluşturulması gerekmektedir.
 
