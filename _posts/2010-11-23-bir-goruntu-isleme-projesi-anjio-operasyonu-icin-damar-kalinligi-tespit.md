@@ -90,13 +90,15 @@ Bu algoritma temelde ikili resim üzerinde beyaza karşılık gelen ger bir piks
 
 Resim üzerinde ortalara gidildikçe değerlerin arttığı ve kenara olan uzaklığı piksel değeri cinsinden verdiği görülmektedir. Resimde ilgilendiğimiz alan çok küçük olduğundan ilgi alanımıza giren kısmı seçip, o alana yoğunlaşmak mantıklı bir seçimdir.  Zira küçük resimlerde çalışmak bu proje için hem performansta önemli iyileştirmeler, hem de daha doğru sonuçlar üretmeyi sağlamıştır. 
 
-Aşağıda üzerinde çalıştığımız siyah beyaz resmin bir kesitinin “distance transfrom” işlemi uygulandıktan sonraki değerleri gösterilmiştir.
+Aşağıda üzerinde çalıştığımız siyah beyaz resmin bir kesitinin **distance transfrom** işlemi uygulandıktan sonraki değerleri gösterilmiştir.
+
+![daha fazla odak](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/SEC%CC%A7I%CC%87LMI%CC%87S%CC%A72.PNG?raw=true)
 
 ![Distance_Transformation](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/Distance_Transformation2.PNG?raw=true)
 
 
 
-Yukarıdaki resimde mavi ile çizilmiş kısımlar damarın kenarlarıdır. Burada da görüldüğü üzere, damar çeperine en yakında pikseller “1” değerini almış. Damarın ortalarına doğru gidildikçe bu değerlerin arttığı görülüyor. İşte burada sarı ile çizilen pikseller, maksimum noktalar damarın kalınlığını piksel cinsinden vermektedir.
+Yukarıdaki resimde mavi ile çizilmiş kısımlar damarın kenarlarıdır. Burada da görüldüğü üzere, damar çeperine en yakında pikseller  **1** değerini almış. Damarın ortalarına doğru gidildikçe bu değerlerin arttığı görülüyor. İşte burada sarı ile çizilen pikseller, maksimum noktalar damarın kalınlığını piksel cinsinden vermektedir.
 
 Burada amacımız, damarın en ince olduğu durumu, incelmeden önceki ve sonraki en kalın yerin kalınlığını tespit etmek.
 
@@ -104,7 +106,7 @@ Burada amacımız, damarın en ince olduğu durumu, incelmeden önceki ve sonrak
 
 Daha önce de bahsedildiği üzere büyük resimde çalışmak yerine kalınlığını hesaplamak istediğimiz damar ve onu kapsayacak şekilde biraz daha büyük bir çevrede çalışmak yeterlidir. Bu sebeple, tüm resim üzerinde çalışmak yerine, doktorun damar üzerine koyacağı bazı noktalar temel alınarak bir pencere belirlenir. Yandaki resimde de görüldüğü üzere kırmızı ile belirlenen pencere içinde çalışma yapmak bize yaklaşık 2 kata kadar varan bir oranda iyileştirme yapma imkânı sağlayacaktır.
 
-grafik
+
 
 Resim boyutu                            Süre
 
@@ -112,4 +114,22 @@ Resim boyutu                            Süre
 
 677×598  …………………..0.140 ms (Pencere kullanılmazsa)
 
+
+
 İşlemlerin en sonunda elde edilen piksellere karşılık gelen uzunluk değeri görünmektedir. Böylece damarın en kalın ve en ince kısmı değerleri ile görünmektedir.
+
+![grafik.PNG](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/grafik.PNG?raw=true)
+
+### Çalıştırılabilir Programlar Hakkında
+
+Ekte iki adet çalıştırılabilir program mevcuttur.
+
+**Örnek Operasyon:** Bu program resim üzerinde elle kalınlığı istenen kenarların seçimine dayanmaktaydı. Bunun uğraştırıcı ve zaman alan bir işlem olduğu düşünüldü ve kalınlıkların otomatik olarak bulunması ve bir tabloda bu bilgilerin okunabilmesi düşünüldü.
+
+![](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/operations.PNG?raw=true)
+
+**Uzunluk Bulma İşlemi:** Bu program kalınlıkları otomatik olarak hangi koordinatta ne kadar kalınlık olduğunu dönmektedir.
+
+
+
+![uzunluk.PNG](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/uzunluk.PNG?raw=true)
