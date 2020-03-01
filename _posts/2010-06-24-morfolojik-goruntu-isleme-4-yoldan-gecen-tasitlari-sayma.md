@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Morfolojik Görüntü İşleme 4 - Yoldan Geçen Taşıtları Sayma"
+title: "Morfolojik Görüntü İşleme 4-Yoldan Geçen Taşıtları Sayma"
 date: 2010-06-24
 ---
 

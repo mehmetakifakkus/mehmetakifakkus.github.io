@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Morfolojik Görüntü İşleme 2 - Benzer Nesneleri Seçme"
+title: "Morfolojik Görüntü İşleme 2-Benzer Nesneleri Seçme"
 date: 2010-06-16
 ---
 

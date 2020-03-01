@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Morfolojik Görüntü İşleme 1 - Bozuk kare düzeltme"
+title: "Morfolojik Görüntü İşleme 1-Bozuk kare düzeltme"
 date: 2010-06-10
 ---
 
