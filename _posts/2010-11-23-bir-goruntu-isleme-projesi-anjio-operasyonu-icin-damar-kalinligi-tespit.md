@@ -70,7 +70,7 @@ Yandaki resme bakılacak olursa damar ile arka plan resmi arasında birbirine ya
 
 Resimde daha fazla zıtlık oluşturularak damarlar daha koyu renge, damar dışındaki kısımlar ise daha açık renge dönüştürülerek damarın tespiti kolaylaştırılır. Bu işlem hatırlarsanız resmin histogramını eşitleme işidir (bkz. [histogram_eşitleme](https://mehmetakifakkus.github.io/2010/06/05/goruntu-islemeye-giris-goruntu-histogramini-esitleme.html)). Resimde ön işlemler(düzeltme işlemi) bitince resim üzerinde uzunluk hesabına geçebiliriz. Bunun için resmi siyah beyaz resme çevirip bunun üzerinde işlemler yapıyoruz. Siyah beyaz resimde damarı beyaz diğer kısımları siyah olarak istediğimizden bunu tersine çeviriyoruz.
 
-![resim üzerinde ilgili alana odaklanır](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/SEC%CC%A7I%CC%87LMI%CC%87S%CC%A7.PNG?raw=true)
+![resim üzerinde ilgili alana odaklanır](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/secilmis.png?raw=true)
 
 Şimdi işlem yapacağımız yere odaklanıyoruz. Üstteki resimde kırmızı dikdörtgen ile işaretli kısımda damarın inceldiği yeri arayacağız.
 
@@ -78,7 +78,7 @@ Resimde ilgilendiğimiz alan çok küçük olduğundan ilgi alanımıza giren k�
 
 ### Resim Üzerinde İkili İşlemler ve Uzunluk Hesabı
 
-![daha fazla odak](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/SEC%CC%A7I%CC%87LMI%CC%87S%CC%A72.PNG?raw=true)
+![daha fazla odak](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/secilmis2.png?raw=true)
 
 Üstteki resimden damar kalınlık bilgisi “distance transform” adı verilen yöntem ile bulunmaktadır. Bu algoritma siyah beyaz resim üzerinde çalışmaktadır ve beyaz noktalar üzerinde noktanın en yakın siyah kenara olan uzaklığını vermektedir. Bu yönteme göre verilen bir ikili resme göre elde edilen sonuç aşağıdaki gibidir.
 
@@ -92,7 +92,7 @@ Resim üzerinde ortalara gidildikçe değerlerin arttığı ve kenara olan uzakl
 
 Aşağıda üzerinde çalıştığımız siyah beyaz resmin bir kesitinin **distance transfrom** işlemi uygulandıktan sonraki değerleri gösterilmiştir.
 
-![daha fazla odak](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/SEC%CC%A7I%CC%87LMI%CC%87S%CC%A72.PNG?raw=true)
+![daha fazla odak](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/secilmis.png?raw=true)
 
 ![Distance_Transformation](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/Distance_Transformation2.PNG?raw=true)
 
