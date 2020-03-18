@@ -64,6 +64,10 @@ plt.scatter(x_data, y_data, color='red')
 
 
 
+<img src="https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_6_1.png" alt="coronavirus italy graph" width="700px" align="left">
+
+
+
 
 ## Data'ya oturtacağımız test fonksiyonunu belirleyelim (tabiki üstsel yani exp)
 
