@@ -25,7 +25,7 @@ Curve fit edeceğimiz veri aşağıda resimle gösterilmiştir:
 2. Sayfanın üzerinde sağ tuş ---> sayfa kaynağını görüntüle diyelim.
 CTRL+F arama tuş kombinasyonu ile "Total Cases" diye aratalım. 
 
-<img src="https://cow.ceng.metu.edu.tr/uploads/default/original/2X/e/e2c53db7cc5c584d941ee4d909c014890f1aaae4.png" alt="coronavirus italy graph" width="960px" align="center">
+<img src="https://cow.ceng.metu.edu.tr/uploads/default/original/2X/e/e2c53db7cc5c584d941ee4d909c014890f1aaae4.png" alt="coronavirus italy graph" width="900px" align="center">
 
 
 3.  Şimdi Python tarafına geçelim. Anaconda **Python 3.7** ve **Jupyter notebook** kurulu olduğunu varsayarak işlemlere devam edelim. Eğer yoksa bunları 5-10 dakika içinde kuralım.
@@ -49,6 +49,7 @@ import matplotlib.pyplot as plt
 
 ```python
 x_data = ["Feb 15","Feb 16","Feb 17","Feb 18","Feb 19","Feb 20","Feb 21","Feb 22","Feb 23","Feb 24","Feb 25","Feb 26","Feb 27","Feb 28","Feb 29","Mar 01","Mar 02","Mar 03","Mar 04","Mar 05","Mar 06","Mar 07","Mar 08","Mar 09","Mar 10","Mar 11","Mar 12","Mar 13","Mar 14","Mar 15","Mar 16"]
+
 y_data = [3,3,3,3,3,4,21,79,157,229,323,470,655,889,1128,1701,2036,2502,3089,3858,4636,5883,7375,9172,10149,12462,15113,17660,21157,24747,27980]
 
 x_data = np.arange(1, len(y_data)+1) # x_data'yı 1 .. 31 şeklinde artan gün sayılarına çeviriyoruz.
@@ -58,7 +59,10 @@ plt.scatter(x_data, y_data, color='red')
 ```
 
 
-![png](output_6_1.png)
+
+![raw_data](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_6_1.png?raw=true)
+
+
 
 
 ## Data'ya oturtacağımız test fonksiyonunu belirleyelim (tabiki üstsel yani exp)
@@ -158,20 +162,27 @@ plt.show()
 ```
 
 
-![png](output_15_0.png)
 
+![exp function fitted](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_15_0.png?raw=true)
+
+Elimizde 31 günlük veri mevuttu. Bu verilere oturttuğumuz curve ile:
 
 t=35 için **yani 35. gün için** case sayısı çok korkutucu **58.834**. Umarım öyle olmaz, ama istatistik böyle diyor.
+
+
 
 ### Son olarak:
 
 Yazımın sonuna geldik. Ödev olarak size bunun Türkiye ya da başka bir ülke versiyonunu yapmanızı tavsiye ederim. Eğer hiç **numpy** vs. tecrübeniz olmamışsa mutlaka uğraşıp elinizi kirletin. Türkiye olarak sonuçlar ürkütecek olsa da tedbiri elden bırakmayarak bir miktar belki sonuçları curve dışına itebiliriz. Allah ya da tanrı ya da neyse yardımcımız olsun...
 
+
+
 ## Referanslar
-* https://mehmet-akif-akkus.gitbook.io/numpy-ile-veri-bilimi/ozel-diziler
-* https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb
-* http://scipy-lectures.org/intro/scipy/auto_examples/plot_curve_fit.html
+
+* [https://mehmet-akif-akkus.gitbook.io/numpy-ile-veri-bilimi/ozel-diziler](https://mehmet-akif-akkus.gitbook.io/numpy-ile-veri-bilimi/ozel-diziler)
+* [https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb](https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb)
+* [http://scipy-lectures.org/intro/scipy/auto_examples/plot_curve_fit.html](http://scipy-lectures.org/intro/scipy/auto_examples/plot_curve_fit.html)
 * https://www.geeksforgeeks.org/scipy-curve-fitting/
-* https://tr.khanacademy.org/math/algebra2/exponential-growth-and-decay-alg-2
-* https://idari.cu.edu.tr/sanli/matikt1-5.pdf
-* https://www.digitalocean.com/community/tutorials/how-to-crawl-a-web-page-with-scrapy-and-python-3
+* [https://tr.khanacademy.org/math/algebra2/exponential-growth-and-decay-alg-2](https://tr.khanacademy.org/math/algebra2/exponential-growth-and-decay-alg-2)
+* [https://idari.cu.edu.tr/sanli/matikt1-5.pdf](https://idari.cu.edu.tr/sanli/matikt1-5.pdf)
+* [https://www.digitalocean.com/community/tutorials/how-to-crawl-a-web-page-with-scrapy-and-python-3](https://www.digitalocean.com/community/tutorials/how-to-crawl-a-web-page-with-scrapy-and-python-3)
