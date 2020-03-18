@@ -58,13 +58,7 @@ plt.figure(figsize=(20, 6)) # plot boyutunu 20,6 olacak şekilde seçtim
 plt.scatter(x_data, y_data, color='red') 
 ```
 
-
-
-![raw_data](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_6_1.png?raw=true)
-
-
-
-<img src="https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_6_1.png" alt="coronavirus italy graph" width="700px" align="left">
+<img src="https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_6_1.png?raw=true" alt="coronavirus italy graph" width="720px" align="left">
 
 
 
@@ -165,9 +159,7 @@ plt.legend(loc='best')
 plt.show()
 ```
 
-
-
-![exp function fitted](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_15_0.png?raw=true)
+<img src="https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_15_0.png?raw=true" alt="coronavirus italy graph" width="720px" align="left">
 
 Elimizde 31 günlük veri mevcuttu. Bu verilere oturttuğumuz curve ile:
 
