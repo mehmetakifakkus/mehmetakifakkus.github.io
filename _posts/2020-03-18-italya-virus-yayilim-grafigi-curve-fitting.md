@@ -13,7 +13,7 @@ Hani **bilgisayar bilimi** okuyoruz ya. Madem **Data Science** gibi kavramlar da
 
 Curve fit edeceğimiz veri aşağıda resimle gösterilmiştir:
 
-<img src="https://cow.ceng.metu.edu.tr/uploads/default/original/2X/5/5b18c0741964c380b5d8c6aac54dbe364cc3e3c0.png" alt="coronavirus italy graph" width="600px" align="left">
+<img src="https://cow.ceng.metu.edu.tr/uploads/default/original/2X/5/5b18c0741964c380b5d8c6aac54dbe364cc3e3c0.png" alt="coronavirus italy graph" width="700px" align="left">
 
 
 
@@ -88,13 +88,11 @@ print(params_cov)
     [[ 1.28120792e+02 -3.69039274e-02]
      [-3.69039274e-02  1.07314988e-05]]
 
+optimize.curve_fit() fonksiyonunun bize verdiği params[0] ve params[1] parametrelerine sırasıyla $a$ ve $b$ diyecek olursak genel denklemimiz:  
 
+$$ans = a * e^(b*t)$$ olur (t gün cinsinden zamandır)
 
 ```python
-# optimize.curve_fit() fonksiyonunun bize verdiği params[0] ve params[1] parametrelerine
-# sırasıyla a ve b diyecek olursak genel denklemimiz:
-# ans = a * e^(b*t) olur (t gün cinsinden zamandır)
-
 ans = (params[0]*(np.exp(params[1]*x_data))) 
 ```
 
@@ -165,7 +163,7 @@ plt.show()
 
 ![exp function fitted](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/data-science/output_15_0.png?raw=true)
 
-Elimizde 31 günlük veri mevuttu. Bu verilere oturttuğumuz curve ile:
+Elimizde 31 günlük veri mevcuttu. Bu verilere oturttuğumuz curve ile:
 
 t=35 için **yani 35. gün için** case sayısı çok korkutucu **58.834**. Umarım öyle olmaz, ama istatistik böyle diyor.
 
@@ -182,7 +180,8 @@ Yazımın sonuna geldik. Ödev olarak size bunun Türkiye ya da başka bir ülke
 * [https://mehmet-akif-akkus.gitbook.io/numpy-ile-veri-bilimi/ozel-diziler](https://mehmet-akif-akkus.gitbook.io/numpy-ile-veri-bilimi/ozel-diziler)
 * [https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb](https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb)
 * [http://scipy-lectures.org/intro/scipy/auto_examples/plot_curve_fit.html](http://scipy-lectures.org/intro/scipy/auto_examples/plot_curve_fit.html)
-* https://www.geeksforgeeks.org/scipy-curve-fitting/
+* [https://www.geeksforgeeks.org/scipy-curve-fitting/](https://www.geeksforgeeks.org/scipy-curve-fitting)
 * [https://tr.khanacademy.org/math/algebra2/exponential-growth-and-decay-alg-2](https://tr.khanacademy.org/math/algebra2/exponential-growth-and-decay-alg-2)
 * [https://idari.cu.edu.tr/sanli/matikt1-5.pdf](https://idari.cu.edu.tr/sanli/matikt1-5.pdf)
 * [https://www.digitalocean.com/community/tutorials/how-to-crawl-a-web-page-with-scrapy-and-python-3](https://www.digitalocean.com/community/tutorials/how-to-crawl-a-web-page-with-scrapy-and-python-3)
+
