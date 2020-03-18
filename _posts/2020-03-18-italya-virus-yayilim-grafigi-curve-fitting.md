@@ -90,18 +90,20 @@ print(params_cov)
 
 optimize.curve_fit() fonksiyonunun bize verdiği params[0] ve params[1] parametrelerine sırasıyla $a$ ve $b$ diyecek olursak genel denklemimiz:  
 
-$$ans = a * e^(b*t)$$ olur (t gün cinsinden zamandır)
+$$ans = a * e^{(b*t)}$$ olur (t gün cinsinden zamandır)
 
 ```python
 ans = (params[0]*(np.exp(params[1]*x_data))) 
 ```
 
 
+
+dolayısıyla genel denklemimiz (İtalya için): $$120 e^{(0.17 * t)}$$ şeklindedir.
+
+t=10 için 
+
+
 ```python
-# dolayısıyla genel denklemimiz (İtalya için): 120 e^(0.17 * t) şeklindedir.
-
-# t=10 için 
-
 120 * np.exp(0.177 * 10)
 ```
 
@@ -110,10 +112,10 @@ ans = (params[0]*(np.exp(params[1]*x_data)))
 
 
 
+t=20 için 
+
 
 ```python
-# t=20 için 
-
 120 * np.exp(0.177 * 20)
 ```
 
@@ -122,10 +124,10 @@ ans = (params[0]*(np.exp(params[1]*x_data)))
 
 
 
+t=32 için 
+
 
 ```python
-# t=32 için 
-
 120 * np.exp(0.177 * 32)
 ```
 
@@ -134,10 +136,10 @@ ans = (params[0]*(np.exp(params[1]*x_data)))
 
 
 
+Sıkı durun t=35 için 
+
 
 ```python
-# t=35 için 
-
 120 * np.exp(0.177 * 35)
 ```
 
