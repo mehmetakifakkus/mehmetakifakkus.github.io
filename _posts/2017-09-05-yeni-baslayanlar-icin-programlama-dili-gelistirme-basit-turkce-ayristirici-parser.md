@@ -62,8 +62,6 @@ Ifadesini kullanıyoruz. Bu hiç olmayadabilir bir den fazla defa da bulunabilir
 
 Şimdi tüm bunları deneyebileceğiniz, grameri yazılmış deneme sitesini şurada bulabilirsiniz:
 
-
-
 <p class="codepen" data-height="720" data-theme-id="light" data-default-tab="result" data-user="mehmetakifakkus" data-slug-hash="RgRVLB" data-preview="true" style="height: 720px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Simple Turkish Parser">
   <span>See the Pen <a href="https://codepen.io/mehmetakifakkus/pen/RgRVLB">
   Simple Turkish Parser</a> by Mehmet Akif AKKUS (<a href="https://codepen.io/mehmetakifakkus">@mehmetakifakkus</a>)
@@ -73,5 +71,8 @@ Ifadesini kullanıyoruz. Bu hiç olmayadabilir bir den fazla defa da bulunabilir
 
 
 
+### Referanslar:
 
+1- http://matt.might.net/articles/grammars-bnf-ebnf/
 
+2-https://codepen.io/mehmetakifakkus/pen/RgRVLB
