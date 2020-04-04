@@ -73,6 +73,7 @@ Ifadesini kullanıyoruz. Bu hiç olmayadabilir bir den fazla defa da bulunabilir
 
 ### Referanslar:
 
-1- http://matt.might.net/articles/grammars-bnf-ebnf/
+1- [http://matt.might.net/articles/grammars-bnf-ebnf](http://matt.might.net/articles/grammars-bnf-ebnf)
 
-2-https://codepen.io/mehmetakifakkus/pen/RgRVLB
+2- [https://codepen.io/mehmetakifakkus/pen/RgRVLB](https://codepen.io/mehmetakifakkus/pen/RgRVLB)
+
