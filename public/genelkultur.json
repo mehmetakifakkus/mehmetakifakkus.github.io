@@ -1,0 +1,368 @@
+[
+  {
+    "question": "Dünyanın en büyük okyanusu hangisidir?",
+    "answer1": "Pasifik Okyanusu",
+    "answer2": "Atlantik Okyanusu",
+    "answer3": "Hint Okyanusu"
+  },
+  {
+    "question": "Hangi gezegen Güneş Sistemi'ndeki en büyük gezegendir?",
+    "answer1": "Jüpiter",
+    "answer2": "Satürn",
+    "answer3": "Uranüs"
+  },
+  {
+    "question": "Türkiye'nin başkenti hangi şehirdir?",
+    "answer1": "Ankara",
+    "answer2": "İstanbul",
+    "answer3": "İzmir"
+  },
+  {
+    "question": "Birleşmiş Milletler'in kuruluş yılı nedir?",
+    "answer1": "1945",
+    "answer2": "1950",
+    "answer3": "1939"
+  },
+  {
+    "question": "Hangi elementin kimyasal sembolü 'O'dur?",
+    "answer1": "Oksijen",
+    "answer2": "Altın",
+    "answer3": "Karbon"
+  },
+  {
+    "question": "En uzun nehir hangisidir?",
+    "answer1": "Amazon Nehri",
+    "answer2": "Nil Nehri",
+    "answer3": "Yangtze Nehri"
+  },
+  {
+    "question": "Şu anki dünya nüfusu yaklaşık olarak ne kadardır?",
+    "answer1": "7.9 milyar",
+    "answer2": "6.5 milyar",
+    "answer3": "8.5 milyar"
+  },
+  {
+    "question": "Türkiye'nin en yüksek dağı hangisidir?",
+    "answer1": "Ağrı Dağı",
+    "answer2": "Erciyes Dağı",
+    "answer3": "Kaçkar Dağları"
+  },
+  {
+    "question": "Hangi ülke, dünya üzerindeki en fazla nüfusa sahip ülkedir?",
+    "answer1": "Çin",
+    "answer2": "Hindistan",
+    "answer3": "Amerika Birleşik Devletleri"
+  },
+  {
+    "question": "En çok konuşulan dil hangisidir?",
+    "answer1": "Mandarin Çincesi",
+    "answer2": "İspanyolca",
+    "answer3": "İngilizce"
+  },
+  {
+    "question": "Dünyanın en yüksek dağı hangisidir?",
+    "answer1": "Everest",
+    "answer2": "K2",
+    "answer3": "Kangchenjunga"
+  },
+  {
+    "question": "Hangi gezegen Güneş Sistemi'nde en sıcak gezegendir?",
+    "answer1": "Venüs",
+    "answer2": "Merkür",
+    "answer3": "Marte"
+  },
+  {
+    "question": "Birleşmiş Milletler Genel Sekreteri kimdir?",
+    "answer1": "António Guterres",
+    "answer2": "Ban Ki-moon",
+    "answer3": "Kofi Annan"
+  },
+  {
+    "question": "Türkiye'nin en büyük gölü hangisidir?",
+    "answer1": "Van Gölü",
+    "answer2": "Tuz Gölü",
+    "answer3": "Sapanca Gölü"
+  },
+  {
+    "question": "Hangi bilim dalı, canlıların sınıflandırılmasıyla ilgilenir?",
+    "answer1": "Biyoloji",
+    "answer2": "Kimya",
+    "answer3": "Fizik"
+  },
+  {
+    "question": "En fazla yüzölçümüne sahip ülke hangisidir?",
+    "answer1": "Rusya",
+    "answer2": "Kanada",
+    "answer3": "Çin"
+  },
+  {
+    "question": "Hangi tarih, Amerika Birleşik Devletleri'nin bağımsızlık günü olarak kutlanır?",
+    "answer1": "4 Temmuz",
+    "answer2": "14 Temmuz",
+    "answer3": "1 Ocak"
+  },
+  {
+    "question": "Şu anki Avrupa Birliği'nin başkenti hangi şehirdir?",
+    "answer1": "Brüksel",
+    "answer2": "Paris",
+    "answer3": "Berlin"
+  },
+  {
+    "question": "Hangi gezegen halkalarıyla ünlüdür?",
+    "answer1": "Satürn",
+    "answer2": "Jüpiter",
+    "answer3": "Uranüs"
+  },
+  {
+    "question": "En büyük çöl hangisidir?",
+    "answer1": "Sahara Çölü",
+    "answer2": "Gobi Çölü",
+    "answer3": "Kalahari Çölü"
+  },
+  {
+    "question": "Dünyanın en kalabalık şehri hangisidir?",
+    "answer1": "Tokyo",
+    "answer2": "Şanghay",
+    "answer3": "Delhi"
+  },
+  {
+    "question": "Hangi elementin kimyasal sembolü 'Na'dır?",
+    "answer1": "Sodyum",
+    "answer2": "Potasyum",
+    "answer3": "Kalsiyum"
+  },
+  {
+    "question": "İlk Nobel Ödülü hangi yıl verildi?",
+    "answer1": "1901",
+    "answer2": "1910",
+    "answer3": "1920"
+  },
+  {
+    "question": "Hangi ülke, dünya üzerindeki en fazla petrol rezervine sahiptir?",
+    "answer1": "Venezuela",
+    "answer2": "Suudi Arabistan",
+    "answer3": "Rusya"
+  },
+  {
+    "question": "İlk insanlı uzay uçuşunu gerçekleştiren ülke hangisidir?",
+    "answer1": "Sovyetler Birliği",
+    "answer2": "Amerika Birleşik Devletleri",
+    "answer3": "Çin"
+  },
+  {
+    "question": "Hangisi bir Asya ülkesi değildir?",
+    "answer1": "Meksika",
+    "answer2": "Japonya",
+    "answer3": "Hindistan"
+  },
+  {
+    "question": "Dünyanın en derin noktası neresidir?",
+    "answer1": "Mariana Çukuru",
+    "answer2": "Tonga Çukuru",
+    "answer3": "Puerto Rico Çukuru"
+  },
+  {
+    "question": "Hangi gezegen en çok uydusu olan gezegendir?",
+    "answer1": "Jüpiter",
+    "answer2": "Satürn",
+    "answer3": "Uranüs"
+  },
+  {
+    "question": "Hangi bilim insanı yerçekimi teorisi ile tanınır?",
+    "answer1": "Isaac Newton",
+    "answer2": "Albert Einstein",
+    "answer3": "Galileo Galilei"
+  },
+  {
+    "question": "Bir yıl kaç gündür?",
+    "answer1": "365 gün",
+    "answer2": "360 gün",
+    "answer3": "366 gün"
+  },
+  {
+    "question": "Hangi ülkenin ulusal marşı 'Ode to Joy' olarak bilinir?",
+    "answer1": "Almanya",
+    "answer2": "Fransa",
+    "answer3": "İtalya"
+  },
+  {
+    "question": "Dünyanın en büyük okyanusu hangisidir?",
+    "answer1": "Pasifik Okyanusu",
+    "answer2": "Atlantik Okyanusu",
+    "answer3": "Hint Okyanusu"
+  },
+  {
+    "question": "Hangi gezegen 'Kırmızı Gezegen' olarak bilinir?",
+    "answer1": "Mars",
+    "answer2": "Venüs",
+    "answer3": "Jüpiter"
+  },
+  {
+    "question": "İlk yazılı sözleşme hangi medeniyet tarafından yapılmıştır?",
+    "answer1": "Akkadlar",
+    "answer2": "Mısırlılar",
+    "answer3": "Babilliler"
+  },
+  {
+    "question": "Hangi elementin sembolü 'Fe'dir?",
+    "answer1": "Demir",
+    "answer2": "Kurşun",
+    "answer3": "Bakır"
+  },
+  {
+    "question": "Atatürk'ün doğum tarihi nedir?",
+    "answer1": "1881",
+    "answer2": "1880",
+    "answer3": "1890"
+  },
+  {
+    "question": "Hangisi bir Asya ülkesi değildir?",
+    "answer1": "Brezilya",
+    "answer2": "Hindistan",
+    "answer3": "Çin"
+  },
+  {
+    "question": "Hangisi dünyanın en uzun nehridir?",
+    "answer1": "Nil Nehri",
+    "answer2": "Amazon Nehri",
+    "answer3": "Yangtze Nehri"
+  },
+  {
+    "question": "Hangi gezegen, Güneş Sistemi'ndeki en hızlı gezegendir?",
+    "answer1": "Merkür",
+    "answer2": "Venüs",
+    "answer3": "Mars"
+  },
+  {
+    "question": "Hangisi en büyük memelidir?",
+    "answer1": "Mavi Balina",
+    "answer2": "Afrika Fili",
+    "answer3": "Gri Balina"
+  },
+  {
+    "question": "Türkiye'nin en yüksek dağı hangisidir?",
+    "answer1": "Ağrı Dağı",
+    "answer2": "Erciyes Dağı",
+    "answer3": "Kaçkar Dağları"
+  },
+  {
+    "question": "Hangi ülke, dünya üzerindeki en fazla nükleer silah bulundurmaktadır?",
+    "answer1": "Amerika Birleşik Devletleri",
+    "answer2": "Rusya",
+    "answer3": "Çin"
+  },
+  {
+    "question": "Hangisi Avrupa'nın en büyük ülkesidir?",
+    "answer1": "Rusya",
+    "answer2": "Fransa",
+    "answer3": "Almanya"
+  },
+  {
+    "question": "Dünya Sağlık Örgütü hangi yıl kuruldu?",
+    "answer1": "1948",
+    "answer2": "1950",
+    "answer3": "1939"
+  },
+  {
+    "question": "Hangi gezegen, Güneş Sistemi'nde en fazla uydusu olan gezegendir?",
+    "answer1": "Satürn",
+    "answer2": "Jüpiter",
+    "answer3": "Uranüs"
+  },
+  {
+    "question": "Dünyanın en yüksek şelalesi hangisidir?",
+    "answer1": "Angel Şelalesi",
+    "answer2": "Niagara Şelalesi",
+    "answer3": "Victoria Şelalesi"
+  },
+  {
+    "question": "Hangisi bir kıtanın adı değildir?",
+    "answer1": "Okyanusya",
+    "answer2": "Atlasya",
+    "answer3": "Afrika"
+  },
+  {
+    "question": "Hangi yıl Türkiye Cumhuriyeti kuruldu?",
+    "answer1": "1923",
+    "answer2": "1920",
+    "answer3": "1930"
+  },
+  {
+    "question": "Hangisi Mısır piramitlerinin bulunduğu yerdir?",
+    "answer1": "Giza",
+    "answer2": "Luksor",
+    "answer3": "Kahire"
+  },
+  {
+    "question": "En fazla konuşulan dil hangisidir?",
+    "answer1": "Mandarin Çincesi",
+    "answer2": "İspanyolca",
+    "answer3": "İngilizce"
+  },
+  {
+    "question": "Hangi gezegen Güneş Sistemi'ndeki en büyük gezegendir?",
+    "answer1": "Jüpiter",
+    "answer2": "Neptün",
+    "answer3": "Uranüs"
+  },
+  {
+    "question": "Dünyanın en kalabalık ülkesi hangisidir?",
+    "answer1": "Çin",
+    "answer2": "Hindistan",
+    "answer3": "Amerika Birleşik Devletleri"
+  },
+  {
+    "question": "Hangi ülke, 'Kahve' kelimesinin kökenidir?",
+    "answer1": "Etyopya",
+    "answer2": "Brezilya",
+    "answer3": "Kolombiya"
+  },
+  {
+    "question": "Hangi sanatçı 'Mona Lisa' tablosunun yaratıcısıdır?",
+    "answer1": "Leonardo da Vinci",
+    "answer2": "Pablo Picasso",
+    "answer3": "Vincent van Gogh"
+  },
+  {
+    "question": "Dünyanın en küçük bağımsız devleti hangisidir?",
+    "answer1": "Vatikan Şehri",
+    "answer2": "Monako",
+    "answer3": "San Marino"
+  },
+  {
+    "question": "Hangi bilim insanı yerçekimi teorisini geliştirmiştir?",
+    "answer1": "Isaac Newton",
+    "answer2": "Albert Einstein",
+    "answer3": "Galileo Galilei"
+  },
+  {
+    "question": "Hangi yıl Berlin Duvarı yıkılmıştır?",
+    "answer1": "1989",
+    "answer2": "1991",
+    "answer3": "1987"
+  },
+  {
+    "question": "Hangi organ vücudun en büyük organıdır?",
+    "answer1": "Deri",
+    "answer2": "Karaciğer",
+    "answer3": "Kalp"
+  },
+  {
+    "question": "Hangisi bir antik Yunan felsefecisidir?",
+    "answer1": "Sokrates",
+    "answer2": "Platonik Biyologlar ",
+    "answer3": "Aristoteles"
+  },
+  {
+    "question": "Dünya'nın en derin noktası neresidir?",
+    "answer1": "Mariana Çukuru",
+    "answer2": "Tonga Çukuru ",
+    "answer3": "Puerto Rico Çukuru "
+  },
+  {
+    "question": "Hangi ülkenin bayrağı mavi ve beyaz renklidir? ",
+    "answer1": "Yunanistan ",
+    "answer2": "Norveç ",
+    "answer3": "Finlandiya "
+  }
+]
