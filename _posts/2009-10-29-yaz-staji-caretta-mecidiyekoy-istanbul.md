@@ -2,6 +2,7 @@
 layout: post
 title: "2009 Yaz Stajı – Caretta Yazılım-Mecidiyeköy/İstanbul"
 date: 2009-10-29
+tags: [kişisel, staj]
 ---
 
 İstanbul Mecidiyeköy semtinde Caretta yazılım şirketinde yaptığım 30 günlük stajımın ilk kısmında bir İçerik Yönetim Sisteminin işleyiş yapısını, gereksinimlerini, artılarını ve eksilerini de düşünerek bir web sitesi geliştirmekti.

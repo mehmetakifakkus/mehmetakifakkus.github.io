@@ -1,0 +1,29 @@
+{% if site.giscus.repo_id and site.giscus.category_id %}
+<div class="comments">
+<script src="https://giscus.app/client.js"
+        data-repo="{{ site.giscus.repo }}"
+        data-repo-id="{{ site.giscus.repo_id }}"
+        data-category="{{ site.giscus.category }}"
+        data-category-id="{{ site.giscus.category_id }}"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="{% if site.giscus.theme %}{{ site.giscus.theme }}{% else %}light{% endif %}"
+        data-lang="tr"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+<script>
+  // Start Giscus in the site's current theme
+  (function () {
+    var s = document.currentScript.previousElementSibling.querySelector('script');
+    if (document.documentElement.getAttribute('data-theme') === 'dark') s.setAttribute('data-theme', 'dark');
+  })();
+</script>
+{% else %}
+<div class="fb-comments" data-href="https://mehmetakifakkus.github.io/blog" data-width="720" data-numposts="5"></div>
+{% endif %}

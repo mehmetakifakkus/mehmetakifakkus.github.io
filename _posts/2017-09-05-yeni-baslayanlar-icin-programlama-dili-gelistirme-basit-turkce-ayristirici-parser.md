@@ -2,6 +2,7 @@
 layout: post
 title: "Programlama Dili Geliştirme: Basit Türkçe Ayrıştırıcı (Parser) Yazımı"
 date: 2017-09-05
+tags: [programlama, derleyici]
 ---
 
 Merhaba arkadaşlar,

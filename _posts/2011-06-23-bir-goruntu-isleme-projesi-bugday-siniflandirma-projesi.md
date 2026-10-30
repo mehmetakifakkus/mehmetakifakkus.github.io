@@ -2,6 +2,7 @@
 layout: post
 title: "Bir Görüntü İşleme Projesi: Buğday Sınıflandırma!"
 date: 2011-06-23
+tags: [görüntü işleme, proje]
 ---
 
 ### Projenin amacı

@@ -2,6 +2,7 @@
 layout: post
 title: "İngilizce Pratik için Android & IOS Uygulamaları"
 date: 2014-11-23
+tags: [ingilizce]
 ---
 
 Merhaba herkese,

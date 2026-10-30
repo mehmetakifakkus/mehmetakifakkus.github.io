@@ -2,6 +2,7 @@
 layout: post
 title: "Morfolojik Görüntü İşleme 2-Benzer Nesneleri Seçme"
 date: 2010-06-16
+tags: [görüntü işleme, morfoloji]
 ---
 
 ![kidneyCTImage](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/morphology2/kidnetCTImage.jpg?raw=true)   Şekil1 - Kidney CT Resmi

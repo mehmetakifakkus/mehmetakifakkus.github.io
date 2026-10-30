@@ -2,6 +2,7 @@
 layout: post
 title: "Aralarında Yay Bulunan Katı Cismin Modellenmesi"
 date: 2015-02-14
+tags: [modelleme, fizik]
 ---
 
 Merhaba tekrar, bugün aralarında yay bulunan bir sistemin modellemesini yapmaya çalışacağım. Gördüğünüz sistem, kenarlarından bir bağlantı ile birbirine tutturulan ve ağırlık merkezlerine de bir yay takılmış bir sistem. ![\theta_1](https://web.archive.org/web/20170317003420im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-e48486c9024b3651c025025639e1e46e_l3.svg) açısı birinci cismin *x düzlemi* ile  ![\theta_2](https://web.archive.org/web/20170317003420im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-7a8d42ff117c3035a430d9392752b2a8_l3.svg) ise ikinci cismin, birinci cisim ile yaptığı açı olarak belirlenmiştir. Cisimler sırasıyla ![d_1](https://web.archive.org/web/20170317003420im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-45dbba0afca5525c78939b42c573e1ab_l3.svg) ve ![d_2](https://web.archive.org/web/20170317003420im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-4f0fe0e44d8c822a368e2808e8a4830a_l3.svg) noktalarından birbirine bağlanmıştır. Yayın serbest haldeki durumu ![\theta_2 = 0](https://web.archive.org/web/20170317003420im_/http://akifsblog.com/wp-content/ql-cache/quicklatex.com-abdf601ef0f3f520cf88d50cf713e416_l3.svg) olduğu zamandır (çubukların düz konumu).

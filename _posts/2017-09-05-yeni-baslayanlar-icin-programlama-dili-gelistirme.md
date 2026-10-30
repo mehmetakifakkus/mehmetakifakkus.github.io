@@ -2,6 +2,7 @@
 layout: post
 title: "Yeni Başlayanlar için Programlama Dili Geliştirme"
 date: 2017-09-05
+tags: [programlama, derleyici]
 ---
 
 ### Hali hazırda O Kadar Farklı PD Varken Neden Yenisi?

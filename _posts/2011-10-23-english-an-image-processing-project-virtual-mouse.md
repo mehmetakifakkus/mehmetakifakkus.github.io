@@ -2,6 +2,7 @@
 layout: post
 title: "[English] An Image Processing Project: Virtual Mouse!"
 date: 2011-10-30
+tags: [görüntü işleme, proje]
 ---
 
 This summer, with my friends we have decided to work on a project related to Computer Vision. Then we wanted that project provides opportunity to human-computer interaction.

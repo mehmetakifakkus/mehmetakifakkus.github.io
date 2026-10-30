@@ -2,6 +2,7 @@
 layout: post
 title: "Bisikletle Zorlayıcı Toros Tırmanışı"
 date: 2015-08-31
+tags: [bisiklet, spor]
 ---
 
 Merhaba Bisiklet severler,

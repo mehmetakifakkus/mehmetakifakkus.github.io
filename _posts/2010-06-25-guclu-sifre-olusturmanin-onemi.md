@@ -2,6 +2,7 @@
 layout: post
 title: "Güçlü Şifre Oluşturmanın Önemi"
 date: 2010-06-25
+tags: [güvenlik]
 ---
 
 Hayatımızın her alanında hep şifre girmek zorunda kalıyoruz. Sabah kalkıp telefonumuzu veya bilgisayarımızı açtığımızda, üyesi olduğumuz bir siteye girerken bankacılık işleminde vs… Peki şifrenizin başkaları tarafından öğrenilmemesi açısından ne kadar güvenli olduğunu düşünüyorsunuz.

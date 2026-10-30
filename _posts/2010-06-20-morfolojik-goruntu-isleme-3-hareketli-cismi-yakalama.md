@@ -2,6 +2,7 @@
 layout: post
 title: "Morfolojik Görüntü İşleme 3-Hareketli Cismi Yakalama"
 date: 2010-06-20
+tags: [görüntü işleme, morfoloji]
 ---
 
 Görüntü işlemenin zevkli konularından birisi olan morfolojik görüntü işleme ile örneklerimize devam ediyoruz. Bu deneyimizde sabit bir görüntü üzerinde hareket eden cisimleri, daha doğrusu resme sonradan gelmiş hareketlileri tespit edeceğiz. Bir otopark sahası içinde otoparka yeni gelen arabaların yerini bulacağız ve bunu orijinal resim içerisinde boyayarak tespit edeceğiz.

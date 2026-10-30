@@ -11,6 +11,14 @@ markdown: kramdown
 # GA4 Measurement ID (G-XXXXXXXXXX). Leave empty to disable analytics.
 google_analytics:
 
+# Giscus comments (https://giscus.app). Until repo_id and category_id are
+# set, posts keep the old Facebook comments box.
+giscus:
+  repo: mehmetakifakkus/mehmetakifakkus.github.io
+  repo_id:
+  category: Announcements
+  category_id:
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap

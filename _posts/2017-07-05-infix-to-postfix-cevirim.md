@@ -3,6 +3,7 @@ layout: post
 title: "Bir Matematiksel İfadenin Infix Gösterimden Postfix Gösterime Çevrilmesi"
 date: 2017-07-10
 
+tags: [programlama, algoritmalar]
 ---
 
 Merhaba, uzun zamandır bir şeyleri görselleştirmeye mesaimi harcıyorum. 

@@ -2,6 +2,7 @@
 layout: post
 title: "2015 YLSY Bilgilendirme Toplantısı Özet, Değerlendirme, Tespitler"
 date: 2015-11-06
+tags: [ylsy, akademik]
 ---
 
 Merhaba sevgili bursiyerler veya bursiyer adayları,

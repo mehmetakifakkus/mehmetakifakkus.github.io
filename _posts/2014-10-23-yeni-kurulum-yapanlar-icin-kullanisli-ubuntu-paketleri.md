@@ -2,6 +2,7 @@
 layout: post
 title: "Yeni Kurulum Yapanlar için Kullanışlı Ubuntu Paketleri"
 date: 2014-10-23
+tags: [linux]
 ---
 
 This is the list of the packages i like most:

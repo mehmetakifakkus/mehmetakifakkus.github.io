@@ -2,6 +2,7 @@
 layout: post
 title: "Bayramda Dayak Yemek"
 date: 2015-09-25
+tags: [kişisel]
 ---
 
 Aman Allahım, bu da mı başıma gelecekti. Evet yanlış duymadınız bayramın tam 2. gününde bir işyerinden iş yeri sahibi tarafından yumruk yiyerek yaka paça dışarı atıldım. Nasıl mı oldu?

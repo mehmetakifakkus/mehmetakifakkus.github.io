@@ -3,6 +3,7 @@ layout: post
 title: "İtalya Virus Yayılım Grafiği - Curve Fitting Problem"
 date: 2020-03-18
 
+tags: [veri bilimi, python]
 ---
 
 

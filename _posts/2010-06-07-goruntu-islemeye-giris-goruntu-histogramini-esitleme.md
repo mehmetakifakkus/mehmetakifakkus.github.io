@@ -2,6 +2,7 @@
 layout: post
 title: "Görüntü İşlemeye Giriş: 2-Görüntü Histogramını Eşitlemek"
 date: 2010-06-05
+tags: [görüntü işleme]
 ---
 
 ### Neden Resmin Histogramını Eşitlemeye İhtiyaç Duyarız

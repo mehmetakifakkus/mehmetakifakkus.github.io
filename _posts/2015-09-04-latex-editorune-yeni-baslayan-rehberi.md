@@ -2,6 +2,7 @@
 layout: post
 title: "Latex Editörüne Yeni Başlayanlar için Bir Rehber"
 date: 2015-09-04
+tags: [latex, akademik]
 ---
 
 ### Gerekli Programlar

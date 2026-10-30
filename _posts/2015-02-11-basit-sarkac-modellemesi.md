@@ -2,6 +2,7 @@
 layout: post
 title: "Basit Sarkaç Modellemesi"
 date: 2015-02-11
+tags: [modelleme, fizik]
 ---
 
 Merhaba arkadaşlar,

@@ -2,6 +2,7 @@
 layout: post
 title: "OpenCV2.X Visual Studio2008 ile Kullanımı"
 date: 2010-07-20
+tags: [görüntü işleme, opencv]
 ---
  
 Bu yazımda görüntü işleme ile uğraşanların elinin mutlaka değdiği OpenCV kütüphanesinin visual studio 2008 C++ ile nasıl kullanıldığını (kurulum) inceleyeceğiz.
