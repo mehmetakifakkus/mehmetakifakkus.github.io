@@ -2,28 +2,39 @@
 layout: default
 link: blog
 ---
-{% assign words = content | strip_html | number_of_words %}
-{% assign minutes = words | divided_by: 200 | plus: 1 %}
-<div class="note">
-  <h1>{{ page.title }}</h1>
-  <p class="date">{{ page.date | date_to_string }} · {{ minutes }} dk okuma</p>
+<article class="article wrap-narrow">
+	<header class="article-header">
+		{% if page.tags.size > 0 %}
+		<p class="article-tags">
+			{% for tag in page.tags %}<a class="tag" href="/tags/#{{ tag | slugify: 'latin' }}">{{ tag }}</a>{% endfor %}
+		</p>
+		{% endif %}
+		<h1>{{ page.title }}</h1>
+		<p class="article-meta">{% include date_tr.html date=page.date %} · {% include reading_time.html content=content %} dk okuma</p>
+	</header>
 
-  {% if page.tags.size > 0 %}
-  <p class="post-tags">
-    {% for tag in page.tags %}<a class="tag" href="/tags/#{{ tag | slugify: 'latin' }}">{{ tag }}</a>{% endfor %}
-  </p>
-  {% endif %}
+	<div class="prose">
+		{{ content }}
+	</div>
 
-  {{ content }}
+	<nav class="post-nav" aria-label="Diğer yazılar">
+		{% if page.previous %}
+		<a class="post-nav-prev" href="{{ page.previous.url }}"><small>&larr; Önceki yazı</small>{{ page.previous.title }}</a>
+		{% endif %}
+		{% if page.next %}
+		<a class="post-nav-next" href="{{ page.next.url }}"><small>Sonraki yazı &rarr;</small>{{ page.next.title }}</a>
+		{% endif %}
+	</nav>
 
-  <nav class="post-nav">
-    {% if page.previous %}
-    <a class="prev" href="{{ page.previous.url }}">&larr; {{ page.previous.title }}</a>
-    {% endif %}
-    {% if page.next %}
-    <a class="next" href="{{ page.next.url }}">{{ page.next.title }} &rarr;</a>
-    {% endif %}
-  </nav>
-</div>
+	{% include comments.html %}
+</article>
 
-{% include comments.html %}
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			inlineMath: [['$','$']]
+		}
+	});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

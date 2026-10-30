@@ -1,0 +1,54 @@
+# Projects shown on the homepage and /projects. Order = display order.
+- title: Türkçe Programlama Dili
+  image: /img/tpd-thumbnail.png
+  description: >-
+    Temel programlama kavramlarını Türkçe sözdizimi ve görselleştirmeyle
+    öğreten, tarayıcıda çalışan eğitim amaçlı programlama dili.
+  demo: https://mehmetakifakkus.github.io/turkceprogramlamadili/
+  github: https://github.com/mehmetakifakkus/turkceprogramlamadili
+  tags: [programlama dilleri, eğitim]
+
+- title: WebCGAL
+  image: /img/webcgal-thumbnail.png
+  description: >-
+    Web of Computational Geometry Algorithms: hesaplamalı geometri
+    algoritmalarını adım adım anlamayı kolaylaştıran web aracı.
+  demo: http://webcgal.org
+  github: https://github.com/mehmetakifakkus/webcgal
+  tags: [hesaplamalı geometri, javascript]
+
+- title: "DSViz: Bağlı Listeler"
+  image: /img/tpd_dsviz.png
+  description: >-
+    Bağlı liste işlemlerini kolay anlaşılır bir dille kodlayıp sonucunu
+    anında görselleştiren veri yapıları aracı.
+  demo: https://mehmetakifakkus.github.io/dsviz
+  github: https://github.com/mehmetakifakkus/dsviz
+  tags: [veri yapıları, eğitim]
+
+- title: Poligon Ayrıştırma
+  image: /img/partitioning-thumbnail.png
+  description: >-
+    Basit bir çokgeni verilen yüzdelere göre (ör. %50 – %50) eşit alanlı
+    alt çokgenlere ayıran etkileşimli uygulama.
+  demo: https://mehmetakifakkus.github.io/partitioning/
+  github: https://github.com/mehmetakifakkus/partitioning
+  tags: [hesaplamalı geometri]
+
+- title: Müzik Notası Üretici
+  image: /img/musicGeneration-thumbnail.png
+  description: >-
+    Piyano tuşları üzerinde zıplayan toplarla rastgele melodiler üreten
+    deneysel müzik uygulaması.
+  demo: https://mehmetakifakkus.github.io/musicGeneration/
+  github: https://github.com/mehmetakifakkus/musicGeneration
+  tags: [müzik, javascript]
+
+- title: Top Patlatma Oyunu
+  image: /img/pongGame-thumbnail.png
+  description: >-
+    Ok atarak topları patlattığınız bir tarayıcı oyunu: vurulan her top
+    yarı boyutta ikiye bölünür, yeterince küçülünce kaybolur.
+  demo: https://mehmetakifakkus.github.io/pongGame/
+  github: https://github.com/mehmetakifakkus/pongGame
+  tags: [oyun, javascript]

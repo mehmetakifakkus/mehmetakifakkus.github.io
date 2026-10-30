@@ -1,0 +1,2 @@
+{%- assign rt_words = include.content | strip_html | number_of_words -%}
+{{- rt_words | divided_by: 200 | plus: 1 -}}

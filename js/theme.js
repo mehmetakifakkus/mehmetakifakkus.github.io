@@ -19,7 +19,7 @@
   button.addEventListener('click', function () {
     var theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    try { localStorage.setItem('theme', theme); } catch (e) {}
     syncButton();
     syncGiscus(theme);
   });
