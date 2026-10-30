@@ -15,7 +15,7 @@ google_analytics:
 # set, posts keep the old Facebook comments box.
 giscus:
   repo: mehmetakifakkus/mehmetakifakkus.github.io
-  repo_id:
+  repo_id: MDEwOlJlcG9zaXRvcnk2OTQ0MjA1NQ==
   category: Announcements
   category_id:
 
