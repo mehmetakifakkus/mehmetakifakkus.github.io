@@ -2,6 +2,7 @@
 layout: post
 title: "Ankara’dan Kazan’a Bisikletle Günübirlik Yolculuk"
 date: 2015-08-03
+tags: [bisiklet, spor]
 ---
 
 Güzergah

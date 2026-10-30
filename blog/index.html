@@ -3,9 +3,18 @@ layout: default
 title: Blog
 link: blog
 ---
-	<ul class="posts">
+	<div class="blog-tools">
+		<input type="search" id="search-input" class="form-control" placeholder="Yazılarda ara..." aria-label="Yazılarda ara" autocomplete="off">
+		<a href="/tags/">Etiketlere göz at &rarr;</a>
+	</div>
+
+	<ul class="posts" id="search-results" hidden></ul>
+
+	<ul class="posts" id="post-list">
 
 	  {% for post in site.posts %}
 	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 	  {% endfor %}
 	</ul>
+
+	<script src="/js/search.js"></script>

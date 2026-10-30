@@ -2,6 +2,7 @@
 layout: post
 title: "İngilizce Pratik Yapmak İçin Hoş Web Siteleri"
 date: 2011-10-21
+tags: [ingilizce]
 ---
 
 Üniversitenin hangi bölümünde okursanız okuyun; hatta okuduğunuz bölüm ingilizce ile herhangi bir bağı olsun veya olmasın; hatta okumayın 🙂 ingilizce gereksinimi ile hayatımızın bir bölümünde mutlaka karşılaşıyoruz. Lisede öğrendimiz ingilizcenize birşeyler katmayı düşünüyorsanız (hazırlık görmüş te olabilirsiniz) buyrun size önerebileceğim bir kaç web sayfası:

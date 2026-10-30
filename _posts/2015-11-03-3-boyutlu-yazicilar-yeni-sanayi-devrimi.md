@@ -2,6 +2,7 @@
 layout: post
 title: "Üç Boyutlu Yazıcılar - Yeni Sanayi Devrimi"
 date: 2015-11-03
+tags: [teknoloji]
 ---
 
 Not: Bu yazının bir benzeri [https://e-bergi.com/y/3dprinters](https://e-bergi.com/y/3dprinters) sayfasında yayınlanmıştır.

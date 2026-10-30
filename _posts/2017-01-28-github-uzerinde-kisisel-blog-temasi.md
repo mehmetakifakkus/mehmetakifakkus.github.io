@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Github Üzerinde Kişisel Blog Teması"
+date: 2017-01-28
+tags: [jekyll, github]
+---
+
 Merhaba arkadaşlar, bu yazımda sizlere meşhur versiyonlama sistemi Git in çevirimiçi dosya saklama/sunma hizmeti veren Github üzerinde kişisel blog hesabımızı nasıl oluşturur ve düzenleriz konusunu anlatmak istiyorum. 
 
 Programlama ile uğraşan hemen hemen herkes yazdığı kodları bir şekilde sürümlüyor. Git alternatifleri arasında (SVN, Autodesk Vault vb.) meşhur olanı. Github ise git ile versiyonladığınız kodlarınızı çevirimiçi olarak saklayabildiğiniz bir bulut hizmeti. Hemen hemen bütün meşhur kütüphanelerin bir Github adresi bulunuyor (Bootstrap, Node.js, JQuery, Ruby on Rails gibi).

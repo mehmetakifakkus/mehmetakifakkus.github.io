@@ -2,6 +2,7 @@
 layout: post
 title: "Bir Görüntü İşleme Projesi: Anjio Operasyonu için Damar Kalınlığı Tespit"
 date: 2010-11-23
+tags: [görüntü işleme, proje]
 ---
 
 ![CT kalp resmi](https://github.com/mehmetakifakkus/mehmetakifakkus.github.io/blob/master/img/image_processing_images/damar_kalinligi_projesi/CT_kalp.PNG?raw=true) Şekil1- CT Kalp Tomografisi Resmi

@@ -2,6 +2,7 @@
 layout: post
 title: "[Türkçe] Bir Görüntü İşleme Projesi: Sanal Fare!"
 date: 2011-10-30
+tags: [görüntü işleme, proje]
 ---
 
 Yazın bir kaç arkadaş görüntü işleme üzerine çalışmaya karar verdik. Görüntü işleme üzerine ilerlerken elle tutulur bir proje yapmayı düşündük ve bilgisayarla etkileşimli çalışan bir şeyler yapalım dedik.

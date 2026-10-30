@@ -2,6 +2,7 @@
 layout: post
 title: "Github Pages ve Jekyll ile Ücretsiz Blog Yapmak"
 date: 2016-09-29
+tags: [jekyll, github]
 ---
 
 Bu ilk yazımda sizlere [Github Pages](https://pages.github.com) ve [Jekyll](http://jekyllrb.com) kullanarak nasıl blog yapıldığını anlatmak istiyorum. 7 seneden bu yana wordpress kullanan birisi olarak Jekyll'in blog tutma konusunda çok da geri kalır yanı olmadığını rahatlıkla söyleyebilirim.

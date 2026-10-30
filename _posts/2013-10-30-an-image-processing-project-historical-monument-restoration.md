@@ -2,6 +2,7 @@
 layout: post
 title: "An Image Processing Project: Historical Monument Restoration"
 date: 2016-09-29
+tags: [görüntü işleme, proje]
 ---
 
 **Nontextured image inpainting** term is basically restoring the destroyed or corrupted pixels of an image using the neighborhod pixels. There are several areas that this method is applied.

@@ -2,6 +2,7 @@
 layout: post
 title: "Garmin Forerunner 220 Koşu Saati Değerlendirmesi"
 date: 2014-11-23
+tags: [spor, inceleme]
 ---
 
 Koşu saatim hakkında arkadaşlarımdan gelen bazı sorular üzerine bir yazı yazmanın mantıklı olabileceğini düşündüm.  Garmin FR220’yi Eylül ayından bu yana yaklaşık 3 aydır kullanıyorum. Tecrübelerimi sizlere  aktarayım.

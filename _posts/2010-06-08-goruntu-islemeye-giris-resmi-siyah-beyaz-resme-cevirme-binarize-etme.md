@@ -2,6 +2,7 @@
 layout: post
 title: "Görüntü İşlemeye Giriş: 3-Resmi İkili Resim (Binari) Formatına Çevirmek"
 date: 2010-06-08
+tags: [görüntü işleme]
 ---
 
 Aslında başlığı yazarken çok kararsız kaldım diyebilirim. Çünkü pek türkçe söylenmeyen bir isim. Binary formatına çevirme demek resmin sadece iki ana renk olan siyah ve beyazdan resmi oluşturmak diyebiliriz. Peki neden bu işlemi yapıyoruz diye düşünebiliriz.

@@ -2,6 +2,7 @@
 layout: post
 title: "Yeni Başlayanlar için Görüntü İşleme"
 date: 2010-06-01
+tags: [görüntü işleme]
 ---
 
 ![image processing tools](https://miro.medium.com/max/683/1*m6jBUgbZz2yaVgu4xjzNuw.jpeg)

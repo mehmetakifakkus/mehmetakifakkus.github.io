@@ -3,6 +3,7 @@
 layout: post
 title: "Görüntü İşlemeye Giriş: 1-Bir Resmin Negatif Halini Elde Etmek"
 date: 2010-06-05
+tags: [görüntü işleme]
 ---
 
 ### Neden Resmin Negatifini Alırız?

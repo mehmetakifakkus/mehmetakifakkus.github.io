@@ -2,6 +2,7 @@
 layout: post
 title: "Robot Locomotion Dersi"
 date: 2015-02-04
+tags: [robotik, modelleme]
 ---
 
 Merhabalar,

@@ -2,6 +2,7 @@
 layout: post
 title: "Summer Schools on Computer Vision"
 date: 2014-11-23
+tags: [görüntü işleme, akademik]
 ---
 
 Aşağıda Bilgisayarlı Görü (ing. Computer Vision) alanında olan yaz okullarını araştırdım. Bağlantılar en güncel etkinliğin başvuru sayfasınadır.  Buyrunuz: 

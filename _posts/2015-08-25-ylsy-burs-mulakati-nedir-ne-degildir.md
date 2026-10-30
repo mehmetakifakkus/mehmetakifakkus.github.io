@@ -2,6 +2,7 @@
 layout: post
 title: "YLSY Burs Mülakatı, nedir?, ne değildir?"
 date: 2015-08-25
+tags: [ylsy, akademik]
 ---
 
 Yurtdışında yüksek öğrenim görmek isteyen herkesin başvurmayı programının bir köşesine aldığı **YLSY** isimli bursun ikinci aşaması olan **sözlü mülakat** kısmından bahsedeceğim. Madem yazıyı okumaya devam ediyorsunuz sizi şu konularda uyarmalıyım: **1)** Bu yazı öyle gaza gelinip yazılmış bir yazı değil, bir kısım yorumlar benzer şekilde mülakata girmiş kişilerin de gözlemleri göz önünde bulundurularak yazılmış bir yazıdır (10-12 kişi ile bizzat görüşülmüştür), **2)** her ne kadar geniş bir çerçeveden olaylar yazılmaya çalışılsa da tüm sürecin böyle olduğu varsayımına kapılmak ta gerçek dışı olacaktır. İyi okumalar…

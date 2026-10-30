@@ -2,6 +2,7 @@
 layout: post
 title: "Bilirkişilik nedir? Nasıl ve Niye Olunur?"
 date: 2015-09-28
+tags: [bilirkişilik]
 ---
 
 Herkese selamlar,

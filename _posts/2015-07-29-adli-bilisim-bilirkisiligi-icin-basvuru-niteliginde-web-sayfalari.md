@@ -2,6 +2,7 @@
 layout: post
 title: "Bilişim Bilirkişiliği için Başvuru Niteliğinde Web Sayfaları"
 date: 2015-07-29
+tags: [bilirkişilik]
 ---
 
 Burada bilirkişiliğe başladığımdan bu yana faydalı görüp bir kenara not aldığım web sayfalarına ulaşabilirsiniz. 

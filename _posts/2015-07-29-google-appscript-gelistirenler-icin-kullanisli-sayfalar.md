@@ -2,6 +2,7 @@
 layout: post
 title: "Google Appscript Geliştirenler için Kullanışlı Sayfalar"
 date: 2015-07-29
+tags: [programlama]
 ---
 
 Apps Script Kullanışlı Linkler:
