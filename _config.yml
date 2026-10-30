@@ -16,8 +16,8 @@ google_analytics:
 giscus:
   repo: mehmetakifakkus/mehmetakifakkus.github.io
   repo_id: MDEwOlJlcG9zaXRvcnk2OTQ0MjA1NQ==
-  category: Announcements
-  category_id:
+  category: "Q&A"
+  category_id: DIC_kwDOBCOaB84DKC1T
 
 plugins:
   - jekyll-feed
