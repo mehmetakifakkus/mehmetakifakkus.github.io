@@ -3,7 +3,7 @@
 <script src="https://giscus.app/client.js"
         data-repo="{{ site.giscus.repo }}"
         data-repo-id="{{ site.giscus.repo_id }}"
-        data-category="{{ site.giscus.category }}"
+        data-category="{{ site.giscus.category | escape }}"
         data-category-id="{{ site.giscus.category_id }}"
         data-mapping="pathname"
         data-strict="1"
@@ -25,5 +25,7 @@
   })();
 </script>
 {% else %}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v6.0"></script>
 <div class="fb-comments" data-href="https://mehmetakifakkus.github.io/blog" data-width="720" data-numposts="5"></div>
 {% endif %}
