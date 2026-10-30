@@ -1,2 +1,20 @@
-name: Mehmet Akif AKKUS, Computer Scientist
+title: Mehmet Akif AKKUS
+tagline: Computer Scientist
+description: >-
+  Mehmet Akif AKKUŞ is a Computer Scientist, Front-End and Back-End Developer
+  and Music Enthusiast, living and working in Ankara.
+url: https://mehmetakifakkus.github.io
+author: Mehmet Akif AKKUŞ
+lang: tr_TR
 markdown: kramdown
+
+# GA4 Measurement ID (G-XXXXXXXXXX). Leave empty to disable analytics.
+google_analytics:
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
