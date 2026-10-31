@@ -7,7 +7,7 @@ sitemap: false
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
-    "date": {{ post.date | date_to_string | jsonify }},
+    "date": {% capture d %}{% include date_tr.html date=post.date %}{% endcapture %}{{ d | strip | jsonify }},
     "tags": {{ post.tags | jsonify }},
     "content": {{ post.content | strip_html | normalize_whitespace | jsonify }}
   }{% unless forloop.last %},{% endunless %}

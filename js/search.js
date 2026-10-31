@@ -32,7 +32,7 @@
     if (i < 0) return '';
     var start = Math.max(0, i - 60);
     var text = (start > 0 ? '…' : '') + post.content.substr(start, 160) + '…';
-    return '<br><small class="text-muted">' + escape(text) + '</small>';
+    return '<span class="post-item-snippet">' + escape(text) + '</span>';
   }
 
   function render(query) {
@@ -48,10 +48,13 @@
       });
       results.innerHTML = hits.length
         ? hits.map(function (p) {
-            return '<li><span>' + escape(p.date) + '</span> » <a href="' + p.url + '">' +
-              escape(p.title) + '</a>' + snippet(p, terms[0]) + '</li>';
+            var meta = p.date + (p.tags.length ? ' · ' + p.tags[0] : '');
+            return '<li class="post-item"><a href="' + p.url + '">' +
+              '<span class="post-item-title">' + escape(p.title) + '</span>' +
+              '<span class="post-item-meta">' + escape(meta) + '</span>' +
+              snippet(p, terms[0]) + '</a></li>';
           }).join('')
-        : '<li>Sonuç bulunamadı.</li>';
+        : '<li class="post-item"><span class="post-item-meta">Sonuç bulunamadı.</span></li>';
       results.hidden = false;
       list.hidden = true;
     });

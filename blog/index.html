@@ -1,20 +1,32 @@
 ---
 layout: default
-title: Blog
+title: Yazılar
 link: blog
 ---
+<div class="wrap-narrow page">
+	<header class="page-header">
+		<h1>Yazılar</h1>
+		<p class="sub">Görüntü işleme, programlama, akademi ve bisiklet üzerine {{ site.posts.size }} yazı.</p>
+	</header>
+
 	<div class="blog-tools">
-		<input type="search" id="search-input" class="form-control" placeholder="Yazılarda ara..." aria-label="Yazılarda ara" autocomplete="off">
-		<a href="/tags/">Etiketlere göz at &rarr;</a>
+		<input type="search" id="search-input" placeholder="Yazılarda ara…" aria-label="Yazılarda ara" autocomplete="off">
+		<a href="/tags/">Etiketler &rarr;</a>
 	</div>
 
-	<ul class="posts" id="search-results" hidden></ul>
+	<ul class="post-list" id="search-results" hidden></ul>
 
-	<ul class="posts" id="post-list">
+	<div id="post-list">
+		{% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+		{% for year in years %}
+		<h2 class="year">{{ year.name }}</h2>
+		<ul class="post-list">
+			{% for post in year.items %}
+				{% include post_item.html post=post %}
+			{% endfor %}
+		</ul>
+		{% endfor %}
+	</div>
+</div>
 
-	  {% for post in site.posts %}
-	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-	  {% endfor %}
-	</ul>
-
-	<script src="/js/search.js"></script>
+<script src="/js/search.js"></script>

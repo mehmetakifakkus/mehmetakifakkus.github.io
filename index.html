@@ -1,36 +1,52 @@
 ---
 layout: default
-title: Mehmet Akif AKKUS's Github Pages
+title: Mehmet Akif Akkuş
 ---
-
-<div class="row marketing">
-	<div class="col-sm-3">
-	<img  class="img-circle avatar" alt="Mehmet Akif AKKUS" src="img/miniPhoto4.png" width="160px">
+<section class="hero wrap">
+	<img class="hero-photo" src="/img/miniPhoto4.png" alt="Mehmet Akif Akkuş" width="220" height="220">
+	<div>
+		<p class="eyebrow">Bilgisayar Bilimci · Ankara</p>
+		<h1>Görselleştirerek öğreten yazılımlar geliştiriyorum.</h1>
+		<p class="lead">Bilgisayarlı görü, hesaplamalı geometri ve programlama dilleri üzerine çalışıyorum. Eski ODTÜ akademik personeliyim; eğitim amaçlı web araçları ve açık kaynak projeler üretiyor, öğrendiklerimi burada yazıyorum.</p>
+		<div class="chips">
+			<span class="chip">Bilgisayarlı Görü</span>
+			<span class="chip">Hesaplamalı Geometri</span>
+			<span class="chip">Programlama Dilleri</span>
+			<span class="chip">Veri Görselleştirme</span>
+		</div>
+		<div class="btns">
+			<a class="btn btn-primary" href="/projects/">Projeleri gör</a>
+			<a class="btn" href="https://github.com/mehmetakifakkus">GitHub</a>
+			<a class="btn" href="/contact/">İletişim</a>
+		</div>
 	</div>
-	<div class="col-sm-9">
+</section>
 
-	<p class="lead">Hi, I'm <span itemprop="name">Mehmet Akif AKKUS</span> and I make things on the 
-		web for computer vision, computational geometry, and programming languages.</p>
-	<p>I get by as a researcher, engineer, doctorate student, front end developer, UI designer and music enthusiast living in Ankara, Turkey, 
-	and working for <a href="https://filemap.net"> FileMap Inc.</a> and I am a former academic member of 
-	<span itemprop="affiliation"> the <a href="http://metu.edu.tr/">Middle East Technical University</a></span>.</p>
-
-	<p>I like programming and writing blog post, therefore this page lives. 
-	<a href="contact">Tell me about</a> your opinions or critics if you're interested in my projects.</p>
+<section class="band">
+	<div class="wrap">
+		<div class="section-head">
+			<div>
+				<h2>Öne çıkan projeler</h2>
+				<p class="sub">Tarayıcıda çalışan, öğrenmeyi kolaylaştıran araçlar.</p>
+			</div>
+			<a class="more" href="/projects/">Tüm projeler &rarr;</a>
+		</div>
+		<div class="grid">
+			{% for project in site.data.projects limit:6 %}
+				{% include project_card.html project=project %}
+			{% endfor %}
+		</div>
 	</div>
-</div>
+</section>
 
-
-
-
-<div class="row">
-	<div class="col-sm-12">
-		<h4>Son Yazılar</h4>
-		<ul class="posts">
-		{% for post in site.posts limit:5 %}
-			<li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+<section class="wrap section">
+	<div class="section-head">
+		<h2>Son yazılar</h2>
+		<a class="more" href="/blog/">Tüm yazılar ({{ site.posts.size }}) &rarr;</a>
+	</div>
+	<ul class="post-list post-list-2col">
+		{% for post in site.posts limit:6 %}
+			{% include post_item.html post=post %}
 		{% endfor %}
-		</ul>
-		<p><a href="/blog">Tüm yazılar &rarr;</a></p>
-	</div>
-</div>
+	</ul>
+</section>

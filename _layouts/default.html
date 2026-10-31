@@ -1,77 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 	<head>
 		<meta charset="utf-8">
 		<script>
 			// Apply saved/system theme before first paint to avoid a flash
 			(function () {
-				var t = localStorage.getItem('theme');
+				var t;
+				try { t = localStorage.getItem('theme'); } catch (e) {}
 				if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 				document.documentElement.setAttribute('data-theme', t);
 			})();
 		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="Mehmet Akif AKKUŞ">
 		{% seo %}
 		{% feed_meta %}
-		<link rel='shortcut icon' href='/img/favicon2.ico'/>
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/css/jumbotron-narrow.css">
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		<link rel="stylesheet" type="text/css" href="/css/syntax.css">
+		<link rel="shortcut icon" href="/img/favicon2.ico">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+		<link rel="stylesheet" href="/css/site.css">
+		<link rel="stylesheet" href="/css/syntax.css">
 		{% include analytics.html %}
 	</head>
 	<body>
+		<header class="site-header">
+			<div class="wrap">
+				<a class="logo" href="/"><span class="logo-mark">MA</span><span class="logo-name">Mehmet Akif Akkuş</span></a>
+				<nav class="site-nav" aria-label="Ana menü">
+					<a href="/projects/"{% if page.link == "projects" %} class="active" aria-current="page"{% endif %}>Projeler</a>
+					<a href="/blog/"{% if page.link == "blog" %} class="active" aria-current="page"{% endif %}>Yazılar</a>
+					<a href="/about/" class="{% if page.link == "about" %}active {% endif %}hide-sm"{% if page.link == "about" %} aria-current="page"{% endif %}>Hakkında</a>
+					<a href="/contact/"{% if page.link == "contact" %} class="active" aria-current="page"{% endif %}>İletişim</a>
+					<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Karanlık/aydınlık mod" title="Karanlık/aydınlık mod">&#9790;</button>
+				</nav>
+			</div>
+		</header>
 
-<div class="container">
-			
-	<div class="header">
-		<ul class="nav nav-pills pull-right">
-			<li id="projects_page" class="passive"><a href="/projects" title="Projects">Projects</a></li>
-			<li id="blog_page" class="passive"><a href="/blog" title="Notes">Blog</a></li>
-			<li id="contact_page" class="passive"><a href="/contact" title="Contact">Contact</a></li>
-			<li><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Karanlık/aydınlık mod" title="Karanlık/aydınlık mod">&#9790;</button></li>
-		</ul>
-		<h3 class="text-muted"><a href="/">Mehmet Akif AKKUS</a></h3>
-	</div> <!-- /header -->	
-    
-	{{ content }}
+		<main>
+			{{ content }}
+		</main>
 
-	<div class="footer">
-		<div class="col-sm-10">	
-			<p><small>&copy; mehmetakifakkus 2016&ndash;{{ site.time | date: "%Y" }} · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></small></p>
-		</div>
+		<footer class="site-footer">
+			<div class="wrap">
+				<span>&copy; 2009&ndash;{{ site.time | date: "%Y" }} Mehmet Akif Akkuş</span>
+				<span class="footer-links">
+					<a href="https://github.com/mehmetakifakkus">GitHub</a> ·
+					<a href="{{ '/feed.xml' | relative_url }}">RSS</a> ·
+					<a href="/about/">Hakkında</a> ·
+					<a href="mailto:mehmetakifakkus@gmail.com">E-posta</a>
+				</span>
+			</div>
+		</footer>
 
-		<div class="col-sm-2">			
-			<a href="/about">About</a>
-		</div>
-	</div>	
-	
-		
-</div><!-- /.container -->
-
-<!-- javascript at the end of the doc so page loads faster -->
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/library.js"></script>
-<script src="/js/theme.js"></script>
-			
-		
-<script>
-var activeNav = document.getElementById("{{page.link}}_page");
-if (activeNav) activeNav.className = "active";	
-</script>
-		
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-        inlineMath: [['$','$']]
-      }
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-	
-		
-</body>
+		<script src="/js/theme.js"></script>
+	</body>
 </html>

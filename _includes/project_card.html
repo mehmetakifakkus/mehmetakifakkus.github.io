@@ -1,0 +1,11 @@
+<article class="card">
+  <a class="card-img" href="{{ include.project.demo | default: include.project.github }}"><img src="{{ include.project.image | relative_url }}" alt="{{ include.project.title }} ekran görüntüsü" loading="lazy"></a>
+  <div class="card-body">
+    <h3>{{ include.project.title }}</h3>
+    <p>{{ include.project.description }}</p>
+    <div class="card-links">
+      {% if include.project.demo %}<a href="{{ include.project.demo }}">Canlı demo</a>{% endif %}
+      {% if include.project.github %}<a href="{{ include.project.github }}">GitHub</a>{% endif %}
+    </div>
+  </div>
+</article>
