@@ -35,6 +35,16 @@
   github: https://github.com/mehmetakifakkus/partitioning
   tags: [hesaplamalı geometri]
 
+- title: Kümeli Blok Yerleşimi
+  image: /img/cluster-placement-thumbnail.png
+  description: >-
+    Dosyaları isimlerine göre kümeleyip her kümeyi tuval üzerinde sıkı ve
+    düzenli bir şekilde yerleştiren, hiyerarşik genetik algoritma ile
+    çalışan etkileşimli uygulama.
+  demo: https://mehmetakifakkus.github.io/cluster-placement/
+  github: https://github.com/mehmetakifakkus/cluster-placement
+  tags: [genetik algoritma, javascript]
+
 - title: Müzik Notası Üretici
   image: /img/musicGeneration-thumbnail.png
   description: >-
