@@ -1,0 +1,123 @@
+---
+layout: default
+title: Kümeli Blok Yerleşimi
+description: Dosyaları adlarına göre kümeleyip genetik algoritma ile boşluksuz bir panoya yerleştiren aracın dört adımda nasıl çalıştığı.
+link: projects
+---
+<article class="page wrap cp">
+	<p class="eyebrow"><a href="/projects/">&larr; Projeler</a></p>
+
+	<header class="cp-hero">
+		<h1>Dosyalarınız, adlarına göre kendiliğinden düzenlensin</h1>
+		<p class="cp-lead">Benzer adlı dosyalar kümelere ayrılır, ardından bir genetik algoritma her kümeyi boşluk bırakmadan bir panoya yerleştirir. Bir tasarım klasörünü, fotoğraf serisini ya da karışık bir proje klasörünü tek bakışta okunur bir panoya çevirir.</p>
+		<div class="btns">
+			<a class="btn btn-primary" href="/cluster-placement/">Stüdyoyu aç</a>
+			<a class="btn" href="https://github.com/mehmetakifakkus/cluster-placement">GitHub</a>
+		</div>
+	</header>
+
+	<figure class="cp-figure cp-figure-hero">
+		<img src="/img/cluster-placement/nesil-5.svg" width="400" height="160" alt="On dosyanın üç renkli kümeye ayrılıp boşluksuz bir panoya yerleştirilmiş hali: solda mavi design dosyaları, sağ üstte yeşil sketchv dosyaları, sağ altta turuncu renderdesign dosyaları.">
+		<figcaption>Örnek bir tasarım klasörünün Stüdyo'daki sonucu: 10 dosya, 3 küme.</figcaption>
+	</figure>
+
+	<nav aria-label="Adımlar">
+		<ol class="cp-steps">
+			<li><a href="#dosyalar"><span>01</span>Dosyalar</a></li>
+			<li><a href="#kumeleme"><span>02</span>Adlara göre kümeleme</a></li>
+			<li><a href="#evrim"><span>03</span>Evrim</a></li>
+			<li><a href="#sonuc"><span>04</span>Sonuç</a></li>
+		</ol>
+	</nav>
+
+	<section id="dosyalar" class="cp-step">
+		<div class="cp-step-text">
+			<p class="cp-num">01</p>
+			<h2>Dosyalar oranlara dönüşür</h2>
+			<p>Stüdyo'ya dosya ya da klasör bırakılır; görsellerin çözünürlüğü tarayıcıda okunur. Dosyalar hiçbir sunucuya gönderilmez.</p>
+			<p>Her çözünürlük küçük bir en-boy oranına indirilir, böylece algoritma küçük bir ızgara üzerinde çalışır. Boyutu okunamayan dosyalar (.ai, .psd gibi) kare kabul edilir ya da boyutları elle girilir.</p>
+		</div>
+		<div class="cp-step-visual">
+			<table class="cp-table">
+				<caption class="visually-hidden">Örnek dosyalar ve oranları</caption>
+				<thead><tr><th scope="col">Dosya</th><th scope="col">Çözünürlük</th><th scope="col">Oran</th></tr></thead>
+				<tbody>
+					<tr><td>design1.ai</td><td>1200 × 1600</td><td>3 : 4</td></tr>
+					<tr><td>design2.ai</td><td>2400 × 1600</td><td>3 : 2</td></tr>
+					<tr><td>design3.ai</td><td>120 × 80</td><td>3 : 2</td></tr>
+					<tr><td>renderdesign1.png</td><td>800 × 800</td><td>1 : 1</td></tr>
+					<tr><td>sketchv1.jpeg</td><td>800 × 400</td><td>2 : 1</td></tr>
+					<tr><td>kapak.png</td><td>1920 × 1080</td><td>5 : 3</td></tr>
+				</tbody>
+			</table>
+			<p class="cp-note">16 : 9 gibi oranlar, blok 20 hücreyi geçmeyecek şekilde en yakın orana yuvarlanır; böylece hiçbir dosya ötekilerin birkaç katı yer kaplamaz.</p>
+		</div>
+	</section>
+
+	<section id="kumeleme" class="cp-step">
+		<div class="cp-step-text">
+			<p class="cp-num">02</p>
+			<h2>Ortak önekler küme olur</h2>
+			<p>Her ad harflere ve sayılara ayrılır. Aynı önekle başlayan dosyalar bir kümede toplanır. Sayılar bölünmez; bu yüzden <code>img2</code> ile <code>img10</code> kardeş kalır, <code>img10</code> yanlışlıkla <code>img1</code>'in altına düşmez.</p>
+			<p>Kümeler iç içe olabilir: <code>5660.jpeg</code> ile <code>5660_e1.psd</code>, <code>5660_e2.psd</code> aynı kümede, düzenlenmiş kopyalar ise onun içinde ayrı bir alt kümede durur.</p>
+		</div>
+		<div class="cp-step-visual cp-cluster">
+			<ul class="cp-names" aria-label="Dosya adları ve ortak önekleri">
+				<li><mark class="cp-c1">design</mark>1.ai</li>
+				<li><mark class="cp-c1">design</mark>2.ai</li>
+				<li><mark class="cp-c1">design</mark>3.ai</li>
+				<li><mark class="cp-c2">renderdesign</mark>1.png</li>
+				<li><mark class="cp-c2">renderdesign</mark>2.png</li>
+				<li><mark class="cp-c2">renderdesign</mark>3.png</li>
+				<li><mark class="cp-c2">renderdesign</mark>4.png</li>
+				<li><mark class="cp-c3">sketchv</mark>1.jpeg</li>
+				<li><mark class="cp-c3">sketchv</mark>2.jpeg</li>
+				<li><mark class="cp-c3">sketchv</mark>3.jpeg</li>
+			</ul>
+			<ul class="cp-groups" aria-label="Oluşan kümeler">
+				<li class="cp-c1-box"><code>design</code><span>3 dosya</span></li>
+				<li class="cp-c2-box"><code>renderdesign</code><span>4 dosya</span></li>
+				<li class="cp-c3-box"><code>sketchv</code><span>3 dosya</span></li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="evrim" class="cp-step">
+		<div class="cp-step-text">
+			<p class="cp-num">03</p>
+			<h2>Genetik algoritma yerleştirir</h2>
+			<p>Her küme kendi dosyalarını yerleştirir; bir alt küme, üst kümede tek bir blok gibi davranır. Bloklar büyükten küçüğe sıralanır ve her biri daha önce yerleşmiş bir bloğun köşesine, çakışmadan yapışır.</p>
+			<p>On farklı yerleşimden oluşan bir havuz her nesilde zayıf yarısını atar, yerini en iyi yerleşimin değişmiş kopyalarıyla doldurur. Bir yerleşimin ne kadar iyi olduğunu iki ölçü belirler: <strong>doluluk</strong> (boşluk az mı?) ve <strong>en-boy oranı</strong> (pano ekrana uygun mu?). İkisi arasındaki dengeyi Stüdyo'daki Hedef kaydırıcısı ayarlar.</p>
+		</div>
+		<div class="cp-step-visual">
+			<div class="cp-compare">
+				<figure class="cp-figure">
+					<img src="/img/cluster-placement/nesil-0.svg" width="400" height="240" loading="lazy" alt="Başlangıç havuzunun en iyisi: bloklar arasında geniş boşluklar var, pano 10 × 6 birim.">
+					<figcaption><b>0. nesil</b> · uygunluk 76.7 · doluluk %57</figcaption>
+				</figure>
+				<figure class="cp-figure">
+					<img src="/img/cluster-placement/nesil-5.svg" width="400" height="160" loading="lazy" alt="Beş nesil sonra: aynı bloklar 10 × 4 birimlik sıkı bir panoya yerleşmiş.">
+					<figcaption><b>5. nesil</b> · uygunluk 91.5 · doluluk %85</figcaption>
+				</figure>
+			</div>
+			<p class="cp-note">Aynı dosyalarla tek bir deneme. 40 denemenin ortalamasında doluluk başlangıç havuzunda %77, beş nesil sonra %85.</p>
+		</div>
+	</section>
+
+	<section id="sonuc" class="cp-step">
+		<div class="cp-step-text">
+			<p class="cp-num">04</p>
+			<h2>Sonuç sizin</h2>
+			<p>Stüdyo'da yerleşim, dosya eklediğiniz ya da hedefi değiştirdiğiniz anda kendiliğinden yenilenir. Bir dosyaya ya da kümeye tıklayınca panoda vurgulanır; en iyi üç yerleşim arasında geçebilirsiniz.</p>
+			<p>Sonucu PNG, SVG ya da adları ve koordinatları içeren JSON olarak indirebilirsiniz.</p>
+		</div>
+		<div class="cp-step-visual cp-cta">
+			<p class="cp-cta-title">Kendi dosyalarınızla deneyin</p>
+			<p>Bir klasörü sürükleyip bırakın ya da hazır örneklerden birini seçin: tasarım projesi, fotoğraf serisi ya da karışık bir klasör.</p>
+			<div class="btns">
+				<a class="btn btn-primary" href="/cluster-placement/">Stüdyoyu aç</a>
+				<a class="btn" href="https://github.com/mehmetakifakkus/cluster-placement#readme">Kaynak kod ve ayrıntılar</a>
+			</div>
+		</div>
+	</section>
+</article>
