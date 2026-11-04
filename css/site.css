@@ -208,3 +208,58 @@ h1, h2, h3, h4 { color: var(--fg); line-height: 1.25; letter-spacing: -.015em; }
   .post-nav { grid-template-columns: 1fr; }
   .post-nav-next { grid-column: 1; }
 }
+
+/* Project explainer: /projects/cluster-placement/ ------------------------ */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.cp-hero { max-width: 760px; margin-bottom: 32px; }
+.cp-hero h1 { font-size: 42px; line-height: 1.12; letter-spacing: -.025em; margin: 0 0 16px; }
+.cp-lead { font-size: 19px; color: var(--muted); margin: 0 0 24px; }
+.cp-figure { margin: 0; }
+.cp-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.cp-figure figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.cp-figure-hero { max-width: 760px; }
+.cp-steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.cp-steps a { display: block; padding-top: 12px; border-top: 3px solid var(--line); color: var(--fg); font-weight: 600; font-size: 15px; }
+.cp-steps a:hover { border-top-color: var(--accent); color: var(--accent); text-decoration: none; }
+.cp-steps span { display: block; font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--muted); }
+.cp-step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; padding-top: 64px; scroll-margin-top: 16px; }
+.cp-step h2 { font-size: 26px; margin: 0 0 14px; }
+.cp-step-text p { color: var(--fg-soft); margin: 0 0 14px; }
+.cp-step-text code, .cp-groups code { font-family: var(--mono); font-size: .88em; background: var(--code-bg); padding: .1em .35em; border-radius: 5px; }
+.cp-num { font-family: var(--mono); font-size: 13px; color: var(--accent); margin: 0 0 6px; }
+.cp-step-visual { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+.cp-note { font-size: 14px; color: var(--muted); margin: 14px 0 0; }
+.cp-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.cp-table th { text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); padding: 0 8px 8px 0; border-bottom: 1px solid var(--line); }
+.cp-table td { padding: 8px 8px 8px 0; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 14px; }
+.cp-table td:first-child { font-family: var(--font); }
+.cp-cluster { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.cp-names, .cp-groups { list-style: none; margin: 0; padding: 0; }
+.cp-names li { font-family: var(--mono); font-size: 14px; padding: 3px 0; color: var(--fg-soft); }
+.cp-names mark { border-radius: 4px; padding: 1px 3px; }
+.cp-groups { display: flex; flex-direction: column; gap: 12px; }
+.cp-groups li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 10px; background: var(--card); border: 2px solid; font-size: 14px; color: var(--muted); }
+.cp-groups code { background: none; padding: 0; font-size: 15px; font-weight: 500; color: var(--fg); }
+/* Cluster colours, the same ones Stüdyo uses. */
+.cp-c1 { background: #dce6fd; color: #1a3a9c; }
+.cp-c2 { background: #fde6d3; color: #6e340b; }
+.cp-c3 { background: #d5f0ec; color: #0f4f46; }
+.cp-c1-box { border-color: #2f5bea !important; }
+.cp-c2-box { border-color: #c8641d !important; }
+.cp-c3-box { border-color: #1f8577 !important; }
+.cp-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.cp-compare figcaption b { color: var(--fg); }
+.cp-cta { display: flex; flex-direction: column; gap: 4px; }
+.cp-cta p { margin: 0 0 12px; color: var(--fg-soft); }
+.cp-cta .cp-cta-title { font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+
+@media (max-width: 900px) {
+  .cp-step { grid-template-columns: 1fr; gap: 20px; padding-top: 48px; }
+}
+@media (max-width: 640px) {
+  .cp-hero h1 { font-size: 30px; }
+  .cp-lead { font-size: 17px; }
+  .cp-steps { grid-template-columns: repeat(2, 1fr); }
+  .cp-cluster, .cp-compare { grid-template-columns: 1fr; }
+  .cp-step-visual { padding: 18px; }
+}
