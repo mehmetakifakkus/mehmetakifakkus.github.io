@@ -1,4 +1,15 @@
 # Projects shown on the homepage and /projects. Order = display order.
+- title: "Sahneler: İzometrik Şehirler"
+  image: /img/sahneler-thumbnail.png
+  description: >-
+    OpenStreetMap verisinden üretilen izometrik 3B şehir sahneleri: Ankara
+    Kızılay, ODTÜ kampüsü ve İstanbul (Eminönü, Sultanahmet, Taksim). Bina
+    bilgi kartları, yer arama, trafik, iki oyun, yüksek çözünürlüklü
+    fotoğraf ve video kaydı.
+  demo: https://mehmetakifakkus.github.io/sahneler/
+  github: https://github.com/mehmetakifakkus/sahneler
+  tags: [harita, webgl, openstreetmap]
+
 - title: Türkçe Programlama Dili
   image: /img/tpd-thumbnail.png
   description: >-
