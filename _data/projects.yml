@@ -13,7 +13,7 @@
   description: >-
     Web of Computational Geometry Algorithms: hesaplamalı geometri
     algoritmalarını adım adım anlamayı kolaylaştıran web aracı.
-  demo: http://webcgal.org
+  demo: https://mehmetakifakkus.github.io/webcgal
   github: https://github.com/mehmetakifakkus/webcgal
   tags: [hesaplamalı geometri, javascript]
 
