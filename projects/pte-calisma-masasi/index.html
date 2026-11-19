@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PTE Çalışma Masası</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Düzen: masaüstünde solda sabit gezinme şeridi, telefonda altta sekme çubuğu; tek çalışma sütunu (en çok 860px).
+     Fikir: lacivert mürekkep + fosforlu kalem sarısı; dört beceri dört ayrı renkle kodlanır. */
+  --bg:#eef1f5; --surface:#ffffff; --sunk:#e3e8ee; --ink:#15202b; --muted:#566573; --line:#d2d9e1;
+  --primary:#1c2a56; --on-primary:#ffffff; --mark:#ffd84d; --on-mark:#1b1a08;
+  --sp:#b4491b; --wr:#6a45b0; --rd:#1766ad; --ls:#0c775c;
+  --good:#17794a; --warn:#9a6200; --bad:#bf3030;
+  --font-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f141b; --surface:#18202b; --sunk:#111821; --ink:#e7ecf2; --muted:#9aa8b6; --line:#2c3846;
+    --primary:#ffd84d; --on-primary:#1b1a08; --mark:#ffd84d; --on-mark:#1b1a08;
+    --sp:#f0895c; --wr:#b89cf2; --rd:#72b6f2; --ls:#4fd0a7;
+    --good:#4ccf8d; --warn:#e8b04a; --bad:#f28080;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f141b; --surface:#18202b; --sunk:#111821; --ink:#e7ecf2; --muted:#9aa8b6; --line:#2c3846;
+  --primary:#ffd84d; --on-primary:#1b1a08; --mark:#ffd84d; --on-mark:#1b1a08;
+  --sp:#f0895c; --wr:#b89cf2; --rd:#72b6f2; --ls:#4fd0a7;
+  --good:#4ccf8d; --warn:#e8b04a; --bad:#f28080;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font-body)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-0.01em}
+h1{font-size:1.9rem;font-weight:700}
+h2{font-size:1.25rem;font-weight:700}
+h3{font-size:1.02rem;font-weight:700}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+[hidden]{display:none!important}
+
+/* ---------- iskelet ---------- */
+.app{display:grid;grid-template-columns:212px minmax(0,1fr)}
+html,body{min-height:100%}
+.rail{background:var(--surface);border-right:1px solid var(--line)}
+.rail-in{padding:22px 14px;display:flex;flex-direction:column;gap:22px;position:sticky;top:0}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.15rem;line-height:1.1;padding:0 8px}
+.brand span{background:linear-gradient(transparent 55%,var(--mark) 55%);color:var(--ink);padding:0 2px}
+:root[data-theme="dark"] .brand span{background:none;color:var(--mark)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand span{background:none;color:var(--mark)}}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:500}
+.nav a:hover{background:var(--sunk);color:var(--ink)}
+.nav a[aria-current="page"]{background:var(--sunk);color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 var(--mark)}
+.rail-foot{padding:0 8px;font-size:.8rem;color:var(--muted)}
+main{padding:30px clamp(16px,4vw,44px) 70px;max-width:940px;width:100%}
+.view{display:flex;flex-direction:column;gap:22px}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px}
+.head .sub{color:var(--muted);margin-top:4px}
+
+@media (max-width:820px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .rail{position:fixed;bottom:0;left:0;right:0;z-index:20;border-right:0;border-top:1px solid var(--line)}
+  .rail-in{position:static;flex-direction:row;padding:4px 6px}
+  .brand,.rail-foot{display:none}
+  .nav{flex-direction:row;flex:1;justify-content:space-between;gap:0}
+  .nav a{flex:1;justify-content:center;padding:10px 2px;font-size:.74rem;text-align:center}
+  .nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--mark)}
+  main{padding:20px 16px 96px}
+  h1{font-size:1.55rem}
+}
+
+/* ---------- ortak parçalar ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.grid{display:grid;gap:14px}
+.tiles{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tile .big{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.tile .lab{color:var(--muted);font-size:.85rem;margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:9px 15px;font-weight:600;cursor:pointer;text-decoration:none;line-height:1.2}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.btn.primary:hover{filter:brightness(1.12)}
+.btn.sm{padding:6px 11px;font-size:.875rem}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.pulse{animation:pulse 1.1s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--mark) 55%,transparent)}}
+@media (prefers-reduced-motion:reduce){.btn.pulse{animation:none;box-shadow:0 0 0 4px var(--mark)}}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:.8rem;font-weight:600;background:var(--sunk);color:var(--ink);white-space:nowrap}
+.chip.mark{background:var(--mark);color:var(--on-mark)}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted))}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.spread{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px}
+.bar{height:8px;background:var(--sunk);border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--c,var(--primary));border-radius:999px}
+.note{border-left:4px solid var(--mark);background:var(--surface);border-radius:0 var(--r) var(--r) 0;padding:12px 16px}
+.pct.good{color:var(--good)} .pct.warn{color:var(--warn)} .pct.bad{color:var(--bad)}
+
+/* ---------- bugün ---------- */
+.streak{display:grid;grid-template-columns:auto 1fr;gap:8px 26px;align-items:center}
+.streak .n{font-family:var(--font-display);font-weight:700;font-size:3.4rem;line-height:.95;font-variant-numeric:tabular-nums}
+.streak .n small{font-size:1rem;font-weight:500;color:var(--muted);margin-left:6px;font-family:var(--font-body)}
+.week{display:flex;gap:8px;flex-wrap:wrap}
+.week div{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:.72rem;color:var(--muted)}
+.week i{width:26px;height:26px;border-radius:7px;background:var(--sunk);border:1px solid var(--line);display:block}
+.week .on i{background:var(--mark);border-color:var(--mark)}
+.week .today i{outline:2px solid var(--ink);outline-offset:2px}
+@media (max-width:520px){.streak{grid-template-columns:1fr}}
+.block{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 18px;align-items:center;border-left:5px solid var(--c,var(--line))}
+.block.done{opacity:.72}
+.block .t{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.block .est{color:var(--muted);font-size:.85rem}
+.block .act{display:flex;align-items:center;gap:10px}
+.tick{display:inline-flex;align-items:center;gap:6px;color:var(--good);font-weight:600;font-size:.9rem}
+@media (max-width:520px){.block{grid-template-columns:1fr}}
+
+/* ---------- plan ---------- */
+.phasebar{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.phasebar div{display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:600;min-width:0;border-right:1px solid var(--surface);background:var(--sunk);color:var(--muted)}
+.phasebar div.cur{background:var(--mark);color:var(--on-mark)}
+.phasebar div.past{background:color-mix(in srgb,var(--primary) 22%,var(--sunk))}
+.weeks{display:flex;flex-direction:column;gap:10px}
+.wk{display:grid;grid-template-columns:86px minmax(0,1fr);gap:4px 16px}
+.wk.cur{border-color:var(--ink);box-shadow:inset 4px 0 0 var(--mark)}
+.wk .no{font-family:var(--font-display);font-weight:700}
+.wk ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:.92rem}
+@media (max-width:520px){.wk{grid-template-columns:1fr}}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+
+/* ---------- pratik ---------- */
+.skillhead{display:flex;align-items:center;gap:10px;margin-top:6px}
+.skillhead i{width:12px;height:12px;border-radius:3px;background:var(--c)}
+.types{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.type{border-top:4px solid var(--c);display:flex;flex-direction:column;gap:8px}
+.type .meta{font-size:.85rem;color:var(--muted)}
+.type details{font-size:.9rem}
+.type summary{cursor:pointer;font-weight:600;color:var(--muted)}
+.type details ul{margin:6px 0 0;padding-left:18px}
+.type .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:6px}
+
+/* ---------- oturum ---------- */
+.sess-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.instr{color:var(--muted)}
+.stage{display:flex;flex-direction:column;gap:16px}
+.passage{font-size:1.05rem;line-height:1.75;max-width:68ch}
+.passage.big{font-size:1.2rem}
+.audio{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;background:var(--sunk);border-radius:var(--r);padding:12px 14px}
+.audio.on .eq{display:inline-flex}
+.eq{display:none;gap:3px;align-items:flex-end;height:18px}
+.eq i{width:4px;background:var(--ls);border-radius:2px;animation:eq 0.9s ease-in-out infinite}
+.eq i:nth-child(1){height:8px}.eq i:nth-child(2){height:16px;animation-delay:.2s}.eq i:nth-child(3){height:11px;animation-delay:.4s}
+@keyframes eq{50%{transform:scaleY(.4)}}
+@media (prefers-reduced-motion:reduce){.eq i{animation:none}}
+.flash{flex-basis:100%;font-size:1.1rem;font-weight:500}
+.speakbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:var(--surface)}
+.clock{font-family:var(--font-mono);font-size:1.7rem;font-variant-numeric:tabular-nums;min-width:4.2ch}
+.clock.low{color:var(--bad)}
+.phase{font-weight:600;flex:1;min-width:140px}
+.live{border:1px dashed var(--line);border-radius:var(--r);padding:12px 14px;color:var(--muted);min-height:3em}
+textarea,input[type=text],input[type=number],input[type=date],select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;width:100%}
+textarea{min-height:170px;resize:vertical;line-height:1.6}
+.inline-in{width:9.5em;display:inline-block;padding:3px 8px;margin:0 2px}
+select.inline-in{width:auto;min-width:8em}
+.inline-in.ok{border-color:var(--good);color:var(--good);font-weight:600}
+.inline-in.no{border-color:var(--bad);color:var(--bad)}
+.fix{color:var(--good);font-weight:600;font-size:.9em}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:11px 13px;cursor:pointer;width:100%}
+.opt:hover{border-color:var(--ink)}
+.opt[aria-pressed="true"]{border-color:var(--primary);box-shadow:inset 0 0 0 1px var(--primary);font-weight:500}
+.opt .k{font-family:var(--font-mono);color:var(--muted)}
+.opt.right{border-color:var(--good);box-shadow:inset 4px 0 0 var(--good)}
+.opt.wrong{border-color:var(--bad);box-shadow:inset 4px 0 0 var(--bad)}
+.opt:disabled{cursor:default;opacity:1}
+.bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:var(--sunk);border-radius:var(--r)}
+.word{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:5px 11px;cursor:pointer;font-weight:500}
+.word:hover{border-color:var(--ink)}
+.slot{display:inline-block;min-width:6.5em;border:1px dashed var(--muted);border-radius:6px;padding:1px 8px;margin:0 2px;background:var(--surface);cursor:pointer;text-align:center;line-height:1.5}
+.slot.filled{border-style:solid;font-weight:600}
+.slot.ok{border-color:var(--good);color:var(--good)} .slot.no{border-color:var(--bad);color:var(--bad)}
+.order{display:flex;flex-direction:column;gap:8px;list-style:none;margin:0;padding:0}
+.order li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.order .mv{display:flex;flex-direction:column;gap:4px}
+.order .mv button{width:34px;height:28px;padding:0}
+.order li.ok{box-shadow:inset 4px 0 0 var(--good)} .order li.no{box-shadow:inset 4px 0 0 var(--bad)}
+.hiw span{cursor:pointer;border-radius:4px;padding:1px 2px}
+.hiw span:hover{background:var(--sunk)}
+.hiw span.sel{background:var(--mark);color:var(--on-mark)}
+.hiw.done span{cursor:default}
+.hiw span.hit{background:color-mix(in srgb,var(--good) 28%,transparent);color:var(--ink);font-weight:600}
+.hiw span.miss{outline:2px solid var(--good)}
+.hiw span.false{background:color-mix(in srgb,var(--bad) 28%,transparent);color:var(--ink)}
+.counter{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.review{border:1px solid var(--line);border-top:5px solid var(--mark);border-radius:var(--r);background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:14px}
+.review h4{margin:0 0 4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.review ul{margin:0;padding-left:20px}
+.review li.hit{color:var(--good)} .review li.gap{color:var(--muted)}
+.scorepill{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--font-display);font-weight:700;font-size:1.6rem}
+.scorepill small{font-family:var(--font-body);font-size:.85rem;font-weight:500;color:var(--muted)}
+.rate{display:flex;flex-wrap:wrap;gap:6px}
+.rate button[aria-pressed="true"]{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.checks{display:flex;flex-direction:column;gap:6px}
+.checks label{display:flex;gap:8px;align-items:flex-start}
+.checks input{width:auto;margin-top:5px}
+
+/* ---------- grafikler ---------- */
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;overflow-x:auto}
+.chart h5{margin:0 0 8px;font:600 .95rem var(--font-body)}
+.chart svg{display:block;max-width:100%;height:auto}
+.chart text{font-family:var(--font-body);font-size:12px;fill:var(--muted)}
+.chart text.v{fill:var(--ink);font-weight:600}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:.88rem}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.flow{display:flex;flex-wrap:wrap;gap:10px 26px;list-style:none;margin:0;padding:0;counter-reset:st}
+.flow li{position:relative;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--sunk);font-weight:500;max-width:170px;counter-increment:st}
+.flow li::before{content:counter(st) ". ";color:var(--muted);font-family:var(--font-mono)}
+.flow li:not(:last-child)::after{content:"→";position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+/* ---------- ilerleme ---------- */
+.heat{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,16px);gap:4px;justify-content:start}
+.heat i{width:16px;height:16px;border-radius:4px;background:var(--sunk);display:block}
+.heat i.l1{background:color-mix(in srgb,var(--ls) 35%,var(--sunk))}
+.heat i.l2{background:color-mix(in srgb,var(--ls) 65%,var(--sunk))}
+.heat i.l3{background:var(--ls)}
+.heat i.fut{opacity:.35}
+.heat i.now{outline:2px solid var(--ink);outline-offset:1px}
+.skillrow{display:grid;grid-template-columns:90px minmax(0,1fr) 56px;gap:12px;align-items:center}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.form label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.92rem}
+.form .hint{font-weight:400;color:var(--muted);font-size:.84rem}
+.checkrow{display:flex;flex-wrap:wrap;gap:8px 18px}
+.checkrow label{flex-direction:row;align-items:center;font-weight:500}
+.checkrow input{width:auto}
+.hint{color:var(--muted);font-size:.86rem}
+code.box{display:block;white-space:pre-wrap;word-break:break-all;background:var(--sunk);border-radius:8px;padding:10px;font:500 .78rem var(--font-mono);max-height:120px;overflow:auto}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="rail" aria-label="Bölümler"><div class="rail-in">
+    <div class="brand">PTE <span>Çalışma Masası</span></div>
+    <div class="nav" id="nav"></div>
+    <div class="rail-foot" id="railfoot"></div>
+  </div></nav>
+  <main id="main"></main>
+</div>
+<script>
+/* ===================== PTE Academic içerik bankası (özgün örnek sorular) ===================== */
+const SKILLS = {
+  S: { name: 'Konuşma', en: 'Speaking', color: 'var(--sp)' },
+  W: { name: 'Yazma', en: 'Writing', color: 'var(--wr)' },
+  R: { name: 'Okuma', en: 'Reading', color: 'var(--rd)' },
+  L: { name: 'Dinleme', en: 'Listening', color: 'var(--ls)' }
+};
+
+const TYPES = {
+  RA: { name: 'Read Aloud', skill: 'S', kind: 'speak', est: 1.5, prep: 35, speak: 40, time: '30–40 sn hazırlık, 40 sn konuşma',
+    what: 'Ekrandaki metni (en fazla 60 kelime) yüksek sesle okursunuz.',
+    tips: ['Hazırlık süresinde metni içinizden bir kez okuyun; zor kelimeleri ve duracağınız yerleri belirleyin.', 'Sabit bir tempoda okuyun. Takıldığınız kelimede geri dönmeyin, devam edin.', 'Virgülde kısa durun, noktada sesinizi alçaltın.'] },
+  RS: { name: 'Repeat Sentence', skill: 'S', kind: 'speak', est: 0.6, prep: 0, speak: 15, audio: true, time: '15 sn konuşma',
+    what: '3–9 saniyelik bir cümleyi dinler ve aynen tekrar edersiniz.',
+    tips: ['Cümleyi anlam gruplarına bölerek aklınızda tutun.', 'Tamamını hatırlamıyorsanız hatırladığınız kısmı akıcı söyleyin; doğru kelimeler kısmi puan getirir.', 'Ses biter bitmez başlayın. Sınavda 3 saniye sessiz kalırsanız kayıt kapanır.'] },
+  DI: { name: 'Describe Image', skill: 'S', kind: 'speak', est: 1.5, prep: 25, speak: 40, time: '25 sn hazırlık, 40 sn konuşma',
+    what: 'Bir grafik, tablo veya şemayı anlatırsınız.',
+    tips: ['Sıra: konu, en yüksek ve en düşük değer, genel eğilim, tek cümlelik sonuç.', 'Bütün sayıları saymayın; 3–4 belirgin veriyi seçin.', 'Ezber kalıpları tekrar etmek puan düşürür. Görseldeki gerçek içeriği anlatın.'] },
+  RL: { name: 'Retell Lecture', skill: 'S', kind: 'speak', est: 2.5, prep: 10, speak: 40, audio: true, time: '10 sn hazırlık, 40 sn konuşma',
+    what: 'Kısa bir dersi dinler, kendi cümlelerinizle yeniden anlatırsınız.',
+    tips: ['Dinlerken anahtar kelimeleri not alın: konu, 2–3 ana nokta, sonuç.', 'Notları tam cümleye çevirin: "The lecture was about…", "The speaker explained that…".', 'Süre bitmeden son cümlenizi tamamlayın.'] },
+  ASQ: { name: 'Answer Short Question', skill: 'S', kind: 'asq', est: 0.4, time: '10 sn',
+    what: 'Kısa bir soruya bir veya birkaç kelimeyle cevap verirsiniz.',
+    tips: ['Tek kelime ya da kısa bir ifade yeterlidir.', 'Bilmiyorsanız tahmin edin; yanlış cevap puan götürmez.'] },
+  SGD: { name: 'Summarize Group Discussion', skill: 'S', kind: 'speak', est: 4.5, prep: 10, speak: 120, audio: true, time: '10 sn hazırlık, 2 dk konuşma',
+    what: 'Üç kişinin tartışmasını dinler; kimin ne dediğini ve varılan sonucu özetlersiniz. Ağustos 2025’te eklenen görevlerden biridir.',
+    tips: ['Not kâğıdını üç sütuna bölün; her konuşmacının görüşünü ve gerekçesini yazın.', 'Özet sırası: konu, her konuşmacının görüşü, varılan karar ya da uzlaşma.', 'Kendi fikrinizi eklemeyin; yalnızca söylenenleri aktarın.'] },
+  RTS: { name: 'Respond to a Situation', skill: 'S', kind: 'speak', est: 1.5, prep: 10, speak: 40, audio: true, showText: true, time: '10 sn hazırlık, 40 sn konuşma',
+    what: 'Günlük ya da akademik bir durum verilir; o durumda söyleyeceklerinizi doğrudan söylersiniz. Ağustos 2025’te eklenen görevlerden biridir.',
+    tips: ['Durumu anlatmayın, karşınızdaki kişiye konuşun: "Hi Sam, I\'m really sorry…".', 'Üç adım: durumu kabul et, açıkla, somut bir çözüm öner.', 'Kime konuştuğunuza göre resmiyet düzeyini ayarlayın.'] },
+  SWT: { name: 'Summarize Written Text', skill: 'W', kind: 'write', est: 10, limit: 600, min: 5, max: 75, time: '10 dk, 5–75 kelime, tek cümle',
+    what: 'Bir metni tek cümleyle özetlersiniz.',
+    tips: ['Tek bir nokta kullanın. Fikirleri "and", "while", "which" ya da noktalı virgülle bağlayın.', 'Ana fikri ve onu destekleyen 1–2 noktayı alın; örnekleri atın.', 'Son 2 dakikayı dil bilgisi ve yazım kontrolüne ayırın.'] },
+  WE: { name: 'Write Essay', skill: 'W', kind: 'write', est: 20, limit: 1200, min: 200, max: 300, time: '20 dk, 200–300 kelime',
+    what: 'Verilen konuda 200–300 kelimelik bir deneme yazarsınız.',
+    tips: ['Plan: giriş ve görüşünüz, iki gelişme paragrafı (gerekçe + örnek), sonuç.', 'İlk 3 dakikada planlayın, son 3 dakikada kontrol edin.', 'Ezber şablon cümlelerini azaltın; şablona fazla yaslanan cevaplar düşük puan alır.'] },
+  RWFIB: { name: 'Reading & Writing: Fill in the Blanks', skill: 'R', kind: 'dropdown', est: 2, time: 'Okuma bölümünün toplam süresi içinde',
+    what: 'Metindeki her boşluk için açılır listeden doğru kelimeyi seçersiniz.',
+    tips: ['Boşluğun çevresindeki kelimelere bakın: eşdizim (collocation) ve dil bilgisi çoğu zaman cevabı verir.', 'Boş bırakmayın; yanlış cevap puan götürmez.'] },
+  RMCM: { name: 'Multiple Choice, Multiple Answers', skill: 'R', kind: 'mc', multi: true, est: 2, time: 'Okuma bölümünün toplam süresi içinde',
+    what: 'Metne göre birden fazla doğru seçeneği işaretlersiniz.',
+    tips: ['Yanlış işaretlenen her seçenek puan götürür; yalnızca emin olduklarınızı seçin.', 'Önce soruyu okuyun, sonra metinde kanıt arayın.'] },
+  RO: { name: 'Re-order Paragraphs', skill: 'R', kind: 'reorder', est: 2, time: 'Okuma bölümünün toplam süresi içinde',
+    what: 'Karışık verilen cümleleri doğru sıraya dizersiniz.',
+    tips: ['Önce bağımsız cümleyi bulun: zamir ya da bağlaçla başlamayan, konuyu tanıtan cümle.', '"This", "these", "however", "as a result" gibi ifadeler bir önceki cümleyi işaret eder.', 'Puan doğru komşu çiftlere verilir; tamamından emin olmasanız da çiftleri kurun.'] },
+  RFIB: { name: 'Reading: Fill in the Blanks', skill: 'R', kind: 'bank', est: 2, time: 'Okuma bölümünün toplam süresi içinde',
+    what: 'Kelime kutusundan seçtiğiniz kelimeleri metindeki boşluklara yerleştirirsiniz.',
+    tips: ['Kutuda fazladan kelime vardır; önce kelime türünü (isim, fiil, sıfat) belirleyin.', 'Kolay boşluklardan başlayın; kalan seçenekler azalır.'] },
+  RMCS: { name: 'Multiple Choice, Single Answer', skill: 'R', kind: 'mc', est: 1.5, time: 'Okuma bölümünün toplam süresi içinde',
+    what: 'Metne göre tek doğru seçeneği işaretlersiniz.',
+    tips: ['Soruyu ve seçenekleri metinden önce okuyun.', 'Metindeki kelimeleri aynen tekrar eden ama anlamı değiştiren seçeneklere dikkat edin.'] },
+  SST: { name: 'Summarize Spoken Text', skill: 'L', kind: 'write', est: 11, limit: 600, min: 50, max: 70, audio: true, time: '10 dk, 50–70 kelime',
+    what: 'Kısa bir dersi dinler, 50–70 kelimeyle özetlersiniz.',
+    tips: ['Dinlerken not alın; sınavda ses bir kez çalar.', '2–3 cümle yazın: konu, ana noktalar, sonuç.', '50 kelimenin altı ve 70 kelimenin üstü biçim puanını düşürür.'] },
+  LMCM: { name: 'Listening: Multiple Choice, Multiple Answers', skill: 'L', kind: 'mc', multi: true, audio: true, est: 2, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Kaydı dinler, birden fazla doğru seçeneği işaretlersiniz.',
+    tips: ['Ses başlamadan önce soruyu ve seçenekleri okuyun.', 'Yanlış seçim puan götürür; emin olduklarınızı işaretleyin.'] },
+  LFIB: { name: 'Listening: Fill in the Blanks', skill: 'L', kind: 'typefib', audio: true, est: 1.5, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Dinlerken metindeki boşluklara duyduğunuz kelimeleri yazarsınız.',
+    tips: ['Ses çalarken hızlı yazın, yazımı sonda düzeltin.', 'Çoğul eklerine ve fiil zamanına dikkat edin; yazım hatası puan kaybettirir.'] },
+  HCS: { name: 'Highlight Correct Summary', skill: 'L', kind: 'mc', audio: true, est: 2.5, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Kaydı dinler, onu en iyi özetleyen paragrafı seçersiniz.',
+    tips: ['Dinlerken seçenekleri okumayın; not alın, sonra karşılaştırın.', 'Tek bir ayrıntıyı doğru verip ana fikri kaçıran seçenekleri eleyin.'] },
+  LMCS: { name: 'Listening: Multiple Choice, Single Answer', skill: 'L', kind: 'mc', audio: true, est: 1.5, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Kaydı dinler, tek doğru seçeneği işaretlersiniz.',
+    tips: ['Soruyu ses başlamadan okuyun; neyi dinleyeceğinizi bilin.', 'Konuşmacının vurguladığı noktayı, geçerken söylediklerinden ayırın.'] },
+  SMW: { name: 'Select Missing Word', skill: 'L', kind: 'mc', audio: true, est: 1, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Kaydın sonu kesilir; eksik kelimeyi ya da ifadeyi seçersiniz.',
+    tips: ['Konuyu ve konuşmacının yönünü takip edin; son cümle çoğu zaman ana fikri tamamlar.'] },
+  HIW: { name: 'Highlight Incorrect Words', skill: 'L', kind: 'hiw', audio: true, est: 1.5, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Ekrandaki metinde, kayıtta söylenenden farklı olan kelimeleri işaretlersiniz.',
+    tips: ['Metni sesle aynı hızda gözünüzle takip edin.', 'Yanlış işaretleme puan götürür; emin olmadığınız kelimeyi işaretlemeyin.'] },
+  WFD: { name: 'Write from Dictation', skill: 'L', kind: 'wfd', audio: true, est: 0.8, time: 'Dinleme bölümünün toplam süresi içinde',
+    what: 'Bir cümleyi dinler ve aynen yazarsınız.',
+    tips: ['Her doğru kelime puan getirir; emin olmadığınız kelimeyi de yazın.', 'Büyük harfle başlayın, noktayla bitirin; çoğul eklerini kontrol edin.'] }
+};
+
+const TYPE_ORDER = ['RA','RS','DI','RL','ASQ','SGD','RTS','SWT','WE','RWFIB','RMCM','RO','RFIB','RMCS','SST','LMCM','LFIB','HCS','LMCS','SMW','HIW','WFD'];
+
+/* ---- Ortak dinleme metinleri ---- */
+const LECT = {
+  placebo: {
+    title: 'The placebo effect',
+    text: "Today I want to talk about the placebo effect. A placebo is a treatment with no active ingredient, such as a sugar pill. Surprisingly, patients who take a placebo often report that they feel better. Why does this happen? The main explanation is expectation. When people believe a treatment will work, the brain can release its own pain-relieving chemicals. The effect is strongest for symptoms such as pain, tiredness and anxiety, and much weaker for things we can measure objectively, like the size of a tumour. This is why new drugs are tested in controlled trials. Researchers compare the drug with a placebo, and the drug is approved only if it performs clearly better. So the placebo effect is real, but it has limits.",
+    kp: [
+      { label: 'Plasebo: etken maddesi olmayan tedavi (şeker hapı)', kw: ['sugar', 'no active', 'inactive', 'fake', 'without active'] },
+      { label: 'Neden: beklenti ve inanç', kw: ['expect', 'belie'] },
+      { label: 'En güçlü etki ağrı ve kaygı gibi öznel belirtilerde', kw: ['pain', 'anxiety', 'tired', 'subjective', 'symptom'] },
+      { label: 'İlaçlar kontrollü deneylerde plaseboyla karşılaştırılır', kw: ['trial', 'compar', 'tested', 'approved'] }
+    ],
+    retell: "The lecture was about the placebo effect. The speaker explained that a placebo is a treatment with no active ingredient, such as a sugar pill, yet many patients feel better after taking it. The main reason is expectation, because belief can trigger the brain's own pain-relieving chemicals. The effect is strongest for symptoms like pain and anxiety and weaker for measurable conditions. Therefore, new drugs are compared with placebos in controlled trials.",
+    summary: "The lecture explains the placebo effect, in which patients feel better after taking a treatment with no active ingredient. This happens mainly because expectation makes the brain release pain-relieving chemicals. The effect is strongest for subjective symptoms such as pain and anxiety, so new drugs are approved only if they clearly outperform a placebo in controlled trials."
+  },
+  heat: {
+    title: 'Urban heat islands',
+    text: "Let's look at a phenomenon called the urban heat island. Cities are often several degrees warmer than the countryside around them, especially at night. There are three main reasons. First, materials like concrete and asphalt absorb heat during the day and release it slowly after sunset. Second, cities have fewer trees and less open soil, so there is less evaporation to cool the air. Third, vehicles, factories and air conditioners all produce waste heat. The consequences are serious: higher energy bills, poorer air quality, and greater health risks for elderly people during heat waves. Fortunately, there are practical solutions. Planting trees, creating green roofs, and using lighter-coloured building materials can all lower urban temperatures noticeably.",
+    kp: [
+      { label: 'Şehirler çevrelerindeki kırsaldan daha sıcak', kw: ['warmer', 'hotter', 'heat island', 'higher temperature'] },
+      { label: 'Beton ve asfalt ısıyı emer', kw: ['concrete', 'asphalt', 'absorb'] },
+      { label: 'Daha az ağaç, daha az buharlaşma', kw: ['tree', 'evaporat', 'vegetation', 'soil'] },
+      { label: 'Araçlar ve klimalar atık ısı üretir', kw: ['vehicle', 'waste heat', 'air condition', 'car', 'factor'] },
+      { label: 'Sonuçlar: enerji, hava kalitesi, sağlık', kw: ['health', 'energy', 'air quality'] },
+      { label: 'Çözümler: ağaç, yeşil çatı, açık renkli malzeme', kw: ['green roof', 'plant', 'lighter', 'light-colo', 'light colo'] }
+    ],
+    retell: "The lecture was about the urban heat island, which means that cities are warmer than the surrounding countryside. The speaker gave three reasons: concrete and asphalt absorb heat, there are fewer trees to cool the air, and vehicles and air conditioners produce waste heat. This leads to higher energy use and health risks. The solutions include planting trees, building green roofs and using lighter materials.",
+    summary: "The lecture describes the urban heat island effect, which makes cities warmer than the surrounding countryside because concrete and asphalt absorb heat, there are fewer trees to cool the air, and vehicles and air conditioners release waste heat. This increases energy costs and health risks, but planting trees, creating green roofs and using lighter building materials can reduce urban temperatures."
+  },
+  time: {
+    title: 'Railways and standard time',
+    text: "Before the nineteenth century, every town kept its own local time, based on the position of the sun. Noon in one town might be several minutes different from noon in the next. This caused few problems while people travelled slowly, on foot or by horse. The railways changed everything. Trains moved quickly between towns, and timetables became confusing and even dangerous, because two trains on the same track might be following different clocks. Railway companies therefore introduced a single standard time for their networks. Later, in eighteen eighty-four, an international conference chose Greenwich as the prime meridian, which became the basis for the world's time zones. So the time on your phone today is, in a sense, a product of the railway age.",
+    kp: [
+      { label: 'Eskiden her kasabanın güneşe göre kendi saati vardı', kw: ['local time', 'own time', 'sun', 'each town', 'every town'] },
+      { label: 'Demiryolları sorunu ortaya çıkardı', kw: ['rail', 'train'] },
+      { label: 'Tarifeler karışık ve tehlikeliydi', kw: ['timetable', 'confus', 'danger', 'schedule'] },
+      { label: 'Demiryolu şirketleri standart saati getirdi', kw: ['standard'] },
+      { label: '1884: Greenwich ve saat dilimleri', kw: ['greenwich', 'time zone', '1884', 'meridian', 'eighteen eighty'] }
+    ],
+    retell: "The lecture explained how standard time developed. In the past, every town had its own local time based on the sun, which was not a problem when travel was slow. However, the railways made timetables confusing and dangerous, so railway companies introduced a single standard time. Later, in 1884, Greenwich was chosen as the prime meridian, and this became the basis for modern time zones."
+  },
+  spacing: {
+    title: 'The spacing effect',
+    text: "I'd like to explain one of the most reliable findings in the psychology of learning: the spacing effect. Imagine two students who each study for six hours. The first studies for six hours on the night before the exam. The second studies for one hour a day over six days. On a test the next morning, their results may be similar. But a month later, the second student remembers far more. Why? Each time we return to material after a break, the brain has to work to retrieve it, and that effort strengthens the memory. Cramming feels efficient because the information is still fresh, but that feeling is misleading. So if you want knowledge to last, distribute your study sessions, and test yourself rather than simply rereading your notes.",
+    kp: [
+      { label: 'Aralıklı çalışma (spacing effect)', kw: ['spac', 'distribut', 'spread'] },
+      { label: 'Son gece yüklenme (cramming) ile karşılaştırma', kw: ['cram', 'night before', 'one session', 'single'] },
+      { label: 'Uzun vadede daha iyi hatırlama', kw: ['long-term', 'long term', 'month', 'remember', 'retain', 'retention', 'last'] },
+      { label: 'Geri çağırma çabası belleği güçlendirir', kw: ['retriev', 'effort', 'strengthen'] },
+      { label: 'Kendini test etme', kw: ['test yourself', 'self-test', 'testing', 'test themselves', 'quiz'] }
+    ],
+    summary: "The lecture explains the spacing effect, which shows that distributing study over several days produces much better long-term retention than cramming the same hours into one night. Although both methods give similar results on an immediate test, spaced sessions force the brain to retrieve information, which strengthens memory, so students should space their study and test themselves."
+  },
+  commons: {
+    title: 'The tragedy of the commons',
+    text: "The tragedy of the commons is a concept that helps us understand many environmental problems. Picture a pasture that is open to every farmer in a village. Each farmer benefits from adding one more cow, because the profit from that cow is entirely theirs. The cost, however, which is the damage to the grass, is shared by everyone. If every farmer follows the same logic, the pasture is destroyed and all of them lose. We see the same pattern today in overfishing, air pollution and the overuse of groundwater. Economists usually propose two kinds of solution: government regulation, such as quotas and taxes, or clear rules agreed by the community itself. Research has shown that local communities can often manage shared resources successfully without outside control.",
+    kp: [
+      { label: 'Ortak kaynağın aşırı kullanımı', kw: ['shared resource', 'common', 'pasture', 'overuse'] },
+      { label: 'Kazanç bireye, maliyet herkese', kw: ['individual', 'each farmer', 'profit', 'cost', 'benefit'] },
+      { label: 'Örnekler: aşırı avlanma, kirlilik, yeraltı suyu', kw: ['fish', 'pollut', 'groundwater'] },
+      { label: 'Çözüm: devlet düzenlemesi (kota, vergi)', kw: ['regulat', 'quota', 'tax', 'government'] },
+      { label: 'Çözüm: topluluğun kendi kuralları', kw: ['communit', 'local'] }
+    ],
+    summary: "The lecture introduces the tragedy of the commons, in which individuals overuse a shared resource because each person keeps the profit while the cost is shared by everyone. This pattern explains overfishing, pollution and groundwater depletion. Possible solutions are government regulation through quotas and taxes, or rules agreed by local communities, which can often manage shared resources successfully."
+  }
+};
+
+const BANK = {
+  RA: [
+    { text: "Urban green spaces do more than improve the appearance of a city. Research suggests that parks and tree-lined streets reduce summer temperatures, absorb rainwater, and encourage residents to exercise. However, these benefits are unevenly distributed, and planners increasingly argue that access to nature should be treated as essential public infrastructure." },
+    { text: "The invention of the printing press transformed the way knowledge travelled across Europe. Books that had once taken months to copy by hand could be reproduced in days, which lowered their cost dramatically. As literacy spread, scholars began to challenge established authorities, laying the groundwork for modern scientific inquiry." },
+    { text: "Sleep plays a critical role in consolidating memory. During deep sleep, the brain replays patterns of activity from the day and strengthens the connections between neurons. Students who sacrifice sleep to study longer often perform worse, because information that is not consolidated is quickly forgotten." },
+    { text: "Microfinance institutions provide small loans to entrepreneurs who lack access to conventional banking. Supporters claim that these loans help families build businesses and escape poverty, while critics point out that high interest rates can trap borrowers in debt. The evidence so far suggests that outcomes vary considerably between regions." },
+    { text: "Glaciers and ice sheets store roughly two thirds of the world's fresh water. As global temperatures rise, many glaciers are retreating at an accelerating rate, which threatens the water supply of communities downstream. Scientists monitor these changes using satellite images, field measurements, and computer models that project future ice loss." }
+  ],
+  RS: [
+    { text: "The library will be closed for renovation until the end of the month." },
+    { text: "Please submit your assignment before the deadline on Friday afternoon." },
+    { text: "Most of the research funding comes from government grants." },
+    { text: "The lecture on climate policy has been moved to the main hall." },
+    { text: "Students are advised to back up their work regularly." },
+    { text: "The results of the experiment were not what the team had expected." },
+    { text: "You can borrow up to ten books from the library at one time." },
+    { text: "Economic growth slowed considerably during the second half of the decade." }
+  ],
+  DI: [
+    { chart: { type: 'bar', title: 'Average weekly independent study hours by faculty (sample data)', unit: 'hours', data: [['Engineering', 22], ['Medicine', 26], ['Law', 19], ['Arts', 14], ['Business', 16]] },
+      kp: [
+        { label: 'Konu: fakültelere göre haftalık çalışma saati', kw: ['study hours', 'faculty', 'faculties', 'weekly'] },
+        { label: 'En yüksek: Medicine, 26 saat', kw: ['medicine'] },
+        { label: 'En düşük: Arts, 14 saat', kw: ['arts'] },
+        { label: 'Karşılaştırma ya da genel sonuç', kw: ['overall', 'conclusion', 'while', 'whereas', 'compared', 'followed by'] }
+      ],
+      model: "The bar chart shows the average weekly independent study hours across five faculties. Medicine has the highest figure at 26 hours, followed by Engineering at 22 hours. Law is in the middle with 19 hours, while Business and Arts are the lowest at 16 and 14 hours respectively. Overall, students in Medicine and Engineering study considerably longer than those in Arts and Business." },
+    { chart: { type: 'line', title: 'International student enrolment at a university, 2016–2024 (sample data)', unit: 'students', data: [['2016', 1200], ['2017', 1450], ['2018', 1700], ['2019', 1950], ['2020', 1300], ['2021', 1100], ['2022', 1600], ['2023', 2100], ['2024', 2400]] },
+      kp: [
+        { label: 'Konu: uluslararası öğrenci sayısı, 2016–2024', kw: ['international', 'enrol', 'students'] },
+        { label: '2019’a kadar düzenli artış', kw: ['2019', 'increase', 'rose', 'grew', 'growth'] },
+        { label: '2020–2021’de düşüş', kw: ['2020', '2021', 'fell', 'drop', 'decline', 'decrease'] },
+        { label: '2024’te en yüksek değer: 2.400', kw: ['2024', 'peak', 'highest', '2,400', '2400'] }
+      ],
+      model: "The line graph illustrates international student enrolment at a university between 2016 and 2024. The number rose steadily from 1,200 in 2016 to almost 2,000 in 2019. It then fell sharply to a low of 1,100 in 2021. After that, enrolment recovered quickly and reached a peak of 2,400 in 2024. Overall, despite the temporary decline, the number of students doubled over the period." },
+    { chart: { type: 'pie', title: 'Household energy use by purpose (sample data)', unit: '%', data: [['Space heating', 42], ['Appliances', 21], ['Water heating', 18], ['Cooking', 10], ['Lighting', 9]] },
+      kp: [
+        { label: 'Konu: evlerde enerjinin kullanım amacı', kw: ['household', 'energy', 'home'] },
+        { label: 'En büyük pay: ısıtma, %42', kw: ['heating', '42'] },
+        { label: 'En küçük pay: aydınlatma, %9', kw: ['lighting'] },
+        { label: 'Genel sonuç ya da karşılaştırma', kw: ['overall', 'conclusion', 'together', 'more than', 'followed by', 'while'] }
+      ],
+      model: "The pie chart shows how energy is used in a typical household. Space heating accounts for the largest share at 42 percent, followed by appliances at 21 percent and water heating at 18 percent. Cooking and lighting are the smallest categories, at 10 and 9 percent. Overall, heating the home and its water together use well over half of all household energy." },
+    { chart: { type: 'flow', title: 'Stages of the peer review process', data: ['Author submits manuscript', 'Editor screens the paper', 'Experts review the paper', 'Author revises', 'Editor accepts', 'Article is published'] },
+      kp: [
+        { label: 'Konu: hakemlik (peer review) süreci', kw: ['peer review', 'process', 'stages'] },
+        { label: 'Başlangıç: yazar makaleyi gönderir', kw: ['submit', 'author'] },
+        { label: 'Editör ön eleme yapar, uzmanlar inceler', kw: ['editor', 'expert', 'reviewer', 'screen'] },
+        { label: 'Düzeltme, kabul ve yayın', kw: ['revis', 'accept', 'publish'] }
+      ],
+      model: "The diagram shows the six stages of the peer review process. First, the author submits a manuscript, and the editor screens it. Next, the paper is sent to experts, who review it in detail. After that, the author revises the paper in response to their comments. Finally, the editor accepts the revised version and the article is published. Overall, a paper is checked several times before publication." }
+  ],
+  RL: [
+    { lect: 'placebo' }, { lect: 'time' }, { lect: 'heat' }
+  ],
+  ASQ: [
+    { q: "What do we call a period of ten years?", a: ['decade'] },
+    { q: "Which organ pumps blood around the human body?", a: ['heart'] },
+    { q: "What is the opposite of artificial?", a: ['natural'] },
+    { q: "What do you call a person who writes books?", a: ['author', 'writer', 'novelist'] },
+    { q: "How many sides does a triangle have?", a: ['three', '3'] },
+    { q: "What instrument is used to look at distant stars?", a: ['telescope'] },
+    { q: "What do we call the list of sources at the end of an academic paper?", a: ['bibliography', 'references', 'reference'] },
+    { q: "Which season comes after winter?", a: ['spring'] },
+    { q: "What is frozen water called?", a: ['ice'] },
+    { q: "What do you call a doctor who treats teeth?", a: ['dentist'] },
+    { q: "In which room do scientists usually conduct experiments?", a: ['laboratory', 'lab'] },
+    { q: "What do we call the money a student pays to attend university courses?", a: ['tuition', 'fees', 'fee'] }
+  ],
+  SGD: [
+    { title: 'Group project meetings',
+      lines: [
+        { v: 0, text: "So, for our group project, should we keep meeting on campus, or move our weekly meetings online? Personally, I'd prefer online. I live an hour away, and travelling in just for a forty-minute meeting wastes half my day." },
+        { v: 1, text: "I understand that, but I think we work better face to face. When we met in the library last week, we solved the data problem in ten minutes. Online, people switch off their cameras and stop contributing." },
+        { v: 2, text: "Both of you have a point. What about a compromise? We could meet in person once a month for the big decisions, and hold the other meetings online, with cameras on and a clear agenda." },
+        { v: 0, text: "That works for me, as long as the in-person meetings are scheduled on days when I already have classes." },
+        { v: 1, text: "Fine. And let's share the notes after every meeting, so nobody misses anything." },
+        { v: 2, text: "Agreed. I'll set up a shared document tonight." }
+      ],
+      kp: [
+        { label: 'Konu: toplantılar çevrim içi mi yüz yüze mi', kw: ['online', 'in person', 'face to face', 'face-to-face', 'campus'] },
+        { label: '1. konuşmacı: yol uzun, çevrim içi istiyor', kw: ['travel', 'hour', 'commut', 'far', 'distance'] },
+        { label: '2. konuşmacı: yüz yüze daha verimli', kw: ['camera', 'contribut', 'productive', 'efficient', 'solved', 'better'] },
+        { label: 'Uzlaşma: ayda bir yüz yüze, diğerleri çevrim içi', kw: ['compromise', 'once a month', 'monthly', 'month'] },
+        { label: 'Notlar ortak belgede paylaşılacak', kw: ['notes', 'document'] }
+      ],
+      model: "Three students discussed whether their weekly project meetings should be held online or on campus. The first speaker preferred online meetings because he lives an hour away and travelling wastes his time. The second speaker disagreed and argued that the group works more efficiently face to face, since people stop contributing online. The third speaker suggested a compromise: meeting in person once a month for major decisions and online for the rest, with cameras on and a clear agenda. In the end, they all agreed, and they also decided to share notes in a shared document after every meeting." },
+    { title: 'A 24-hour library',
+      lines: [
+        { v: 0, text: "The student union is asking for opinions on keeping the library open twenty-four hours a day. I think it's a great idea. During exam periods, the study rooms are full by nine in the morning, and many of us concentrate best late at night." },
+        { v: 1, text: "I'm not convinced. Staying open all night costs money for staff, heating and security. That money might be better spent on more online journals, which everybody can use from home." },
+        { v: 2, text: "There's also the health side. If the library never closes, some students will study all night and sleep less, and that usually hurts their grades." },
+        { v: 0, text: "That's true, but nobody is forced to stay. Perhaps a trial would settle it: open all night only during the exam weeks, and then count how many students actually come." },
+        { v: 1, text: "A trial sounds reasonable. If the numbers are low, we stop." },
+        { v: 2, text: "I could support that, especially if there's a quiet area and a safe way to get home." }
+      ],
+      kp: [
+        { label: 'Konu: kütüphanenin 24 saat açık olması', kw: ['24', 'twenty-four', 'twenty four', 'all night', 'library'] },
+        { label: 'Destek: sınav döneminde yer yok, gece çalışanlar var', kw: ['full', 'exam', 'late', 'night', 'concentrat'] },
+        { label: 'Karşı görüş: maliyet; para dergilere harcanabilir', kw: ['cost', 'money', 'staff', 'security', 'journal', 'expens'] },
+        { label: 'Sağlık: uykusuzluk notları düşürür', kw: ['sleep', 'health'] },
+        { label: 'Karar: sınav haftalarında deneme uygulaması', kw: ['trial', 'pilot', 'test it', 'experiment'] }
+      ],
+      model: "The discussion was about whether the university library should stay open twenty-four hours a day. The first speaker supported the idea because study rooms are full during exam periods and many students concentrate better at night. The second speaker was against it, as staying open all night is expensive, and she suggested spending the money on online journals instead. The third speaker raised a health concern, saying that students might sleep less and get lower grades. Finally, they agreed on a trial: the library would open all night only during exam weeks, and the number of users would be counted before making a decision." }
+  ],
+  RTS: [
+    { text: "You borrowed a classmate's lecture notes to prepare for an exam, and you accidentally spilled coffee on them. Some pages are now difficult to read. What would you say to your classmate?",
+      kp: [ { label: 'Özür dile', kw: ['sorry', 'apolog'] }, { label: 'Ne olduğunu açıkla', kw: ['coffee', 'spill', 'accident'] }, { label: 'Çözüm öner (yeniden yazmak, kopya, telafi)', kw: ['rewrite', 'copy', 'replace', 'type', 'print', 'make it up', 'photocop', 'scan'] } ],
+      model: "Hi Maya, I need to apologise. While I was studying with your notes last night, I accidentally spilled coffee on them, and a few pages are hard to read now. I'm really sorry. I've already typed up the damaged pages from my own notes and the textbook, and I'll print a clean copy for you today. If anything is still missing, I'll borrow another set and complete it." },
+    { text: "Your supervisor has asked you to present your research at a department seminar next Tuesday at ten o'clock, but you have a medical appointment at that time which is difficult to change. What would you say to your supervisor?",
+      kp: [ { label: 'Teşekkür et ya da daveti olumlu karşıla', kw: ['thank', 'appreciate', 'glad', 'happy', 'love to'] }, { label: 'Çakışmayı açıkla', kw: ['appointment', 'medical', 'doctor', 'clash', 'conflict'] }, { label: 'Alternatif öner (başka saat ya da hafta)', kw: ['afternoon', 'another', 'different', 'following week', 'later', 'instead', 'reschedul', 'swap'] } ],
+      model: "Thank you for inviting me to present, Professor Lee. I'd really like to do it. Unfortunately, I have a medical appointment next Tuesday at ten, and it's very difficult to reschedule. Would it be possible for me to present in the afternoon session instead, or at the following week's seminar? I can send you my slides in advance, whichever option suits the department best." },
+    { text: "You are working in the quiet area of the library, and a group of students at the next table is talking loudly. You have an assignment due tomorrow and you need to concentrate. What would you say to them?",
+      kp: [ { label: 'Kibar bir giriş', kw: ['excuse me', 'sorry to', 'hi', 'hello'] }, { label: 'Sorunu açıkla', kw: ['quiet', 'concentrat', 'assignment', 'loud', 'noise', 'focus'] }, { label: 'Rica ya da öneri (ses kısmak, grup odası)', kw: ['could you', 'would you', 'mind', 'group room', 'study room', 'downstairs', 'keep it down', 'lower'] } ],
+      model: "Excuse me, sorry to interrupt. This is the quiet area, and I'm trying to finish an assignment that's due tomorrow, so I'm finding it hard to concentrate. Would you mind lowering your voices a little? If you need to discuss your project, there are group study rooms on the first floor, and I think a couple of them are free right now. Thanks, I really appreciate it." },
+    { text: "You received a lower grade than you expected on an essay, and you believe that one section was marked incorrectly because the marker missed your reference list. What would you say to your lecturer?",
+      kp: [ { label: 'Kibar ve resmi bir giriş', kw: ['excuse', 'could i', 'may i', 'thank', 'time', 'professor', 'dr'] }, { label: 'Sorunu somut olarak açıkla', kw: ['reference', 'grade', 'mark', 'section', 'feedback'] }, { label: 'Yeniden inceleme rica et', kw: ['review', 'look again', 'reconsider', 'check', 'another look', 're-mark'] } ],
+      model: "Good morning, Dr Evans. Thank you for your feedback on my essay. I'd like to ask about one point, if you have a moment. The comments say that my sources were not listed, but the reference list is on the final page, after the appendix, so I think it may have been missed. Would you be able to take another look at that section? I'm happy to bring a printed copy to your office hours." }
+  ],
+  SWT: [
+    { text: "For decades, managers assumed that employees needed to be watched in order to be productive. The rapid expansion of remote work has tested that assumption. Several large studies have found that people working from home complete at least as many tasks as their office-based colleagues, largely because they lose less time to commuting and interruptions. However, the same studies report costs that are harder to measure. Remote workers have fewer chance conversations, which are often the source of new ideas, and junior staff learn more slowly when they cannot observe experienced colleagues. Promotions, too, tend to go to those who are physically visible. For these reasons, many organisations are now adopting hybrid arrangements, in which employees spend part of the week at home and part in the office, hoping to combine the focus of the former with the collaboration of the latter.",
+      kp: [ { label: 'Uzaktan çalışanlar en az ofistekiler kadar üretken', kw: ['productiv', 'as many tasks', 'efficient', 'as much'] }, { label: 'Bedeli: daha az iş birliği, öğrenme, görünürlük', kw: ['collaborat', 'ideas', 'learn', 'promotion', 'conversation', 'visib'] }, { label: 'Sonuç: hibrit düzen', kw: ['hybrid'] } ],
+      model: "Although studies show that remote employees are at least as productive as office workers because they avoid commuting and interruptions, working from home reduces spontaneous collaboration, slows the learning of junior staff and can harm promotion prospects, so many organisations are adopting hybrid arrangements that combine focused work at home with collaboration in the office." },
+    { text: "Antibiotics are among the most important medical discoveries of the twentieth century, but their effectiveness is under threat. Bacteria reproduce quickly, and each time an antibiotic is used, the few organisms that happen to survive pass on their resistance. Overuse accelerates this process. In many countries antibiotics are prescribed for viral infections, against which they are useless, and large quantities are given to healthy farm animals to promote growth. Meanwhile, pharmaceutical companies have little financial incentive to develop new antibiotics, since such drugs are taken for only a few days and must be used sparingly. Health agencies warn that, without action, routine operations could once again become dangerous. Proposed responses include stricter rules on prescribing, a ban on agricultural misuse, and public funding to reward the development of new drugs.",
+      kp: [ { label: 'Bakteriler direnç kazanıyor', kw: ['resistan'] }, { label: 'Neden: aşırı ve yanlış kullanım (insan, tarım)', kw: ['overuse', 'misuse', 'farm', 'agricultur', 'viral', 'unnecessar'] }, { label: 'Yeni ilaç geliştirmeye teşvik az', kw: ['incentive', 'new drugs', 'new antibiotics', 'develop', 'pharmaceutical'] }, { label: 'Çözümler: kurallar, yasak, kamu fonu', kw: ['rules', 'regulat', 'ban', 'funding', 'stricter'] } ],
+      model: "Antibiotics are losing their effectiveness because bacteria develop resistance, a process accelerated by overuse in medicine and agriculture, while companies have little incentive to develop new drugs, so health agencies recommend stricter prescribing rules, a ban on agricultural misuse and public funding for new antibiotics." },
+    { text: "Traditionally, academic journals have covered their costs by charging readers, usually through expensive subscriptions paid by university libraries. Critics argue that this model is unfair, since much research is funded by taxpayers who then cannot read the results. Open access publishing offers an alternative: articles are free to read online, and the cost is met by a fee paid by the author or the author's funder. The approach has clear advantages. Open access articles reach a wider audience, including researchers in poorer countries, and tend to be cited more often. Yet it has created problems of its own. Publication fees can amount to several thousand dollars, which disadvantages researchers without generous grants, and the model has encouraged so-called predatory journals that accept almost any paper in return for payment. Most observers nevertheless expect open access to become the norm.",
+      kp: [ { label: 'Açık erişim: okurlara ücretsiz, maliyeti yazar öder', kw: ['open access', 'free to read', 'freely'] }, { label: 'Yararı: daha geniş okur, daha çok atıf', kw: ['wider', 'audience', 'cited', 'citation', 'reach'] }, { label: 'Sorunu: yüksek ücretler ve yağmacı dergiler', kw: ['fee', 'predatory', 'cost', 'expens'] }, { label: 'Beklenti: norm haline gelmesi', kw: ['norm', 'standard', 'dominant', 'expected'] } ],
+      model: "Open access publishing, which makes research free to read by charging authors rather than readers, widens the audience for publicly funded research and increases citations, but its high publication fees disadvantage poorly funded researchers and have encouraged predatory journals, although it is still expected to become the norm." }
+  ],
+  WE: [
+    { text: "Some people think that universities should focus on preparing students for employment, while others believe their main purpose is to advance knowledge. Discuss both views and give your own opinion.",
+      outline: ['Giriş: iki görüşü tek cümleyle tanıt, kendi görüşünü açıkça söyle.', 'Gelişme 1: istihdam görüşü. Öğrenciler ve aileler yatırım yapar; işverenlerin beceri ihtiyacı; bir örnek (staj, uygulamalı dersler).', 'Gelişme 2: bilgi üretimi görüşü. Temel araştırma uzun vadede yenilik getirir; eleştirel düşünme her meslekte işe yarar; bir örnek.', 'Sonuç: görüşünü yinele; dengeli bir öneri (araştırma temelli ama uygulama bağlantılı eğitim).'] },
+    { text: "Artificial intelligence tools are increasingly used by students to complete their coursework. Do the advantages of this development outweigh the disadvantages?",
+      outline: ['Giriş: gelişmeyi tanıt, hangi tarafın ağır bastığını söyle.', 'Gelişme 1: yararlar. Anında geri bildirim, kişiye özel açıklama, engelli öğrenciler için erişim; örnek.', 'Gelişme 2: sakıncalar. Kendi başına düşünme alışkanlığının zayıflaması, hatalı bilgiye güven, akademik dürüstlük; örnek.', 'Sonuç: koşullu görüş (ör. açık kurallar ve beyan zorunluluğu ile yararlar ağır basar).'] },
+    { text: "Governments should invest more in public transport than in building new roads. To what extent do you agree or disagree?",
+      outline: ['Giriş: konuyu yeniden ifade et, ne ölçüde katıldığını söyle.', 'Gelişme 1: toplu taşıma lehine. Trafik ve hava kirliliği azalır; düşük gelirliler için erişim; örnek bir şehir.', 'Gelişme 2: karşı görüş ve yanıtı. Kırsal bölgelerde yol şart; yük taşımacılığı; yine de şehirlerde öncelik toplu taşıma olmalı.', 'Sonuç: görüşünü yinele ve bir öneriyle bitir.'] },
+    { text: "In many countries, more and more people are choosing to work from home. What are the benefits and drawbacks of this trend for employees and employers?",
+      outline: ['Giriş: eğilimi tanıt, denemenin neyi ele alacağını söyle.', 'Gelişme 1: yararlar. Çalışan için zaman ve esneklik; işveren için ofis maliyeti ve daha geniş yetenek havuzu.', 'Gelişme 2: sakıncalar. Yalnızlık, iş-yaşam sınırının silinmesi; işveren için iletişim ve ekip ruhu.', 'Sonuç: genel değerlendirme (ör. hibrit düzen en dengeli çözüm).'] }
+  ],
+  RWFIB: [
+    { text: "A scientific theory is not a guess. It is an explanation that has been repeatedly {0} against evidence and has so far {1} every attempt to disprove it. When new data {2} an established theory, scientists do not simply abandon it; they first check whether the data are {3}. Only when the conflict cannot be resolved is the theory revised or {4}.",
+      blanks: [ { a: 'tested', o: ['tested', 'tasted', 'attended', 'treated'] }, { a: 'survived', o: ['survived', 'revived', 'deprived', 'arrived'] }, { a: 'contradict', o: ['contradict', 'contribute', 'construct', 'contract'] }, { a: 'reliable', o: ['reliable', 'reliant', 'relative', 'reluctant'] }, { a: 'replaced', o: ['replaced', 'replied', 'repeated', 'reported'] } ] },
+    { text: "Online retail has grown rapidly over the past two decades, and its {0} on city centres has been profound. As customers increasingly order goods from home, many traditional shops have seen their sales {1}. Some town planners argue that empty retail units should be {2} into housing, while others believe that high streets can recover if they offer experiences that cannot be {3} online.",
+      blanks: [ { a: 'impact', o: ['impact', 'impulse', 'import', 'imprint'] }, { a: 'decline', o: ['decline', 'incline', 'recline', 'define'] }, { a: 'converted', o: ['converted', 'conversed', 'convinced', 'conveyed'] }, { a: 'replicated', o: ['replicated', 'complicated', 'implicated', 'dedicated'] } ] },
+    { text: "Peer review is the process by which academic journals {0} the quality of submitted research. Each manuscript is sent to experts in the field, who {1} its methods and conclusions and recommend whether it should be published. Although the system is widely {2} as essential, critics argue that it is slow and can be {3} against unconventional ideas.",
+      blanks: [ { a: 'evaluate', o: ['evaluate', 'evacuate', 'elevate', 'evaporate'] }, { a: 'assess', o: ['assess', 'access', 'assist', 'assume'] }, { a: 'regarded', o: ['regarded', 'rewarded', 'recorded', 'regretted'] }, { a: 'biased', o: ['biased', 'based', 'bound', 'blamed'] } ] }
+  ],
+  RMCM: [
+    { passage: "Citizen science projects invite members of the public to contribute to research, for example by counting birds, classifying images of galaxies, or recording rainfall. Such projects allow scientists to collect data on a scale that no professional team could afford. Participants, for their part, often report a better understanding of how science works. Critics worry about the accuracy of data gathered by amateurs, but studies have found that, with clear instructions and simple checks, volunteers' observations can be as reliable as those of experts. The greatest difficulty is usually keeping volunteers motivated over many years.",
+      q: "Which of the following statements are supported by the passage?",
+      opts: ["Citizen science lets researchers gather far more data than they otherwise could.", "Data collected by volunteers are always less accurate than data collected by experts.", "Participants often gain a better understanding of scientific methods.", "Most citizen science projects pay their participants.", "Sustaining long-term participation is a major challenge."],
+      ans: [0, 2, 4], why: "Metin, veri ölçeğini, katılımcıların bilimi daha iyi anlamasını ve gönüllüleri yıllarca motive etmenin zorluğunu açıkça söylüyor. Gönüllü verisinin uzmanlarınki kadar güvenilir olabileceği belirtiliyor; ödeme hakkında bilgi yok." },
+    { passage: "Studies of adolescents consistently show that their body clocks shift during puberty, so that they naturally fall asleep and wake later than younger children or adults. Early school start times therefore cut their sleep short. Schools that have moved the first lesson to a later hour have reported better attendance and fewer students falling asleep in class, and some have seen modest improvements in grades. Opponents point to practical obstacles, such as bus schedules and after-school activities, rather than disputing the biology.",
+      q: "According to the passage, which of the following are true?",
+      opts: ["Teenagers' body clocks shift later during puberty.", "Opponents deny that teenagers need more sleep.", "Later start times have been linked to better attendance.", "Grades improved dramatically in every school that changed its timetable.", "The objections to later start times are mainly practical."],
+      ans: [0, 2, 4], why: "Karşı çıkanlar biyolojiyi tartışmıyor, pratik engelleri öne sürüyor. Notlardaki iyileşme yalnızca bazı okullarda ve sınırlı düzeyde." }
+  ],
+  RO: [
+    { items: ["In 1928, Alexander Fleming returned from holiday to find mould growing on one of his culture plates.", "He noticed that the bacteria surrounding the mould had been destroyed.", "This observation led him to identify the substance responsible, which he named penicillin.", "However, it was more than a decade before other scientists turned his discovery into a usable drug."] },
+    { items: ["Many cities are introducing congestion charges to reduce traffic.", "Under these schemes, drivers pay a fee to enter the busiest central areas during peak hours.", "As a result, some commuters switch to public transport, cycling, or walking.", "The revenue raised is then typically reinvested in improving those alternatives."] },
+    { items: ["Writing a literature review begins with defining a clear research question.", "With this question in mind, the researcher searches databases for relevant studies.", "These studies are then grouped by theme, so that patterns and disagreements become visible.", "Once the themes are clear, the reviewer evaluates the strength of the evidence behind each one.", "Finally, the review identifies gaps that the researcher's own project intends to address."] }
+  ],
+  RFIB: [
+    { text: "Honeybees communicate the location of food through a behaviour known as the waggle dance. The {0} of the dance indicates where the flowers are in relation to the sun, while its {1} signals the distance. Other bees {2} these movements in the darkness of the hive and then fly directly to the {3}.",
+      ans: ['direction', 'duration', 'interpret', 'source'], extra: ['colour', 'ignore', 'weight'] },
+    { text: "Inflation refers to a general {0} in prices over time. When inflation is high, the purchasing {1} of money falls, which means that consumers can buy less with the same {2}. Central banks usually respond by raising interest {3}.",
+      ans: ['rise', 'power', 'income', 'rates'], extra: ['drop', 'taxes', 'speed'] },
+    { text: "Coral reefs occupy less than one percent of the ocean floor, yet they {0} around a quarter of all marine species. Rising sea temperatures cause corals to {1} the algae living in their tissues, a process known as bleaching. If conditions do not {2}, the corals eventually {3}.",
+      ans: ['support', 'expel', 'improve', 'starve'], extra: ['absorb', 'flourish', 'worsen'] }
+  ],
+  RMCS: [
+    { passage: "Although the telephone was patented in 1876, it took several decades to become a common household item. Early subscribers were mostly businesses, and many people doubted that ordinary families would ever need one. Adoption accelerated only when networks grew large enough for a subscriber to reach most of the people they wanted to call. In other words, the value of a telephone depended less on the device itself than on how many other people owned one.",
+      q: "What is the main idea of the passage?",
+      opts: ["The telephone was technically unreliable for several decades.", "Businesses prevented ordinary families from buying telephones.", "The usefulness of the telephone grew with the number of people who had one.", "The telephone's patent delayed its adoption by households."],
+      ans: [2], why: "Son cümle ana fikri veriyor: telefonun değeri, kaç kişinin ona sahip olduğuna bağlıydı." },
+    { passage: "A common belief holds that we use only ten percent of our brains. Brain imaging shows otherwise. Over the course of a day, virtually every region becomes active, and even during sleep many areas remain busy. Damage to almost any part of the brain produces some loss of ability, which would not happen if ninety percent were idle. The myth probably survives because it is flattering: it suggests that each of us has enormous untapped potential.",
+      q: "According to the passage, why does the ten-percent myth persist?",
+      opts: ["It presents an appealing idea about hidden human potential.", "Brain imaging studies have produced conflicting results.", "Scientists have been unable to agree on how the brain works.", "Most brain regions are inactive during sleep."],
+      ans: [0], why: "Metne göre efsane, hoşa giden bir fikir sunduğu için yaşıyor: herkesin kullanılmamış büyük bir potansiyeli olduğu düşüncesi." },
+    { passage: "When a new road is built to relieve congestion, traffic often returns to its previous level within a few years. Economists call this induced demand. Because the new road makes driving quicker at first, people who previously avoided the journey, took the train, or travelled at quieter times begin to use it. The extra capacity is gradually filled. For this reason, many transport researchers argue that building roads alone cannot solve congestion in growing cities.",
+      q: "What does 'induced demand' refer to in the passage?",
+      opts: ["Public pressure on governments to build more roads.", "A rise in fuel prices caused by heavier traffic.", "Growing demand for cheaper train tickets.", "Additional traffic that appears because new road capacity makes driving easier."],
+      ans: [3], why: "Yeni yol sürüşü kolaylaştırdığı için daha önce o yolu kullanmayanlar da kullanmaya başlıyor; ek kapasite doluyor." }
+  ],
+  SST: [
+    { lect: 'spacing' }, { lect: 'commons' }, { lect: 'placebo' }, { lect: 'heat' }
+  ],
+  LMCM: [
+    { audio: "Research on bilingualism has changed a great deal. Fifty years ago, many teachers believed that raising a child with two languages caused confusion. Today the evidence points the other way. Bilingual children tend to be better at switching attention between tasks, and they often understand earlier than their classmates that other people can see things differently. In later life, speaking two languages regularly appears to delay the symptoms of dementia by several years. Bilingual children may know slightly fewer words in each language, but their total vocabulary is usually just as large.",
+      q: "According to the speaker, which benefits are associated with bilingualism?",
+      opts: ["Better switching of attention between tasks", "A larger vocabulary in each individual language", "Earlier understanding of other people's perspectives", "Higher scores in mathematics", "Delayed symptoms of dementia"],
+      ans: [0, 2, 4], why: "Konuşmacı dikkat geçişini, başkalarının bakış açısını erken anlamayı ve demans belirtilerinin gecikmesini sayıyor. Her bir dildeki kelime sayısı biraz daha az olabilir; matematikten söz edilmiyor." },
+    { audio: "Why do so many people choose to live near active volcanoes? One answer lies in the soil. Volcanic ash is rich in minerals, and as it breaks down it creates some of the most fertile farmland on earth. Farmers on the slopes of volcanoes can often grow several crops a year. Volcanic regions also provide geothermal energy, which can heat homes and generate electricity cheaply. And of course, dramatic landscapes attract tourists, who bring income to local businesses. For many communities, these everyday advantages outweigh a danger that may come only once in several generations.",
+      q: "Which reasons does the speaker give for living near volcanoes?",
+      opts: ["Lower house prices", "Fertile soil for farming", "Income from tourism", "Government subsidies", "Cheap geothermal energy"],
+      ans: [1, 2, 4], why: "Konuşmacı verimli toprağı, jeotermal enerjiyi ve turizm gelirini sayıyor. Ev fiyatları ve devlet desteği geçmiyor." }
+  ],
+  LFIB: [
+    { text: "Welcome to the introductory course in statistics. Over the next twelve weeks, we will cover the basic {0} of data analysis. You will learn how to {1} data, how to summarise it using averages, and how to judge whether a result is {2}. There will be a short quiz every {3}, and a final exam in week twelve.", ans: ['principles', 'collect', 'significant', 'fortnight'] },
+    { text: "The human brain uses about twenty percent of the body's {0}, even though it makes up only two percent of its {1}. Most of this energy is used to send {2} between nerve cells. This is one reason why mental work can feel just as {3} as physical exercise.", ans: ['energy', 'weight', 'signals', 'tiring'] },
+    { text: "Our next field trip will take place on the {0} of March. The coach will leave from the main {1} at eight o'clock sharp. Please bring waterproof {2} and a notebook, because we will be collecting soil {3} along the river.", ans: ['fourteenth', 'entrance', 'clothing', 'samples'] }
+  ],
+  HCS: [
+    { audio: "About three quarters of the world's main food crops depend, at least partly, on pollination by animals, and bees do most of that work. In recent decades, beekeepers in many countries have reported unusually high losses of colonies. There is no single cause. Scientists point to a combination of factors: pesticides that weaken bees' ability to navigate, parasites such as the varroa mite, and the loss of wild flowers as farmland becomes more uniform. The good news is that some measures clearly help. Planting strips of wild flowers along fields, and limiting the most harmful pesticides, have both been shown to support bee populations.",
+      q: "Select the paragraph that best summarises the recording.",
+      opts: ["Bee colonies are declining mainly because of a single parasite, the varroa mite, and scientists believe that little can be done until a treatment for it is discovered.", "Many food crops rely on pollination by bees, whose colonies have been declining because of a combination of pesticides, parasites and the loss of wild flowers; however, planting wild flowers and restricting harmful pesticides can help.", "Because three quarters of food crops are pollinated by bees, farmers are being encouraged to replace wild flowers with crops and to use more pesticides to protect their harvests.", "Beekeepers report that colony losses are a normal seasonal event, and food production is not affected because most crops are pollinated by the wind."],
+      ans: [1], why: "Doğru özet üç şeyi birlikte verir: arıların önemi, kaybın birden fazla nedeni ve işe yarayan önlemler." },
+    { audio: "In seventeenth-century London, coffee houses became known as penny universities. For the price of a cup of coffee, a customer could sit for hours, read the newspapers and join conversations with merchants, writers and scientists. Unlike taverns, coffee houses kept people alert rather than drunk, and that made them ideal places to do business. Several famous institutions grew out of them. The insurance market Lloyd's of London began in a coffee house where ship owners gathered. The authorities sometimes viewed these places with suspicion, since free discussion could easily turn into criticism of the government. But attempts to close them failed, because they had become too useful to too many people.",
+      q: "Select the paragraph that best summarises the recording.",
+      opts: ["Coffee houses in seventeenth-century London were expensive clubs for scientists, and the government closed them because customers spent too long reading newspapers.", "London's taverns were replaced by coffee houses because the government wanted merchants to stay alert, and it supported them by founding an insurance market.", "Coffee houses were called penny universities because they offered formal lectures by writers and scientists for a small fee, until they were turned into insurance offices.", "Seventeenth-century London coffee houses were cheap places for conversation, news and business that gave rise to institutions such as Lloyd's, and they survived official suspicion because they were so useful."],
+      ans: [3], why: "Doğru özet ucuzluğu, sohbet ve iş ortamını, Lloyd's örneğini ve kapatma girişimlerinin başarısız olduğunu içerir." }
+  ],
+  LMCS: [
+    { audio: "Good morning, everyone, and welcome to the library orientation. Before we start the tour, a few practical points. Your student card is also your library card, so please carry it with you. Postgraduate students may borrow up to twenty items for eight weeks. If you need a book that we don't hold, you can request it through the inter-library loan service, which normally takes about a week. Finally, each department has a subject librarian who can help you design a search strategy for your literature review. I strongly recommend booking an appointment with yours in your first month.",
+      q: "What does the speaker strongly recommend?",
+      opts: ["Carrying your student card at all times", "Borrowing no more than twenty items", "Meeting your subject librarian early in the course", "Using inter-library loans instead of buying books"],
+      ans: [2], why: "Konuşmacı son cümlede ilk ay içinde alan kütüphanecisinden randevu almayı açıkça öneriyor." },
+    { audio: "The term gig economy describes a labour market built on short-term tasks rather than permanent jobs. Drivers, couriers and freelance designers are typical examples. Supporters emphasise flexibility: workers choose when and how much they work. But flexibility has a price. Most gig workers have no sick pay, no paid holidays and no employer pension contributions, and their income can change sharply from week to week. So the central question for policymakers is not whether this kind of work should exist, but how to give these workers basic protection without destroying the flexibility they value.",
+      q: "What is the speaker's main point?",
+      opts: ["Gig work should be banned because it exploits workers.", "The challenge is to protect gig workers while keeping their flexibility.", "Flexibility matters more to workers than financial security.", "Gig workers generally earn more than permanent employees."],
+      ans: [1], why: "Son cümle ana noktayı veriyor: sorun bu işlerin var olup olmaması değil, esnekliği bozmadan temel güvence sağlamak." }
+  ],
+  SMW: [
+    { audio: "Many people assume that multitasking makes them more efficient. In fact, studies show that switching between tasks carries a cost. Each time you switch, your brain needs time to refocus, so doing two things at once usually means doing both more", full: "slowly", q: "Select the word that completes the recording.", opts: ["quickly", "slowly", "cheaply", "quietly"], ans: [1], why: "Görev değiştirmenin bir bedeli olduğu söyleniyor; mantıklı son 'more slowly'." },
+    { audio: "Deserts are often imagined as lifeless places, but many plants and animals have adapted to them. Some plants store water in their stems, and many animals are active only at night, when the temperatures are much", full: "lower", q: "Select the word that completes the recording.", opts: ["higher", "drier", "lower", "brighter"], ans: [2], why: "Hayvanların gece aktif olmasının nedeni sıcaklığın gece daha düşük olması." },
+    { audio: "When you write a research proposal, start by explaining the problem. Then describe your method, and finally be honest about what your study cannot do. Reviewers appreciate applicants who acknowledge their project's", full: "limitations", q: "Select the word that completes the recording.", opts: ["achievements", "funding", "title", "limitations"], ans: [3], why: "'Çalışmanızın yapamayacakları konusunda dürüst olun' ifadesi 'limitations' kelimesine götürür." }
+  ],
+  HIW: [
+    { audio: "The Amazon rainforest produces a large share of its own rainfall. Trees release water vapour through their leaves, and this moisture forms clouds that travel across the continent. When large areas of forest are cleared, the cycle is interrupted, and regions far from the clearing may become drier.",
+      shown: "The Amazon rainforest provides a large share of its own rainfall. Trees release water vapour through their roots, and this moisture forms clouds that drift across the continent. When large areas of forest are cleared, the cycle is improved, and regions far from the clearing may become wetter." },
+    { audio: "Before the invention of the telegraph, news could travel only as fast as a horse or a ship. Messages between continents took weeks to arrive. The telegraph reduced that delay to minutes, and for the first time merchants could react to distant events almost immediately.",
+      shown: "Before the introduction of the telegraph, news could travel only as fast as a horse or a ship. Messages between continents took months to arrive. The telegraph shortened that delay to minutes, and for the first time governments could react to distant events almost immediately." },
+    { audio: "Regular exercise benefits the mind as well as the body. Even a short walk increases blood flow to the brain and improves attention for several hours afterwards. Researchers therefore recommend that students take brief active breaks during long study sessions.",
+      shown: "Regular exercise affects the mind as well as the body. Even a brisk walk increases blood flow to the brain and improves memory for several hours afterwards. Researchers therefore recommend that students take frequent active breaks during long study sessions." }
+  ],
+  WFD: [
+    { text: "The seminar has been postponed until further notice." },
+    { text: "All students must register for the examination online." },
+    { text: "Climate change affects agricultural production in many regions." },
+    { text: "The professor explained the theory with a simple example." },
+    { text: "Research findings should be supported by reliable evidence." },
+    { text: "The university offers scholarships to international students." },
+    { text: "Please read the second chapter before the next lecture." },
+    { text: "A healthy diet is essential for effective learning." }
+  ]
+};
+
+const DAILY_TIPS = [
+  'Konuşma görevlerinde akıcılık, kusursuz dil bilgisinden daha çok puan getirir. Duraksamadan devam edin.',
+  'Write from Dictation ve Repeat Sentence kısa görevlerdir ama her gün çalışmaya değer; düzenli tekrar en hızlı gelişen alandır.',
+  'Sınavda mola yok. Haftada en az bir kez 30 dakikayı hiç ara vermeden çalışın.',
+  'Yeni kelimeleri tek başına değil, birlikte kullanıldığı kelimeyle öğrenin: "conduct research", "raise awareness", "draw a conclusion".',
+  'Özet görevlerinde kendi cümlenizi kurun; metinden uzun parçaları kopyalamak puan getirmez.',
+  'Akademik bir podcast ya da ders kaydından günde 10 dakika dinleyip üç cümleyle özetlemek, dinleme ve konuşmayı birlikte geliştirir.',
+  'Yanlış yaptığınız soruyu ertesi gün yeniden çözün. İlerleme sayfasındaki en düşük üç görev tipi sizin öncelik listenizdir.'
+];
+/* ===================== Uygulama ===================== */
+(function () {
+'use strict';
+
+/* ---------- küçük yardımcılar ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const main = $('#main');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function h(tag, a, ...kids) {
+  const e = document.createElement(tag);
+  if (a) for (const k in a) {
+    const v = a[k];
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'html') e.innerHTML = v;
+    else if (k === 'style') e.style.cssText = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids.flat(Infinity)) {
+    if (c == null || c === false) continue;
+    e.append(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  return e;
+}
+const pad = n => String(n).padStart(2, '0');
+const ymd = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parse = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return ymd(d); };
+const diffDays = (a, b) => Math.round((parse(b) - parse(a)) / 864e5);
+const today = () => ymd(new Date());
+const fmtClock = s => `${Math.floor(s / 60)}:${pad(s % 60)}`;
+const fmtDate = (s, o) => parse(s).toLocaleDateString('tr-TR', o || { day: 'numeric', month: 'short' });
+const pctText = x => `%${Math.round(x * 100)}`;
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const norm = t => String(t).toLowerCase().replace(/[’`]/g, "'").replace(/[^a-z0-9'\s-]/g, ' ').split(/[\s-]+/).filter(Boolean);
+const countWords = t => String(t).trim().split(/\s+/).filter(Boolean).length;
+function bagMatch(ref, hyp) {
+  if (!ref.length) return 0;
+  const bag = {}; hyp.forEach(w => bag[w] = (bag[w] || 0) + 1);
+  let m = 0; ref.forEach(w => { if (bag[w] > 0) { m++; bag[w]--; } });
+  return m / ref.length;
+}
+const coverage = (kp, text) => { const low = String(text).toLowerCase(); return kp.map(k => k.kw.some(w => low.includes(w))); };
+
+/* ---------- kayıt (localStorage) ---------- */
+const KEY = 'pte-calisma-masasi-v1';
+const store = {
+  ok: true, mem: null,
+  get() { try { const s = localStorage.getItem(KEY); return s ? JSON.parse(s) : null; } catch (e) { this.ok = false; return this.mem; } },
+  set(v) { this.mem = v; try { localStorage.setItem(KEY, JSON.stringify(v)); this.ok = true; } catch (e) { this.ok = false; } }
+};
+function fresh() {
+  const t = today();
+  return { v: 1, settings: { start: t, exam: addDays(t, 56), target: 65, minutes: 60, weak: [], setup: false }, days: {}, types: {}, mocks: [] };
+}
+function hydrate(v) {
+  const f = fresh();
+  if (!v || typeof v !== 'object') return f;
+  return { v: 1, settings: Object.assign(f.settings, v.settings || {}), days: v.days || {}, types: v.types || {}, mocks: Array.isArray(v.mocks) ? v.mocks : [] };
+}
+let S = hydrate(store.get());
+const save = () => store.set(S);
+try { localStorage.setItem(KEY + '-probe', '1'); localStorage.removeItem(KEY + '-probe'); } catch (e) { store.ok = false; }
+
+/* ---------- seri ve istatistik ---------- */
+const active = d => { const x = S.days[d]; return !!x && (x.q > 0 || Object.keys(x.tasks || {}).some(k => x.tasks[k])); };
+function streakInfo() {
+  const t = today();
+  let d = active(t) ? t : addDays(t, -1), cur = 0;
+  while (active(d)) { cur++; d = addDays(d, -1); }
+  let best = 0, run = 0, prev = null;
+  Object.keys(S.days).filter(active).sort().forEach(k => {
+    run = (prev && diffDays(prev, k) === 1) ? run + 1 : 1;
+    if (run > best) best = run; prev = k;
+  });
+  return { cur, best: Math.max(best, cur), todayDone: active(t) };
+}
+const typeAvg = t => { const x = S.types[t]; return x && x.n ? x.sum / x.n : null; };
+function skillAvg(k) {
+  let n = 0, sum = 0;
+  TYPE_ORDER.forEach(t => { if (TYPES[t].skill === k && S.types[t]) { n += S.types[t].n; sum += S.types[t].sum; } });
+  return n ? sum / n : null;
+}
+const goalPct = () => { const g = S.settings.target; return g >= 79 ? 0.85 : g >= 65 ? 0.75 : g >= 50 ? 0.65 : 0.55; };
+const grade = x => x == null ? '' : x >= goalPct() ? 'good' : x >= goalPct() - 0.15 ? 'warn' : 'bad';
+function weakestTypes(n) {
+  const tried = TYPE_ORDER.filter(t => typeAvg(t) != null).sort((a, b) => typeAvg(a) - typeAvg(b));
+  const rest = TYPE_ORDER.filter(t => typeAvg(t) == null);
+  return tried.concat(rest).slice(0, n);
+}
+
+/* ---------- plan ---------- */
+const PHASES = {
+  tanima: { name: 'Tanıma ve temel', goal: 'Görev tiplerini öğrenin, başlangıç düzeyinizi görün.',
+    focus: ['22 görev tipinin her birini en az bir kez çözün ve rehberlerini okuyun.', 'İlk mini denemeyle başlangıç düzeyinizi görün.', 'Her gün ısınma: Read Aloud, Repeat Sentence, Write from Dictation.'] },
+  beceri: { name: 'Beceri geliştirme', goal: 'Zayıf alanlara ağırlık verin, doğruluğu artırın.',
+    focus: ['İlerleme sayfasındaki en düşük üç görev tipine her gün ek süre ayırın.', 'Yazma: haftada en az iki özet ve bir deneme yazın; örnek cevaplarla karşılaştırın.', 'Konuşma: Describe Image ve Retell Lecture için kendi cümle iskeletinizi oturtun.'] },
+  tempo: { name: 'Sınav temposu', goal: 'Süreli çalışın, haftada iki deneme çözün.',
+    focus: ['Haftada iki deneme: çarşamba hızlı, cumartesi mini.', 'Her görevi sınav süresiyle çözün; süre dolunca bırakın.', 'Yanlışlarınızı ertesi gün yeniden çözün.'] },
+  son: { name: 'Son hafta', goal: 'Hafif tekrar yapın; yeni konu açmayın.',
+    focus: ['Yeni konu yok; yalnızca hafif tekrar.', 'Sınav merkezine ulaşımı ve kimlik belgenizi kontrol edin.', 'Son gün yalnızca ısınma yapın ve erken yatın.'] }
+};
+function weeksTotal() { return Math.max(1, Math.min(52, Math.ceil(diffDays(S.settings.start, S.settings.exam) / 7))); }
+function phaseList(total) {
+  if (total === 1) return ['son'];
+  if (total === 2) return ['beceri', 'son'];
+  if (total === 3) return ['tanima', 'beceri', 'son'];
+  const p1 = Math.max(1, Math.round(total * 0.25)), p3 = Math.max(1, Math.round(total * 0.3)), p2 = total - p1 - p3 - 1;
+  return [].concat(Array(p1).fill('tanima'), Array(Math.max(0, p2)).fill('beceri'), Array(p3).fill('tempo'), ['son']).slice(0, total);
+}
+const DOW = {
+  1: { title: 'Konuşma günü', skill: 'S', items: [['DI', 2], ['RL', 1], ['RTS', 2]] },
+  2: { title: 'Yazma günü', skill: 'W', items: [['SWT', 1], ['WE', 1]] },
+  3: { title: 'Okuma günü', skill: 'R', items: [['RWFIB', 2], ['RFIB', 2], ['RO', 2], ['RMCS', 1], ['RMCM', 1]] },
+  4: { title: 'Dinleme günü', skill: 'L', items: [['SST', 1], ['LFIB', 2], ['HIW', 2], ['HCS', 1], ['SMW', 2], ['LMCS', 1], ['LMCM', 1]] },
+  5: { title: 'Bütünleşik konuşma', skill: 'S', items: [['SGD', 1], ['RL', 1], ['ASQ', 5], ['RA', 2]] }
+};
+const DOW_NAMES = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+const MOCKS = {
+  mini: { name: 'Mini deneme', min: 32, items: [['RA', 1], ['RS', 2], ['DI', 1], ['RTS', 1], ['SWT', 1], ['RWFIB', 1], ['RFIB', 1], ['RO', 1], ['RMCS', 1], ['LFIB', 1], ['HCS', 1], ['HIW', 1], ['SMW', 1], ['WFD', 3]] },
+  hizli: { name: 'Hızlı deneme', min: 15, items: [['RA', 1], ['RS', 2], ['RTS', 1], ['RWFIB', 1], ['RO', 1], ['RMCS', 1], ['LFIB', 1], ['HIW', 1], ['SMW', 1], ['WFD', 2]] }
+};
+const estOf = items => items.reduce((a, [t, n]) => a + TYPES[t].est * n, 0);
+function fit(items, budget) {
+  const out = []; let left = budget;
+  for (const [t, n] of items) {
+    let k = 0;
+    while (k < n && TYPES[t].est <= left + 0.01) { k++; left -= TYPES[t].est; }
+    if (k) out.push([t, k]);
+  }
+  if (!out.length && items.length) out.push([items[0][0], 1]);
+  return out;
+}
+function dayPlan(date) {
+  const s = S.settings, total = weeksTotal(), list = phaseList(total);
+  const toExam = diffDays(date, s.exam);
+  const wk = Math.max(0, Math.min(total - 1, Math.floor(diffDays(s.start, date) / 7)));
+  const phase = list[wk], dow = parse(date).getDay(), mins = s.minutes;
+  const blocks = []; let note = '';
+  const practice = (id, title, skill, items, desc) => { if (items.length) blocks.push({ id, kind: 'practice', title, skill, items, est: Math.round(estOf(items)), desc }); };
+  const warm = mins >= 60 && phase !== 'son' ? [['RA', 2], ['RS', 3], ['WFD', 3]] : [['RA', 1], ['RS', 2], ['WFD', 2]];
+
+  if (toExam < 0) {
+    note = 'Sınav tarihiniz geçmiş görünüyor. Yeni bir tarih girerseniz plan yeniden kurulur.';
+    practice('warm', 'Isınma: sesli okuma ve dikte', 'S', warm);
+    return { wk, total, phase, blocks, note, over: true, toExam };
+  }
+  if (toExam === 0) {
+    note = 'Bugün sınav günü. Kısa bir ısınma yeterli; başarılar.';
+    practice('warm', 'Isınma: sesli okuma ve dikte', 'S', [['RA', 1], ['RS', 2], ['WFD', 2]]);
+    return { wk, total, phase, blocks, note, toExam };
+  }
+  practice('warm', 'Isınma: sesli okuma ve dikte', 'S', warm);
+  if (toExam === 1) {
+    note = 'Yarın sınav. Bugün yalnızca ısınma yapın.';
+    blocks.push({ id: 'prep', kind: 'manual', title: 'Sınav hazırlığı', skill: null, est: 10, desc: 'Kimlik belgenizi ve sınav merkezinin adresini kontrol edin; erken yatın.' });
+    return { wk, total, phase, blocks, note, toExam };
+  }
+  let used = estOf(warm);
+  const scale = phase === 'son' ? 0.5 : 1;
+  if (phase === 'tanima' && dow >= 1 && dow <= 5) {
+    blocks.push({ id: 'guide', kind: 'manual', title: 'Görev rehberini okuyun', skill: null, est: 5, desc: 'Bugünkü görev tiplerinin ne istediğini ve ipuçlarını Pratik sayfasından okuyun.' });
+    used += 5;
+  }
+  if (dow >= 1 && dow <= 5) {
+    const d = DOW[dow];
+    let items = d.items.slice();
+    if (mins < 60 && wk % 2 === 1) items.reverse();
+    items = fit(items, Math.max(8, (mins - used) * scale));
+    practice('main', d.title, d.skill, items);
+    used += estOf(items);
+    if (phase === 'tempo' && dow === 3 && mins >= 60) {
+      blocks.push({ id: 'mock', kind: 'mock', variant: 'hizli', title: 'Hızlı deneme', skill: null, est: MOCKS.hizli.min, desc: 'Karışık 12 soru, ara vermeden.' });
+      used += MOCKS.hizli.min;
+    }
+    if (s.weak.length && mins >= 60 && phase !== 'son') {
+      const k = s.weak[diffDays(s.start, date) % s.weak.length < 0 ? 0 : diffDays(s.start, date) % s.weak.length];
+      if (k !== d.skill) {
+        const pool = TYPE_ORDER.filter(t => TYPES[t].skill === k), off = Math.abs(diffDays(s.start, date)) % pool.length;
+        const pick = fit([[pool[off], 2], [pool[(off + 1) % pool.length], 1]], 11);
+        practice('weak', 'Öncelikli beceri: ' + SKILLS[k].name, k, pick);
+        used += estOf(pick);
+      }
+    }
+    if (phase !== 'son') {
+      let next = dow, extra = 0;
+      while (mins - used >= 12 && extra < 2) {
+        next = next % 5 + 1; extra++;
+        const e = DOW[next], it = fit(e.items, mins - used);
+        practice('extra' + extra, 'Ek blok: ' + e.title.toLowerCase(), e.skill, it);
+        used += estOf(it);
+      }
+    }
+  } else if (dow === 6) {
+    const variant = (mins >= 45 && phase !== 'son') ? 'mini' : 'hizli';
+    blocks.push({ id: 'mock', kind: 'mock', variant, title: MOCKS[variant].name, skill: null, est: MOCKS[variant].min, desc: variant === 'mini' ? 'Üç bölümden karışık 17 soru, ara vermeden.' : 'Karışık 12 soru, ara vermeden.' });
+    used += MOCKS[variant].min;
+    if (mins - used >= 12) practice('review', 'Zayıf alan tekrarı', null, fit(weakestTypes(3).map(t => [t, 2]), mins - used));
+  } else {
+    const it = fit(weakestTypes(3).map(t => [t, 2]), Math.max(10, mins * 0.5 * scale));
+    practice('review', 'Zayıf alan tekrarı', null, it, 'Ortalaması en düşük üç görev tipi.');
+    blocks.push({ id: 'look', kind: 'manual', title: 'Haftayı değerlendirin', skill: null, est: 5, desc: 'İlerleme sayfasına bakın; gelecek hafta hangi görev tipine öncelik vereceğinizi belirleyin.' });
+  }
+  return { wk, total, phase, blocks, note, toExam };
+}
+
+/* ---------- ses: Claude sesi, yoksa tarayıcı sesi, o da yoksa metin ---------- */
+const VOICES = ['buttery', 'airy', 'glassy', 'rounded'];
+const hasClaude = () => window.claude && typeof window.claude.use === 'function';
+const AudioOut = {
+  tts: undefined, cur: 0, ready: null,
+  init() {
+    this.ready = (hasClaude() ? Promise.resolve().then(() => window.claude.use('tts')).catch(() => null) : Promise.resolve(null))
+      .then(t => { this.tts = t || null; return this.tts; });
+  },
+  async play(lines) {
+    const id = ++this.cur;
+    let t = this.tts;
+    if (t === undefined) t = await Promise.race([this.ready, wait(1500).then(() => null)]);
+    if (id !== this.cur) return 'cancelled';
+    if (t) {
+      try {
+        await t.speak(lines.map(l => ({ text: l.text, voice: VOICES[(l.v || 0) % VOICES.length], language: 'en' })));
+        return id === this.cur ? true : 'cancelled';
+      } catch (e) {
+        if (id !== this.cur) return 'cancelled';
+        if (e && /stop|interrupt|replace|cancel/i.test(String(e.code || e.reason || ''))) return 'stopped';
+        if (e && e.code === 'not_granted') this.tts = null;
+        else if (!e || (e.code !== 'busy' && e.code !== 'rate_limited')) return false;
+      }
+    }
+    return this.browser(lines, id);
+  },
+  browser(lines, id) {
+    const syn = window.speechSynthesis;
+    if (!syn || !window.SpeechSynthesisUtterance) return Promise.resolve(false);
+    return new Promise(res => {
+      let started = false, i = 0, done = false;
+      const end = v => { if (!done) { done = true; res(v); } };
+      const voices = (syn.getVoices() || []).filter(v => /^en/i.test(v.lang));
+      const next = () => {
+        if (id !== this.cur) return end('cancelled');
+        if (i >= lines.length) return end(true);
+        const u = new SpeechSynthesisUtterance(lines[i].text);
+        u.lang = 'en-GB'; u.rate = 0.95;
+        if (voices.length) u.voice = voices[(lines[i].v || 0) % voices.length];
+        u.onstart = () => { started = true; };
+        u.onend = () => { started = true; i++; next(); };
+        u.onerror = () => end(id === this.cur ? false : 'cancelled');
+        try { syn.speak(u); } catch (e) { end(false); }
+      };
+      try { syn.cancel(); } catch (e) {}
+      next();
+      setTimeout(() => { if (!started) { try { syn.cancel(); } catch (e) {} end(id === this.cur ? false : 'cancelled'); } }, 3500);
+    });
+  },
+  stop() {
+    this.cur++;
+    try { if (this.tts) this.tts.stop(); } catch (e) {}
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+  }
+};
+/* ---------- konuşmayı yazıya dökme (varsa) ---------- */
+const Dict = {
+  d: undefined, sink: null, on: false,
+  init() {
+    (hasClaude() ? Promise.resolve().then(() => window.claude.use('dictation')).catch(() => null) : Promise.resolve(null)).then(d => {
+      this.d = d || null;
+      if (!d) return;
+      try {
+        d.onPartial(({ text }) => { if (this.sink) this.sink.partial(text); });
+        d.onFinal(({ text }) => { if (this.sink) this.sink.final(text); });
+      } catch (e) { this.d = null; }
+    });
+  },
+  begin(sink) {
+    if (!this.d) return false;
+    this.sink = sink; this.on = true;
+    try {
+      const p = this.d.start();
+      if (p && p.catch) p.catch(err => { this.on = false; if (err && err.code === 'not_granted') this.d = null; if (sink.fail) sink.fail(); });
+    } catch (e) { this.on = false; if (sink.fail) sink.fail(); }
+    return true;
+  },
+  async end() {
+    if (this.on && this.d) { this.on = false; try { await Promise.race([this.d.stop(), wait(2500)]); } catch (e) {} }
+  },
+  stop() {
+    if (this.on && this.d) { try { const p = this.d.stop(); if (p && p.catch) p.catch(() => {}); } catch (e) {} }
+    this.on = false; this.sink = null;
+  }
+};
+
+/* ---------- oturum ---------- */
+let session = null, cleanup = [], qToken = 0;
+function clearQ() {
+  qToken++;
+  cleanup.forEach(f => { try { f(); } catch (e) {} }); cleanup = [];
+  AudioOut.stop(); Dict.stop();
+}
+function countdown(el, secs, onEnd) {
+  let left = secs; el.textContent = fmtClock(left); el.classList.remove('low');
+  const id = setInterval(() => {
+    left--; el.textContent = fmtClock(Math.max(0, left));
+    if (left <= 5) el.classList.add('low');
+    if (left <= 0) { clearInterval(id); if (onEnd) onEnd(); }
+  }, 1000);
+  const stop = () => clearInterval(id);
+  cleanup.push(stop);
+  return { stop };
+}
+function startSession(title, pairs, opts) {
+  const queue = [];
+  pairs.forEach(([t, n]) => {
+    const bank = BANK[t], ptr = (S.types[t] && S.types[t].ptr) || 0, k = Math.min(n, bank.length);
+    for (let i = 0; i < k; i++) queue.push({ t, i: (ptr + i) % bank.length });
+  });
+  if (!queue.length) return;
+  session = { title, queue, pos: 0, results: [], opts: opts || {}, done: false };
+  render(); window.scrollTo(0, 0);
+}
+function record(t, i, score, sec) {
+  const d = today(), day = S.days[d] || (S.days[d] = { sec: 0, q: 0, tasks: {} });
+  day.q++; day.sec += Math.max(5, Math.min(sec, 1800));
+  const ty = S.types[t] || (S.types[t] = { n: 0, sum: 0, ptr: 0 });
+  ty.n++; ty.sum += score; ty.last = d; ty.ptr = (i + 1) % BANK[t].length;
+  save();
+}
+function finishSession() {
+  clearQ();
+  const d = today(), day = S.days[d] || (S.days[d] = { sec: 0, q: 0, tasks: {} });
+  if (session.opts.blockId) day.tasks[session.opts.blockId] = true;
+  if (session.opts.mock) {
+    const by = {};
+    session.results.forEach(r => { const k = TYPES[r.t].skill; (by[k] = by[k] || []).push(r.score); });
+    const avg = a => a.reduce((x, y) => x + y, 0) / a.length;
+    const bySkill = {}; Object.keys(by).forEach(k => bySkill[k] = avg(by[k]));
+    S.mocks.push({ date: d, kind: session.opts.mock, score: avg(session.results.map(r => r.score)), bySkill });
+    if (S.mocks.length > 60) S.mocks = S.mocks.slice(-60);
+  }
+  save();
+  session.done = true; render(); window.scrollTo(0, 0);
+}
+function sec(title, ...kids) { return h('div', null, h('h4', null, title), kids); }
+function audioWidget(lines, o) {
+  o = o || {};
+  const btn = h('button', { class: 'btn play', type: 'button' }, 'Sesi çal');
+  const eq = h('span', { class: 'eq', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'));
+  const note = h('span', { class: 'hint' }, 'Sınavda ses bir kez çalar.');
+  const box = h('div', { class: 'audio keep' }, btn, eq, note);
+  let played = false, shown = false;
+  btn.addEventListener('click', async () => {
+    btn.disabled = true; btn.textContent = 'Çalıyor…'; box.classList.add('on');
+    const r = await AudioOut.play(lines);
+    box.classList.remove('on');
+    if (r === 'cancelled' || !box.isConnected) return;
+    btn.disabled = false; btn.textContent = 'Tekrar çal';
+    if (r === false) {
+      note.textContent = 'Bu görünümde ses çalınamadı; metin gösteriliyor.';
+      if (o.fallback && !(shown && o.once)) { shown = true; o.fallback(box); }
+    }
+    if (!played) { played = true; if (o.onDone) o.onDone(); }
+  });
+  return box;
+}
+const reveal = text => box => { if (!box.querySelector('.flash')) box.append(h('p', { class: 'flash' }, text)); };
+const flash = text => box => {
+  const el = h('p', { class: 'flash' }, text); box.append(el);
+  const id = setTimeout(() => el.remove(), 1800 + norm(text).length * 380);
+  cleanup.push(() => clearTimeout(id));
+};
+const transcriptDetails = text => h('details', null, h('summary', null, 'Kaydın metni'), h('p', { style: 'margin-top:6px' }, text));
+
+function showQuestion() {
+  clearQ();
+  const { t, i } = session.queue[session.pos], T = TYPES[t], q = BANK[t][i];
+  const qStart = Date.now(), last = session.pos === session.queue.length - 1;
+  const stage = h('div', { class: 'stage card' });
+  const reviewBox = h('div', { class: 'review', hidden: true });
+  const ctx = {
+    review(o) {
+      stage.querySelectorAll('button,input,select,textarea').forEach(e => { if (!e.closest('.keep')) e.disabled = true; });
+      let self = null;
+      const base = () => o.getScore ? o.getScore() : o.score;
+      const current = () => { const b = base(); return self == null ? b : b == null ? self : (b + self) / 2; };
+      const pill = h('div', { class: 'scorepill' });
+      const next = h('button', { class: 'btn primary', type: 'button' }, last ? 'Oturumu bitir' : 'Sonraki soru');
+      const paint = () => {
+        const sc = current(); pill.replaceChildren();
+        if (sc == null) pill.append(h('small', null, 'Puan için aşağıdan kendinizi değerlendirin.'));
+        else pill.append(h('span', { class: 'pct ' + grade(sc) }, pctText(sc)), h('small', null, self != null && base() != null ? 'otomatik ölçüm ile kendi puanınızın ortalaması' : self != null ? 'kendi değerlendirmeniz' : (o.label || 'doğruluk')));
+        next.disabled = sc == null;
+      };
+      let rateRow = null;
+      if (o.selfRate) {
+        const labels = ['1 · Zayıf', '2', '3 · Orta', '4', '5 · Çok iyi'];
+        const btns = labels.map((l, k) => h('button', { class: 'btn sm', type: 'button', 'aria-pressed': 'false', onclick: () => { self = (k + 1) / 5; btns.forEach((b, j) => b.setAttribute('aria-pressed', j === k)); paint(); } }, l));
+        rateRow = sec(o.selfLabel || 'Kendi puanınız', h('div', { class: 'rate' }, btns));
+      }
+      reviewBox.addEventListener('change', paint);
+      reviewBox.replaceChildren(...[h('h3', null, 'Değerlendirme'), pill].concat(o.body || [], [rateRow, h('div', { class: 'row' }, next)]).filter(Boolean));
+      reviewBox.hidden = false; paint();
+      next.addEventListener('click', () => {
+        const sc = Math.max(0, Math.min(1, current() || 0));
+        record(t, i, sc, Math.round((Date.now() - qStart) / 1000));
+        session.results.push({ t, score: sc });
+        session.pos++;
+        if (session.pos >= session.queue.length) finishSession(); else { showQuestion(); window.scrollTo(0, 0); }
+      });
+      if (reviewBox.scrollIntoView) reviewBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  };
+  const top = h('div', { class: 'sess-top' },
+    h('div', null, h('div', { class: 'muted small' }, session.title, ' · Soru ', h('span', { class: 'num' }, `${session.pos + 1} / ${session.queue.length}`)), h('h1', null, T.name)),
+    h('div', { class: 'row' }, h('span', { class: 'chip', style: `--c:${SKILLS[T.skill].color}` }, h('i', { class: 'dot' }), SKILLS[T.skill].name), h('button', { class: 'btn sm', type: 'button', onclick: () => { clearQ(); session = null; render(); } }, 'Oturumdan çık')));
+  const bar = h('div', { class: 'bar' }, h('i', { style: `width:${(session.pos / session.queue.length) * 100}%;--c:${SKILLS[T.skill].color}` }));
+  const instr = h('p', { class: 'instr' }, T.what, ' Sınavdaki süre: ', T.time, '.');
+  main.replaceChildren(h('div', { class: 'view' }, top, bar, instr, stage, reviewBox));
+  KIND[T.kind](t, q, stage, ctx);
+}
+
+/* ---------- görev tiplerinin çizimi ---------- */
+const KIND = {};
+
+KIND.speak = (t, q, stage, ctx) => {
+  const T = TYPES[t], token = qToken;
+  let kp = q.kp, model = q.model, script = null, transcript = '', started = false, finished = false, prepT = null, speakT = null;
+  const clock = h('div', { class: 'clock' }, fmtClock(T.prep || T.speak));
+  const status = h('div', { class: 'phase' }, T.audio && !T.showText ? 'Önce kaydı dinleyin' : 'Hazırlık');
+  const startBtn = h('button', { class: 'btn primary', type: 'button', hidden: T.audio && !T.showText }, 'Konuşmaya başla');
+  const stopBtn = h('button', { class: 'btn', type: 'button', hidden: true }, 'Bitir');
+  const live = h('div', { class: 'live', hidden: true, 'aria-live': 'polite' });
+  const micHint = h('p', { class: 'hint' });
+  const setHint = () => { micHint.textContent = Dict.d ? 'Konuşmaya başlayınca söyledikleriniz yazıya dökülür ve içerik otomatik karşılaştırılır. Sınavda kayıt kendiliğinden başlar.' : 'Bu görünümde konuşma yazıya dökülemiyor. Yüksek sesle cevaplayın, sonra örnek cevapla karşılaştırıp kendinizi puanlayın. Sınavda kayıt kendiliğinden başlar.'; };
+  setHint();
+  const beginPrep = () => {
+    if (started) return;
+    startBtn.hidden = false; setHint();
+    if (T.prep > 0) { status.textContent = 'Hazırlık'; prepT = countdown(clock, T.prep, () => { status.textContent = 'Süre doldu, konuşmaya başlayın'; startBtn.classList.add('pulse'); }); }
+    else { status.textContent = 'Şimdi tekrar edin'; clock.textContent = fmtClock(T.speak); startBtn.classList.add('pulse'); }
+  };
+  if (t === 'RA') stage.append(h('p', { class: 'passage big' }, q.text));
+  else if (t === 'RS') stage.append(audioWidget([{ text: q.text }], { fallback: flash(q.text), onDone: beginPrep }));
+  else if (t === 'DI') stage.append(drawChart(q.chart));
+  else if (t === 'RL') { const L = LECT[q.lect]; kp = L.kp; model = L.retell; script = L.text; stage.append(audioWidget([{ text: L.text }], { fallback: reveal(L.text), onDone: beginPrep })); }
+  else if (t === 'SGD') { script = q.lines.map(l => `Speaker ${l.v + 1}: ${l.text}`).join('\n'); stage.append(audioWidget(q.lines, { fallback: reveal(script), onDone: beginPrep })); }
+  else if (t === 'RTS') { stage.append(h('p', { class: 'passage big' }, q.text), audioWidget([{ text: q.text }])); }
+  stage.append(h('div', { class: 'speakbar' }, clock, status, startBtn, stopBtn), live, micHint);
+  if (!T.audio || T.showText) beginPrep();
+
+  const finish = async () => {
+    if (finished) return; finished = true;
+    if (speakT) speakT.stop();
+    stopBtn.disabled = true; status.textContent = 'Tamamlandı';
+    await Dict.end();
+    if (token !== qToken) return;
+    Dict.sink = null;
+    const body = [], words = norm(transcript); let score = null, label = '';
+    if (transcript) body.push(sec('Söyledikleriniz (otomatik döküm)', h('p', null, transcript)));
+    if (t === 'RA' || t === 'RS') {
+      if (words.length) { score = bagMatch(norm(q.text), words); label = 'kelime eşleşmesi'; }
+      body.push(sec(t === 'RS' ? 'Cümle' : 'Metin', h('p', null, q.text)));
+    } else {
+      const cov = words.length ? coverage(kp, transcript) : null;
+      if (cov) { score = cov.filter(Boolean).length / cov.length; label = 'içerik kapsamı'; }
+      body.push(sec(cov ? 'Ana noktalar (✓ değindiniz)' : 'Değinmeniz gereken ana noktalar', h('ul', null, kp.map((k, j) => h('li', { class: cov ? (cov[j] ? 'hit' : 'gap') : '' }, (cov ? (cov[j] ? '✓ ' : '– ') : ''), k.label)))));
+      body.push(sec('Örnek cevap', h('p', null, model)));
+      if (script) body.push(transcriptDetails(script));
+    }
+    ctx.review({ score, label, body, selfRate: true, selfLabel: 'Akıcılık ve telaffuz için kendi puanınız' });
+  };
+  startBtn.addEventListener('click', () => {
+    if (started) return; started = true;
+    if (prepT) prepT.stop();
+    startBtn.hidden = true; startBtn.classList.remove('pulse'); stopBtn.hidden = false; status.textContent = 'Konuşun';
+    const ok = Dict.begin({
+      partial(tx) { live.textContent = (transcript + ' ' + tx).trim(); },
+      final(tx) { transcript = (transcript + ' ' + tx).trim(); live.textContent = transcript; },
+      fail() { live.textContent = 'Mikrofon kullanılamadı. Yüksek sesle cevaplayıp kendinizi puanlayın.'; }
+    });
+    if (ok) { live.hidden = false; live.textContent = 'Dinleniyor…'; } else setHint();
+    speakT = countdown(clock, T.speak, finish);
+  });
+  stopBtn.addEventListener('click', finish);
+};
+
+KIND.asq = (t, q, stage, ctx) => {
+  const input = h('input', { type: 'text', id: 'asq-answer', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', placeholder: 'Cevabınızı söyleyin ve buraya yazın' });
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  stage.append(audioWidget([{ text: q.q }], { fallback: reveal(q.q) }), h('label', { for: 'asq-answer', class: 'small muted' }, 'Kısa cevap (bir ya da birkaç kelime)'), input, h('div', { class: 'row' }, submit));
+  const go = () => {
+    const w = norm(input.value), ok = q.a.some(a => w.includes(a));
+    ctx.review({ score: ok ? 1 : 0, body: [sec('Soru', h('p', null, q.q)), sec('Doğru cevap', h('p', null, q.a[0])), sec('Sizin cevabınız', h('p', { class: 'pct ' + (ok ? 'good' : 'bad') }, input.value.trim() || '(boş)'))] });
+  };
+  submit.addEventListener('click', go);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !submit.disabled) go(); });
+};
+
+KIND.write = (t, q, stage, ctx) => {
+  const T = TYPES[t]; let kp = q.kp, model = q.model, script = null;
+  if (t === 'SST') { const L = LECT[q.lect]; kp = L.kp; model = L.summary; script = L.text; stage.append(audioWidget([{ text: L.text }], { fallback: reveal(L.text) })); }
+  else stage.append(h('p', { class: t === 'WE' ? 'passage big' : 'passage' }, q.text));
+  const ta = h('textarea', { id: 'answer', 'aria-label': 'Cevabınız', spellcheck: 'false', placeholder: 'Cevabınızı İngilizce yazın' });
+  const wc = h('span', { class: 'num' }, '0 kelime');
+  const clock = h('span', { class: 'clock' });
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Cevabı değerlendir');
+  const late = h('span', { class: 'hint' });
+  stage.append(h('div', { class: 'counter' }, h('span', null, `Hedef: ${T.min}–${T.max} kelime${t === 'SWT' ? ', tek cümle' : ''}`), wc, clock), ta, h('div', { class: 'row' }, submit, late));
+  const tm = countdown(clock, T.limit, () => { late.textContent = 'Süre doldu. Sınavda bu noktada cevabınız kendiliğinden gönderilir.'; });
+  ta.addEventListener('input', () => { const n = countWords(ta.value); wc.textContent = n + ' kelime'; wc.className = 'num pct ' + (n >= T.min && n <= T.max ? 'good' : n ? 'warn' : ''); });
+  submit.addEventListener('click', () => {
+    tm.stop();
+    const text = ta.value.trim(), n = countWords(text), body = [];
+    const line = (ok, s) => h('li', { class: ok ? 'hit' : '' }, (ok ? '✓ ' : '✗ '), s);
+    if (t === 'WE') {
+      const form = n >= 200 && n <= 300 ? 0.3 : (n >= 120 && n <= 380) ? 0.15 : 0;
+      const items = ['Girişte konuyu kendi cümlemle tanıttım ve görüşümü açıkça söyledim.', 'İki gelişme paragrafı yazdım; her birinde bir gerekçe ve bir örnek var.', 'Sonuç paragrafında görüşümü yineledim.', 'Bağlaçlar kullandım (however, moreover, as a result) ve aynı kelimeyi tekrar etmedim.', 'Yazım ve dil bilgisini son kez kontrol ettim.'];
+      const boxes = items.map((s, k) => h('input', { type: 'checkbox', id: 'we-check-' + k }));
+      body.push(sec('Biçim', h('ul', null, line(form === 0.3, `Kelime sayısı: ${n} (200–300)`))));
+      body.push(sec('Örnek plan', h('ul', null, q.outline.map(o => h('li', null, o)))));
+      body.push(sec('Kendi denemenizi işaretleyin', h('div', { class: 'checks' }, items.map((s, k) => h('label', { for: 'we-check-' + k }, boxes[k], h('span', null, s))))));
+      ctx.review({ getScore: () => n < 20 ? 0 : form + 0.7 * boxes.filter(b => b.checked).length / boxes.length, label: 'biçim ve öz değerlendirme', body });
+      return;
+    }
+    const cov = coverage(kp, text), covRate = cov.filter(Boolean).length / cov.length;
+    let form, formLines;
+    if (t === 'SWT') {
+      const one = text.split(/[.!?]+(?=\s|$)/).filter(s => s.trim()).length === 1;
+      const okN = n >= 5 && n <= 75;
+      form = one && okN ? 0.3 : 0;
+      formLines = [line(okN, `Kelime sayısı: ${n} (5–75)`), line(one, 'Tek cümle')];
+    } else {
+      form = n >= 50 && n <= 70 ? 0.3 : (n >= 40 && n <= 100) ? 0.15 : 0;
+      formLines = [line(form === 0.3, `Kelime sayısı: ${n} (50–70)`)];
+    }
+    body.push(sec('Biçim', h('ul', null, formLines), form === 0 ? h('p', { class: 'hint' }, 'Sınavda biçim kuralı bozulursa cevap içerikten de puan alamaz.') : null));
+    body.push(sec('Ana noktalar (✓ değindiniz)', h('ul', null, kp.map((k, j) => h('li', { class: cov[j] ? 'hit' : 'gap' }, (cov[j] ? '✓ ' : '– '), k.label)))));
+    body.push(sec('Örnek cevap', h('p', null, model)));
+    if (script) body.push(transcriptDetails(script));
+    ctx.review({ score: form === 0 ? 0 : form + 0.7 * covRate, label: 'biçim ve içerik kapsamı', body, selfRate: true, selfLabel: 'Dil bilgisi ve kelime seçimi için kendi puanınız (isteğe bağlı)' });
+  });
+};
+
+KIND.mc = (t, q, stage, ctx) => {
+  const multi = !!TYPES[t].multi, sel = new Set();
+  if (q.passage) stage.append(h('p', { class: 'passage' }, q.passage));
+  if (q.audio) stage.append(audioWidget([{ text: q.audio }], { fallback: reveal(q.audio + (q.full ? ' …' : '')) }));
+  stage.append(h('p', null, h('strong', null, q.q)), multi ? h('p', { class: 'hint' }, 'Birden fazla doğru cevap var. Yanlış seçim puan götürür.') : null);
+  const submit = h('button', { class: 'btn primary', type: 'button', disabled: true }, 'Kontrol et');
+  const btns = q.opts.map((o, i) => h('button', { class: 'opt', type: 'button', 'aria-pressed': 'false', onclick: () => {
+    if (multi) { if (sel.has(i)) sel.delete(i); else sel.add(i); } else { sel.clear(); sel.add(i); }
+    btns.forEach((b, j) => b.setAttribute('aria-pressed', sel.has(j) ? 'true' : 'false')); submit.disabled = !sel.size;
+  } }, h('span', { class: 'k' }, 'ABCDE'[i]), h('span', null, o)));
+  stage.append(h('div', { class: 'opts' }, btns), h('div', { class: 'row' }, submit));
+  submit.addEventListener('click', () => {
+    const hits = [...sel].filter(i => q.ans.includes(i)).length, miss = sel.size - hits;
+    btns.forEach((b, i) => { if (q.ans.includes(i)) b.classList.add('right'); else if (sel.has(i)) b.classList.add('wrong'); });
+    const body = [sec('Doğru cevap', h('p', null, q.ans.map(i => 'ABCDE'[i]).join(', '), q.full ? ` (${q.full})` : '')), sec('Neden', h('p', null, q.why))];
+    if (q.audio) body.push(transcriptDetails(q.audio + (q.full ? ' ' + q.full + '.' : '')));
+    ctx.review({ score: multi ? Math.max(0, hits - miss) / q.ans.length : hits, body });
+  });
+};
+
+function fillText(q, makeBlank) {
+  const p = h('p', { class: 'passage' });
+  q.text.split(/\{(\d+)\}/).forEach((part, k) => { if (k % 2) p.append(makeBlank(Number(part))); else p.append(part); });
+  return p;
+}
+KIND.dropdown = (t, q, stage, ctx) => {
+  const sels = [];
+  stage.append(fillText(q, n => {
+    const s = h('select', { class: 'inline-in', id: 'blank-' + n, 'aria-label': 'Boşluk ' + (n + 1) }, h('option', { value: '' }, '— seçin —'), q.blanks[n].o.slice().sort().map(o => h('option', { value: o }, o)));
+    sels[n] = s; return s;
+  }));
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  stage.append(h('div', { class: 'row' }, submit));
+  submit.addEventListener('click', () => {
+    let ok = 0;
+    sels.forEach((s, n) => { const good = s.value === q.blanks[n].a; if (good) ok++; s.classList.add(good ? 'ok' : 'no'); if (!good) s.after(h('span', { class: 'fix' }, ' ' + q.blanks[n].a + ' ')); });
+    ctx.review({ score: ok / sels.length, body: [sec('Sonuç', h('p', null, `${ok} / ${sels.length} boşluk doğru. Yanlış olanların doğrusu metinde yeşil yazıyor.`))] });
+  });
+};
+KIND.typefib = (t, q, stage, ctx) => {
+  const ins = [];
+  stage.append(audioWidget([{ text: q.text.replace(/\{(\d+)\}/g, (m, n) => q.ans[n]) }], { fallback: box => { box.querySelector('.hint').textContent = 'Bu görünümde ses çalınamadı. Boşlukları bağlamdan tahmin ederek doldurun.'; } }));
+  stage.append(fillText(q, n => { const i = h('input', { type: 'text', class: 'inline-in', id: 'gap-' + n, 'aria-label': 'Boşluk ' + (n + 1), autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' }); ins[n] = i; return i; }));
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  stage.append(h('div', { class: 'row' }, submit));
+  submit.addEventListener('click', () => {
+    let ok = 0;
+    ins.forEach((i, n) => { const good = i.value.trim().toLowerCase() === q.ans[n]; if (good) ok++; i.classList.add(good ? 'ok' : 'no'); if (!good) i.after(h('span', { class: 'fix' }, ' ' + q.ans[n] + ' ')); });
+    ctx.review({ score: ok / ins.length, body: [sec('Sonuç', h('p', null, `${ok} / ${ins.length} boşluk doğru. Yazım hatası olan kelime yanlış sayılır.`))] });
+  });
+};
+KIND.bank = (t, q, stage, ctx) => {
+  const filled = q.ans.map(() => null), all = q.ans.concat(q.extra).sort();
+  const p = h('div'), bank = h('div', { class: 'bank' });
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  let locked = false;
+  const draw = () => {
+    p.replaceChildren(fillText(q, n => h('button', { type: 'button', class: 'slot' + (filled[n] ? ' filled' : ''), 'aria-label': 'Boşluk ' + (n + 1) + (filled[n] ? ': ' + filled[n] : ''), onclick: () => { if (locked || !filled[n]) return; filled[n] = null; draw(); } }, filled[n] || ' ')));
+    bank.replaceChildren(...all.filter(w => !filled.includes(w)).map(w => h('button', { type: 'button', class: 'word', onclick: () => { const k = filled.indexOf(null); if (locked || k < 0) return; filled[k] = w; draw(); } }, w)));
+    if (!bank.children.length) bank.append(h('span', { class: 'hint' }, 'Bütün kelimeler yerleştirildi.'));
+  };
+  draw();
+  stage.append(p, h('p', { class: 'hint' }, 'Bir kelimeye dokununca ilk boş yere yerleşir. Yerleşmiş kelimeye dokunursanız kutuya geri döner.'), bank, h('div', { class: 'row' }, submit));
+  submit.addEventListener('click', () => {
+    locked = true; let ok = 0;
+    p.querySelectorAll('.slot').forEach((s, n) => { const good = filled[n] === q.ans[n]; if (good) ok++; s.classList.add(good ? 'ok' : 'no'); if (!good) s.after(h('span', { class: 'fix' }, ' ' + q.ans[n] + ' ')); });
+    ctx.review({ score: ok / q.ans.length, body: [sec('Sonuç', h('p', null, `${ok} / ${q.ans.length} boşluk doğru.`))] });
+  });
+};
+KIND.reorder = (t, q, stage, ctx) => {
+  const n = q.items.length;
+  let order = n === 4 ? [2, 0, 3, 1] : n === 5 ? [3, 0, 4, 2, 1] : q.items.map((x, i) => n - 1 - i);
+  const list = h('ol', { class: 'order' });
+  let locked = false;
+  const draw = () => list.replaceChildren(...order.map((idx, k) => h('li', null,
+    h('div', { class: 'mv' },
+      h('button', { class: 'btn sm', type: 'button', 'aria-label': 'Yukarı taşı', disabled: k === 0 || locked, onclick: () => { [order[k - 1], order[k]] = [order[k], order[k - 1]]; draw(); } }, '↑'),
+      h('button', { class: 'btn sm', type: 'button', 'aria-label': 'Aşağı taşı', disabled: k === n - 1 || locked, onclick: () => { [order[k + 1], order[k]] = [order[k], order[k + 1]]; draw(); } }, '↓')),
+    h('span', null, q.items[idx]))));
+  draw();
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  stage.append(list, h('div', { class: 'row' }, submit));
+  submit.addEventListener('click', () => {
+    locked = true; draw();
+    let pairs = 0; for (let k = 0; k < n - 1; k++) if (order[k + 1] === order[k] + 1) pairs++;
+    [...list.children].forEach((li, k) => li.classList.add(order[k] === k ? 'ok' : 'no'));
+    ctx.review({ score: pairs / (n - 1), label: 'doğru komşu çiftler', body: [sec('Doğru sıra', h('ol', null, q.items.map(s => h('li', null, s))))] });
+  });
+};
+KIND.hiw = (t, q, stage, ctx) => {
+  const shown = q.shown.split(' '), heard = q.audio.split(' ');
+  const wrong = new Set(); shown.forEach((w, i) => { if (norm(w).join() !== norm(heard[i] || '').join()) wrong.add(i); });
+  const sel = new Set(); let locked = false;
+  const p = h('p', { class: 'passage hiw' });
+  const spans = shown.map((w, i) => { const s = h('span', { role: 'button', tabindex: '0', 'aria-pressed': 'false' }, w); const tog = () => { if (locked) return; if (sel.has(i)) sel.delete(i); else sel.add(i); s.classList.toggle('sel', sel.has(i)); s.setAttribute('aria-pressed', sel.has(i) ? 'true' : 'false'); }; s.addEventListener('click', tog); s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tog(); } }); return s; });
+  spans.forEach((s, i) => { p.append(s); if (i < spans.length - 1) p.append(' '); });
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  stage.append(audioWidget([{ text: q.audio }], { fallback: box => { box.querySelector('.hint').textContent = 'Bu görünümde ses çalınamadı. Bağlama uymayan kelimeleri işaretleyerek çalışın.'; } }), h('p', { class: 'hint' }, 'Kayıtta söylenenden farklı olan kelimelere dokunun.'), p, h('div', { class: 'row' }, submit));
+  submit.addEventListener('click', () => {
+    locked = true; p.classList.add('done');
+    let hits = 0, falses = 0;
+    spans.forEach((s, i) => { s.classList.remove('sel'); if (wrong.has(i) && sel.has(i)) { hits++; s.classList.add('hit'); } else if (wrong.has(i)) s.classList.add('miss'); else if (sel.has(i)) { falses++; s.classList.add('false'); } });
+    const pairs = [...wrong].map(i => h('li', null, `${shown[i].replace(/[.,]/g, '')} → ${heard[i].replace(/[.,]/g, '')}`));
+    ctx.review({ score: Math.max(0, hits - falses) / wrong.size, body: [sec('Sonuç', h('p', null, `${hits} doğru, ${falses} yanlış işaretleme; toplam ${wrong.size} farklı kelime vardı.`)), sec('Ekranda yazan → kayıtta söylenen', h('ul', null, pairs)), transcriptDetails(q.audio)] });
+  });
+};
+KIND.wfd = (t, q, stage, ctx) => {
+  const input = h('input', { type: 'text', id: 'wfd-answer', 'aria-label': 'Duyduğunuz cümle', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', placeholder: 'Duyduğunuz cümleyi yazın' });
+  const submit = h('button', { class: 'btn primary', type: 'button' }, 'Kontrol et');
+  stage.append(audioWidget([{ text: q.text }], { fallback: flash(q.text) }), input, h('div', { class: 'row' }, submit));
+  const go = () => {
+    const ref = norm(q.text), hyp = norm(input.value), bag = {}; hyp.forEach(w => bag[w] = (bag[w] || 0) + 1);
+    const missing = ref.filter(w => { if (bag[w] > 0) { bag[w]--; return false; } return true; });
+    ctx.review({ score: bagMatch(ref, hyp), label: 'doğru kelimeler', body: [sec('Cümle', h('p', null, q.text)), sec('Sizin yazdığınız', h('p', null, input.value.trim() || '(boş)')), missing.length ? sec('Eksik ya da hatalı kelimeler', h('p', { class: 'pct bad' }, missing.join(', '))) : null] });
+  };
+  submit.addEventListener('click', go);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !submit.disabled) go(); });
+};
+
+/* ---------- Describe Image grafikleri ---------- */
+function svg(w, hgt, inner) { return `<svg viewBox="0 0 ${w} ${hgt}" width="${w}" role="img" aria-label="Grafik">${inner}</svg>`; }
+const niceStep = m => { const p = Math.pow(10, Math.floor(Math.log10(m))); return [0.1, 0.2, 0.25, 0.5, 1, 2].map(k => k * p).find(st => m / st <= 5); };
+function drawChart(c) {
+  const box = h('div', { class: 'chart' }, h('h5', null, c.title));
+  const W = 560, H = 300, L = 52, R = 16, T = 16, B = 40;
+  if (c.type === 'flow') { box.append(h('ol', { class: 'flow' }, c.data.map(s => h('li', null, s)))); return box; }
+  if (c.type === 'pie') {
+    const cols = ['var(--rd)', 'var(--sp)', 'var(--ls)', 'var(--wr)', 'var(--muted)'], tot = c.data.reduce((a, d) => a + d[1], 0);
+    let a0 = -Math.PI / 2, out = '';
+    c.data.forEach((d, i) => {
+      const a1 = a0 + d[1] / tot * Math.PI * 2, r = 110, cx = 130, cy = 130, big = a1 - a0 > Math.PI ? 1 : 0;
+      out += `<path d="M${cx},${cy} L${cx + r * Math.cos(a0)},${cy + r * Math.sin(a0)} A${r},${r} 0 ${big} 1 ${cx + r * Math.cos(a1)},${cy + r * Math.sin(a1)} Z" style="fill:${cols[i % 5]};stroke:var(--surface);stroke-width:2"/>`;
+      a0 = a1;
+    });
+    box.append(h('div', { html: svg(260, 260, out) }), h('div', { class: 'legend' }, c.data.map((d, i) => h('span', null, h('i', { style: `background:${cols[i % 5]}` }), `${d[0]}: ${d[1]}%`))));
+    return box;
+  }
+  const top = Math.max(...c.data.map(d => d[1])), step = niceStep(top), max = Math.ceil(top / step) * step, pw = W - L - R, ph = H - T - B, y = v => T + ph - v / max * ph;
+  let out = '';
+  for (let v = 0; v <= max + 1e-9; v += step) { out += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${Math.round(v).toLocaleString('en-US')}</text>`; }
+  if (c.type === 'bar') {
+    const bw = pw / c.data.length;
+    c.data.forEach((d, i) => { const x = L + i * bw + bw * 0.2, w = bw * 0.6; out += `<rect x="${x}" y="${y(d[1])}" width="${w}" height="${T + ph - y(d[1])}" rx="3" style="fill:var(--rd)"/><text class="v" x="${x + w / 2}" y="${y(d[1]) - 6}" text-anchor="middle">${d[1]}</text><text x="${x + w / 2}" y="${H - 14}" text-anchor="middle">${esc(d[0])}</text>`; });
+  } else {
+    const step = pw / (c.data.length - 1), pts = c.data.map((d, i) => [L + i * step, y(d[1])]);
+    out += `<path d="M${pts[0][0]},${T + ph} ${pts.map(p => `L${p[0]},${p[1]}`).join(' ')} L${pts[pts.length - 1][0]},${T + ph} Z" style="fill:var(--rd);opacity:.12"/><polyline points="${pts.map(p => p.join(',')).join(' ')}" style="fill:none;stroke:var(--rd);stroke-width:2.5"/>`;
+    c.data.forEach((d, i) => { const last = i === pts.length - 1; out += `<circle cx="${pts[i][0]}" cy="${pts[i][1]}" r="${last ? 5 : 3}" style="fill:var(--rd)"/><text x="${pts[i][0]}" y="${H - 14}" text-anchor="middle">${esc(d[0])}</text>`; if (last || i === 0 || d[1] === Math.min(...c.data.map(z => z[1]))) out += `<text class="v" x="${pts[i][0]}" y="${pts[i][1] - 10}" text-anchor="${last ? 'end' : i === 0 ? 'start' : 'middle'}">${d[1].toLocaleString('en-US')}</text>`; });
+  }
+  box.append(h('div', { html: svg(W, H, out) }), h('p', { class: 'hint' }, 'Birim: ' + c.unit));
+  return box;
+}
+
+/* ---------- görünümler ---------- */
+const NAV = [['bugun', 'Bugün'], ['plan', 'Plan'], ['pratik', 'Pratik'], ['deneme', 'Deneme'], ['ilerleme', 'İlerleme'], ['ayarlar', 'Ayarlar']];
+const route = () => { const r = (location.hash || '').slice(1); return NAV.some(n => n[0] === r) ? r : 'bugun'; };
+const itemChips = items => `<div class="chips">${items.map(([t, n]) => `<span class="chip"><i class="dot" style="--c:${SKILLS[TYPES[t].skill].color}"></i>${esc(TYPES[t].name)} ×${n}</span>`).join('')}</div>`;
+
+function viewToday() {
+  const t = today(), s = S.settings, plan = dayPlan(t), st = streakInfo(), day = S.days[t] || { sec: 0, q: 0, tasks: {} };
+  const mon = addDays(t, -((parse(t).getDay() + 6) % 7));
+  const week = DOW_NAMES.map((n, i) => { const d = addDays(mon, i); return `<div class="${active(d) ? 'on' : ''} ${d === t ? 'today' : ''}"><i title="${fmtDate(d)}"></i>${n}</div>`; }).join('');
+  const mins = Math.round(day.sec / 60), ph = PHASES[plan.phase];
+  const blocks = plan.blocks.map(b => {
+    const done = !!(day.tasks && day.tasks[b.id]), color = b.skill ? SKILLS[b.skill].color : 'var(--mark)';
+    const body = b.kind === 'practice' ? itemChips(b.items) + (b.desc ? `<p class="small muted" style="margin-top:6px">${esc(b.desc)}</p>` : '') : `<p class="muted">${esc(b.desc || '')}</p>`;
+    const btn = b.kind === 'manual'
+      ? `<button class="btn ${done ? 'sm' : 'primary'}" data-act="manual" data-id="${b.id}">${done ? 'Geri al' : 'Tamamlandı'}</button>`
+      : `<button class="btn ${done ? 'sm' : 'primary'}" data-act="block" data-id="${b.id}">${done ? 'Tekrar çöz' : 'Başla'}</button>`;
+    return `<div class="card block ${done ? 'done' : ''}" style="--c:${color}"><div><div class="t"><h3>${esc(b.title)}</h3><span class="est">yaklaşık ${b.est} dk</span></div><div style="margin-top:8px">${body}</div></div><div class="act">${done ? '<span class="tick">✓ Tamamlandı</span>' : ''}${btn}</div></div>`;
+  }).join('');
+  const doneCount = plan.blocks.filter(b => day.tasks && day.tasks[b.id]).length;
+  const tip = DAILY_TIPS[Math.abs(diffDays('2026-01-01', t)) % DAILY_TIPS.length];
+  return `<div class="view">
+    <div class="head"><div><h1>Bugün</h1><p class="sub">${esc(fmtDate(t, { weekday: 'long', day: 'numeric', month: 'long' }))} · Hafta ${plan.wk + 1} / ${plan.total} · ${esc(ph.name)}</p></div>
+      <span class="chip mark">${plan.toExam > 0 ? `Sınava ${plan.toExam} gün` : plan.toExam === 0 ? 'Sınav bugün' : 'Sınav tarihi geçti'}</span></div>
+    ${!s.setup ? `<div class="note"><strong>Plan başlangıç değerleriyle kuruldu:</strong> 8 hafta, hedef 65, günde 60 dakika. Sınav tarihinizi ve programınızın istediği puanı girin; plan yeniden hesaplanır. <a href="#ayarlar">Ayarları açın</a></div>` : ''}
+    ${plan.note ? `<div class="note">${esc(plan.note)}</div>` : ''}
+    <div class="card streak">
+      <div><div class="n">${st.cur}<small>gün seri</small></div><p class="small muted">${st.todayDone ? 'Bugün çalıştınız, seri sürüyor.' : st.cur ? 'Seriyi sürdürmek için bugün en az bir soru çözün.' : 'Bir soru çözün, seri başlasın.'} En uzun seri: ${st.best} gün.</p></div>
+      <div><div class="week">${week}</div>
+        <div style="margin-top:14px"><div class="spread small"><span>Bugünkü süre</span><span class="num">${mins} / ${s.minutes} dk</span></div><div class="bar" style="margin-top:6px"><i style="width:${Math.min(100, mins / s.minutes * 100)}%;--c:var(--ls)"></i></div></div></div>
+    </div>
+    <div class="spread"><h2>Bugünün görevleri</h2><span class="muted small">${doneCount} / ${plan.blocks.length} tamamlandı</span></div>
+    ${blocks}
+    <div class="note"><strong>Günün ipucu.</strong> ${esc(tip)}</div>
+  </div>`;
+}
+
+function viewPlan() {
+  const s = S.settings, t = today(), total = weeksTotal(), list = phaseList(total), cur = dayPlan(t).wk;
+  const bar = list.map((p, i) => `<div style="flex:1" class="${i === cur ? 'cur' : i < cur ? 'past' : ''}" title="Hafta ${i + 1}: ${PHASES[p].name}">${total <= 16 ? i + 1 : ''}</div>`).join('');
+  const weeks = list.map((p, i) => {
+    const a = addDays(s.start, i * 7), b = addDays(a, 6);
+    return `<div class="card wk ${i === cur ? 'cur' : ''}"><div><div class="no">Hafta ${i + 1}</div><div class="small muted">${fmtDate(a)} – ${fmtDate(b)}</div></div><div><div class="row"><strong>${PHASES[p].name}</strong>${i === cur ? '<span class="chip mark">Bu hafta</span>' : ''}</div><p class="small muted">${PHASES[p].goal}</p>${i === cur || i === cur + 1 ? `<ul>${PHASES[p].focus.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}</div></div>`;
+  }).join('');
+  const rhythm = [['Pazartesi', DOW[1]], ['Salı', DOW[2]], ['Çarşamba', DOW[3]], ['Perşembe', DOW[4]], ['Cuma', DOW[5]]].map(([n, d]) => `<tr><td>${n}</td><td><span class="chip"><i class="dot" style="--c:${SKILLS[d.skill].color}"></i>${d.title}</span></td><td>${d.items.map(([x, k]) => `${TYPES[x].name} ×${k}`).join(', ')}</td></tr>`).join('');
+  return `<div class="view">
+    <div class="head"><div><h1>Çalışma planı</h1><p class="sub">${fmtDate(s.start, { day: 'numeric', month: 'long' })} – ${fmtDate(s.exam, { day: 'numeric', month: 'long', year: 'numeric' })} · ${total} hafta · hedef puan ${s.target} · günde ${s.minutes} dk</p></div><a class="btn sm" href="#ayarlar">Planı değiştir</a></div>
+    <div class="card"><div class="phasebar">${bar}</div><p class="small muted" style="margin-top:10px">Sarı kutu içinde bulunduğunuz hafta. Plan dört aşamadan oluşur: tanıma, beceri geliştirme, sınav temposu ve son hafta.</p></div>
+    <h2>Haftalık düzen</h2>
+    <div class="card tablewrap"><table><thead><tr><th>Gün</th><th>Odak</th><th>Görevler (günde 60 dk için)</th></tr></thead><tbody>${rhythm}
+      <tr><td>Cumartesi</td><td><span class="chip mark">Deneme</span></td><td>Mini deneme: üç bölümden karışık 17 soru, ara vermeden</td></tr>
+      <tr><td>Pazar</td><td><span class="chip">Tekrar</span></td><td>Ortalaması en düşük üç görev tipi ve haftanın değerlendirmesi</td></tr></tbody></table>
+      <p class="small muted" style="margin-top:10px">Her gün 5–7 dakikalık ısınma ile başlar: Read Aloud, Repeat Sentence, Write from Dictation. Günlük süreniz 60 dakikadan azsa görev sayısı kısalır, fazlaysa ertesi günün becerisinden ek blok eklenir.</p></div>
+    <h2>Haftalar</h2><div class="weeks">${weeks}</div>
+    <h2>Sınavın yapısı</h2>
+    <div class="card tablewrap"><table><thead><tr><th>Bölüm</th><th>Süre</th><th>Görev tipleri</th></tr></thead><tbody>
+      <tr><td>1. Speaking &amp; Writing</td><td class="num">54–67 dk</td><td>Read Aloud, Repeat Sentence, Describe Image, Retell Lecture, Answer Short Question, Summarize Group Discussion, Respond to a Situation, Summarize Written Text, Write Essay</td></tr>
+      <tr><td>2. Reading</td><td class="num">23–30 dk</td><td>R&amp;W Fill in the Blanks, Multiple Choice (çoklu ve tekli), Re-order Paragraphs, Fill in the Blanks</td></tr>
+      <tr><td>3. Listening</td><td class="num">31–39 dk</td><td>Summarize Spoken Text, Multiple Choice (çoklu ve tekli), Fill in the Blanks, Highlight Correct Summary, Select Missing Word, Highlight Incorrect Words, Write from Dictation</td></tr></tbody></table>
+      <p class="small muted" style="margin-top:10px">Sınav tek oturumdur, yaklaşık 2 saat sürer ve mola yoktur. Puan 10–90 arasındadır. Pearson süreleri ve soru sayılarını güncelleyebilir; sınavdan önce <a href="https://www.pearsonpte.com/pte-academic">resmi sayfayı</a> kontrol edin.</p></div>
+  </div>`;
+}
+
+function viewPractice() {
+  const groups = Object.keys(SKILLS).map(k => {
+    const cards = TYPE_ORDER.filter(t => TYPES[t].skill === k).map(t => {
+      const T = TYPES[t], a = typeAvg(t), x = S.types[t], len = BANK[t].length, n = Math.min(len, T.est >= 4 ? 1 : T.est < 1 ? 5 : 3);
+      return `<div class="card type" style="--c:${SKILLS[k].color}"><h3>${esc(T.name)}</h3><p class="small">${esc(T.what)}</p><p class="meta">${esc(T.time)} · ${len} soru</p>
+        <details><summary>İpuçları</summary><ul>${T.tips.map(p => `<li>${esc(p)}</li>`).join('')}</ul></details>
+        <div class="foot"><span class="small">${a == null ? '<span class="muted">Henüz çözülmedi</span>' : `<span class="pct ${grade(a)} num">${pctText(a)}</span> <span class="muted">· ${x.n} soru</span>`}</span><button class="btn primary sm" data-act="practice" data-type="${t}" data-n="${n}">${n} soru çöz</button></div></div>`;
+    }).join('');
+    return `<div class="skillhead" style="--c:${SKILLS[k].color}"><i></i><h2>${SKILLS[k].name} <span class="muted small">${SKILLS[k].en}</span></h2></div><div class="types">${cards}</div>`;
+  }).join('');
+  return `<div class="view"><div class="head"><div><h1>Pratik</h1><p class="sub">22 görev tipi. Yüzdeler bu platformdaki ortalamanızdır; resmi puan tahmini değildir.</p></div></div>${groups}</div>`;
+}
+
+function viewMock() {
+  const cards = Object.keys(MOCKS).map(k => { const m = MOCKS[k], n = m.items.reduce((a, x) => a + x[1], 0); return `<div class="card type" style="--c:var(--mark)"><h3>${m.name}</h3><p class="small">${n} soru, yaklaşık ${m.min} dakika. Konuşma, yazma, okuma ve dinleme görevleri sınavdaki sırayla gelir.</p><div class="foot"><span class="small muted">Ara vermeden çözün</span><button class="btn primary sm" data-act="mock" data-kind="${k}">Denemeyi başlat</button></div></div>`; }).join('');
+  const hist = S.mocks.slice().reverse().map(m => `<tr><td>${fmtDate(m.date, { day: 'numeric', month: 'long' })}</td><td>${MOCKS[m.kind] ? MOCKS[m.kind].name : m.kind}</td><td class="r"><span class="pct ${grade(m.score)}">${pctText(m.score)}</span></td>${['S', 'W', 'R', 'L'].map(k => `<td class="r">${m.bySkill && m.bySkill[k] != null ? pctText(m.bySkill[k]) : '–'}</td>`).join('')}</tr>`).join('');
+  return `<div class="view"><div class="head"><div><h1>Deneme</h1><p class="sub">Kısaltılmış sınav provaları. Gerçek sınav yaklaşık 2 saat sürer; bu denemeler tempo ve geçiş alışkanlığı kazandırır, resmi puan tahmini vermez.</p></div></div>
+    <div class="types">${cards}</div>
+    <h2>Geçmiş denemeler</h2>
+    <div class="card tablewrap">${hist ? `<table><thead><tr><th>Tarih</th><th>Deneme</th><th class="r">Genel</th><th class="r">Konuşma</th><th class="r">Yazma</th><th class="r">Okuma</th><th class="r">Dinleme</th></tr></thead><tbody>${hist}</tbody></table>` : '<p class="muted">Henüz deneme çözmediniz. Plan her cumartesi bir deneme önerir.</p>'}</div>
+    <div class="note">Tam uzunlukta ve puanlı bir prova için Pearson’ın resmi puanlı deneme sınavını sınavdan 1–2 hafta önce çözmenizi öneririm.</div></div>`;
+}
+
+function viewProgress() {
+  const st = streakInfo(), t = today(), s = S.settings;
+  const keys = Object.keys(S.days).filter(active), totalSec = keys.reduce((a, k) => a + (S.days[k].sec || 0), 0), totalQ = keys.reduce((a, k) => a + (S.days[k].q || 0), 0);
+  const mon = addDays(t, -((parse(t).getDay() + 6) % 7)), first = addDays(mon, -77);
+  let heat = '';
+  for (let i = 0; i < 84; i++) { const d = addDays(first, i), x = S.days[d], m = x ? x.sec / 60 : 0, lvl = !active(d) ? '' : m >= s.minutes ? 'l3' : m >= s.minutes / 2 ? 'l2' : 'l1'; heat += `<i class="${lvl} ${d > t ? 'fut' : ''} ${d === t ? 'now' : ''}" title="${fmtDate(d)}: ${Math.round(m)} dk"></i>`; }
+  const skills = Object.keys(SKILLS).map(k => { const a = skillAvg(k); return `<div class="skillrow"><span>${SKILLS[k].name}</span><div class="bar"><i style="width:${a == null ? 0 : a * 100}%;--c:${SKILLS[k].color}"></i></div><span class="num pct ${grade(a)}" style="text-align:right">${a == null ? '–' : pctText(a)}</span></div>`; }).join('');
+  const rows = TYPE_ORDER.map(x => { const a = typeAvg(x), ty = S.types[x]; return `<tr><td><span class="chip"><i class="dot" style="--c:${SKILLS[TYPES[x].skill].color}"></i>${SKILLS[TYPES[x].skill].name}</span></td><td>${esc(TYPES[x].name)}</td><td class="r">${ty ? ty.n : 0}</td><td class="r"><span class="pct ${grade(a)}">${a == null ? '–' : pctText(a)}</span></td><td class="r">${ty && ty.last ? fmtDate(ty.last) : '–'}</td></tr>`; }).join('');
+  const weak = weakestTypes(3).filter(x => typeAvg(x) != null);
+  return `<div class="view"><div class="head"><div><h1>İlerleme</h1><p class="sub">Hedef puan ${s.target} için bu platformun çalışma eşiği ${pctText(goalPct())}. Bu eşik bir çalışma ölçüsüdür, resmi puan dönüşümü değildir.</p></div></div>
+    <div class="grid tiles">
+      <div class="card tile"><div class="big">${st.cur}</div><div class="lab">gün seri</div></div>
+      <div class="card tile"><div class="big">${st.best}</div><div class="lab">en uzun seri</div></div>
+      <div class="card tile"><div class="big">${keys.length}</div><div class="lab">çalışılan gün</div></div>
+      <div class="card tile"><div class="big">${totalSec >= 3600 ? (totalSec / 3600).toFixed(1).replace('.', ',') + ' sa' : Math.round(totalSec / 60) + ' dk'}</div><div class="lab">toplam süre</div></div>
+      <div class="card tile"><div class="big">${totalQ}</div><div class="lab">çözülen soru</div></div>
+    </div>
+    <div class="card"><div class="spread"><h3>Son 12 hafta</h3><span class="small muted">Koyu kare: günlük hedef tamamlandı</span></div><div class="tablewrap" style="margin-top:12px"><div class="heat">${heat}</div></div></div>
+    <div class="card"><h3>Becerilere göre ortalama</h3><div class="grid" style="margin-top:12px">${skills}</div></div>
+    ${weak.length ? `<div class="note"><strong>Öncelik listeniz.</strong> Ortalaması en düşük görev tipleri: ${weak.map(x => esc(TYPES[x].name) + ' (' + pctText(typeAvg(x)) + ')').join(', ')}. Pazar günkü tekrar bloğu bunları kendiliğinden seçer.</div>` : ''}
+    <h2>Görev tiplerine göre</h2>
+    <div class="card tablewrap"><table><thead><tr><th>Beceri</th><th>Görev tipi</th><th class="r">Soru</th><th class="r">Ortalama</th><th class="r">Son çalışma</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>`;
+}
+
+function viewSettings() {
+  const s = S.settings;
+  return `<div class="view"><div class="head"><div><h1>Ayarlar</h1><p class="sub">Plan bu bilgilere göre kurulur. Kaydedince bugünün görevleri yeniden hesaplanır.</p></div></div>
+    ${store.ok ? '' : '<div class="note">Tarayıcınız bu sayfanın veri saklamasına izin vermiyor. İlerlemeniz yalnızca sayfa açık kaldığı sürece tutulur; aşağıdaki yedeği kopyalayarak saklayabilirsiniz.</div>'}
+    <div class="card"><div class="form">
+      <label for="set-exam">Sınav tarihi<input type="date" id="set-exam" value="${s.exam}" min="${today()}"><span class="hint">Henüz belli değilse tahmini bir tarih girin.</span></label>
+      <label for="set-target">Hedef puan (10–90)<input type="number" id="set-target" min="10" max="90" value="${s.target}"><span class="hint">Başvurduğunuz doktora programının istediği genel puan.</span></label>
+      <label for="set-minutes">Günlük çalışma süresi<select id="set-minutes">${[30, 45, 60, 90, 120].map(m => `<option value="${m}" ${m === s.minutes ? 'selected' : ''}>${m} dakika</option>`).join('')}</select><span class="hint">Her gün gerçekten ayırabileceğiniz süre.</span></label>
+      <label for="set-start">Plan başlangıcı<input type="date" id="set-start" value="${s.start}" max="${today()}"><span class="hint">Haftalar bu tarihten sayılır.</span></label>
+    </div>
+    <div style="margin-top:18px"><div class="form"><div><label>Öncelik vermek istediğiniz beceriler</label><div class="checkrow" style="margin-top:8px">${Object.keys(SKILLS).map(k => `<label for="weak-${k}"><input type="checkbox" id="weak-${k}" value="${k}" ${s.weak.includes(k) ? 'checked' : ''}> ${SKILLS[k].name}</label>`).join('')}</div><p class="hint" style="margin-top:6px">Seçtikleriniz için hafta içi her gün yaklaşık 10 dakikalık ek blok eklenir.</p></div></div></div>
+    <div class="row" style="margin-top:18px"><button class="btn primary" data-act="save-settings">Kaydet</button><span class="small pct good" id="saved" role="status"></span></div></div>
+    <h2>Yedek</h2>
+    <div class="card"><p class="small muted">İlerlemeniz yalnızca bu tarayıcıda durur. Başka bir cihaza taşımak ya da saklamak için yedeği kopyalayın.</p>
+      <div class="row" style="margin-top:12px"><button class="btn sm" data-act="copy-backup">Yedeği kopyala</button><span class="small" id="copied" role="status"></span></div>
+      <label for="restore" class="small" style="display:block;margin-top:16px;font-weight:600">Yedekten geri yükle</label>
+      <textarea id="restore" style="min-height:80px;margin-top:6px" placeholder="Kopyaladığınız yedeği buraya yapıştırın"></textarea>
+      <div class="row" style="margin-top:10px"><button class="btn sm" data-act="restore">Geri yükle</button><span class="small" id="restored" role="status"></span></div></div>
+    <h2>Sıfırla</h2>
+    <div class="card"><p class="small muted">Bütün ilerleme, seri ve ayarlar silinir. Bu işlem geri alınamaz.</p><div class="row" style="margin-top:12px" id="resetrow"><button class="btn sm danger" data-act="reset-ask">Tüm ilerlemeyi sil</button></div></div>
+  </div>`;
+}
+
+function viewSummary() {
+  const r = session.results, avg = r.length ? r.reduce((a, x) => a + x.score, 0) / r.length : 0, st = streakInfo();
+  const rows = r.map((x, i) => `<tr><td class="num">${i + 1}</td><td>${esc(TYPES[x.t].name)}</td><td class="r"><span class="pct ${grade(x.score)}">${pctText(x.score)}</span></td></tr>`).join('');
+  return `<div class="view"><div class="head"><div><h1>Oturum tamamlandı</h1><p class="sub">${esc(session.title)} · ${r.length} soru</p></div></div>
+    <div class="grid tiles"><div class="card tile"><div class="big pct ${grade(avg)}">${pctText(avg)}</div><div class="lab">oturum ortalaması</div></div><div class="card tile"><div class="big">${st.cur}</div><div class="lab">gün seri</div></div></div>
+    <div class="card tablewrap"><table><thead><tr><th>#</th><th>Görev tipi</th><th class="r">Puan</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="row"><button class="btn primary" data-act="close-session">Bugüne dön</button><button class="btn" data-act="close-session" data-to="ilerleme">İlerlemeyi gör</button></div></div>`;
+}
+
+function render() {
+  const r = route();
+  $('#nav').innerHTML = NAV.map(([k, n]) => `<a href="#${k}" ${k === r && !session ? 'aria-current="page"' : ''}>${n}</a>`).join('');
+  $('#railfoot').textContent = store.ok ? 'İlerlemeniz bu tarayıcıda saklanır.' : 'Tarayıcı depolaması kapalı; ilerleme bu oturumla sınırlı.';
+  if (session) { if (session.done) main.innerHTML = viewSummary(); else showQuestion(); return; }
+  main.innerHTML = ({ bugun: viewToday, plan: viewPlan, pratik: viewPractice, deneme: viewMock, ilerleme: viewProgress, ayarlar: viewSettings })[r]();
+}
+
+main.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const act = b.dataset.act, t = today();
+  if (act === 'block') {
+    const blk = dayPlan(t).blocks.find(x => x.id === b.dataset.id); if (!blk) return;
+    if (blk.kind === 'mock') startSession(MOCKS[blk.variant].name, MOCKS[blk.variant].items, { blockId: blk.id, mock: blk.variant });
+    else startSession(blk.title, blk.items, { blockId: blk.id });
+  } else if (act === 'manual') {
+    const day = S.days[t] || (S.days[t] = { sec: 0, q: 0, tasks: {} });
+    if (day.tasks[b.dataset.id]) delete day.tasks[b.dataset.id]; else day.tasks[b.dataset.id] = true;
+    save(); render();
+  } else if (act === 'practice') startSession('Serbest pratik', [[b.dataset.type, Number(b.dataset.n)]]);
+  else if (act === 'mock') startSession(MOCKS[b.dataset.kind].name, MOCKS[b.dataset.kind].items, { mock: b.dataset.kind });
+  else if (act === 'close-session') { session = null; const to = b.dataset.to || 'bugun'; if (route() === to) render(); else location.hash = to; }
+  else if (act === 'save-settings') {
+    const s = S.settings, exam = $('#set-exam').value, start = $('#set-start').value, target = Number($('#set-target').value);
+    if (exam) s.exam = exam;
+    if (start && start <= t) s.start = start;
+    if (target >= 10 && target <= 90) s.target = Math.round(target);
+    s.minutes = Number($('#set-minutes').value) || 60;
+    s.weak = Object.keys(SKILLS).filter(k => $('#weak-' + k).checked);
+    s.setup = true; save(); render();
+    $('#saved').textContent = `Kaydedildi. Plan ${weeksTotal()} hafta olarak kuruldu.`;
+  } else if (act === 'copy-backup') {
+    const txt = JSON.stringify(S), out = $('#copied');
+    const fallback = () => { const ta = $('#restore'); ta.value = txt; ta.select(); out.textContent = 'Otomatik kopyalanamadı. Yedek aşağıdaki kutuya yazıldı; seçip kopyalayın.'; };
+    try { navigator.clipboard.writeText(txt).then(() => { out.textContent = 'Yedek panoya kopyalandı.'; }, fallback); } catch (err) { fallback(); }
+  } else if (act === 'restore') {
+    const out = $('#restored');
+    try { const v = JSON.parse($('#restore').value); if (!v || !v.settings || !v.days) throw 0; S = hydrate(v); save(); render(); $('#restored').textContent = 'Yedek geri yüklendi.'; }
+    catch (err) { out.textContent = 'Bu metin geçerli bir yedek değil. Yedeğin tamamını yapıştırdığınızdan emin olun.'; }
+  } else if (act === 'reset-ask') {
+    $('#resetrow').innerHTML = '<span class="small">Emin misiniz?</span><button class="btn sm danger" data-act="reset-yes">Evet, hepsini sil</button><button class="btn sm" data-act="reset-no">Vazgeç</button>';
+  } else if (act === 'reset-no') render();
+  else if (act === 'reset-yes') { S = fresh(); save(); location.hash = 'bugun'; render(); }
+});
+$('#nav').addEventListener('click', e => { if (session && e.target.closest('a')) { clearQ(); session = null; render(); window.scrollTo(0, 0); } });
+window.addEventListener('hashchange', () => { if (session) { clearQ(); session = null; } render(); window.scrollTo(0, 0); });
+
+AudioOut.init(); Dict.init();
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,4 +1,14 @@
 # Projects shown on the homepage and /projects. Order = display order.
+- title: PTE Çalışma Masası
+  image: /img/pte-calisma-masasi-thumbnail.png
+  description: >-
+    PTE Academic sınavına hazırlık için tarayıcıda çalışan çalışma
+    platformu: sınav tarihine göre kurulan günlük plan, 22 görev tipinin
+    tamamı için ipuçları ve 86 örnek soru, karışık denemeler ve ilerleme
+    takibi. Veriler yalnızca tarayıcıda saklanır.
+  demo: /projects/pte-calisma-masasi/
+  tags: [ingilizce, sınav, eğitim]
+
 - title: "Sahneler: İzometrik Şehirler"
   image: /img/sahneler-thumbnail.png
   description: >-
